@@ -6,7 +6,7 @@ The rustlet [macro library](https://bitcoinmw.github.io/rustlet/librustlet/index
 
 # Execution of Rustlets
 
-Rustlets are executed in the [nioruntime](https://github.com/bitcoinmw/nioruntime). This allows for performant execution using epoll on linux, kqueues on bsd variants including macos, and wepoll on windows.
+Rustlets are executed in the [nioruntime](https://github.com/37miners/nioruntime). This allows for performant execution using epoll on linux, kqueues on bsd variants including macos, and wepoll on windows.
 
 # RSPs
 
