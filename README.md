@@ -2,7 +2,7 @@
 
 A rustlet is a Rust closure that is used to extend the capabilities of servers that host applications accessed by means of the HTTP request-response programming model.
 
-The rustlet [macro library](https://bitcoinmw.github.io/rustlet/librustlet/index.html) provides interfaces for writing rustlets. Rustlets are implemented via the [rustlet! macro](https://bitcoinmw.github.io/rustlet/librustlet/macro.rustlet.html). The other macros in the library provide all the functionalities required to respond to an HTTP Get or Post request.
+The rustlet [macro library](https://37miners.github.io/rustlet/librustlet/index.html) provides interfaces for writing rustlets. Rustlets are implemented via the [rustlet! macro](https://37miners.github.io/rustlet/librustlet/macro.rustlet.html). The other macros in the library provide all the functionalities required to respond to an HTTP Get or Post request.
 
 # Execution of Rustlets
 
@@ -33,7 +33,7 @@ Please note that RSPs do not currently support async rustlets. If you embed a ru
 
 # Logging
 
-The rustlet container comes with a logging library. The full documentation of the logging library can be [found here](https://bitcoinmw.github.io/rustlet/nioruntime_log/). This logging library uses the same syntax of the standard logging library for rust. See the example for info [here](https://bitcoinmw.github.io/rustlet/nioruntime_log/macro.info.html). Log level is set per file as seen in the previous example. The rustlet container itself uses this logging library for three log files. Each log file has a configurable location, max_size, and max_age. Further details about each of these log files is below.
+The rustlet container comes with a logging library. The full documentation of the logging library can be [found here](https://37miners.github.io/rustlet/nioruntime_log/). This logging library uses the same syntax of the standard logging library for rust. See the example for info [here](https://37miners.github.io/rustlet/nioruntime_log/macro.info.html). Log level is set per file as seen in the previous example. The rustlet container itself uses this logging library for three log files. Each log file has a configurable location, max_size, and max_age. Further details about each of these log files is below.
 
 ## Main log
 
@@ -188,9 +188,9 @@ $ ./target/release/rustlet -c -x 100 -t 100 -i 10 --tls
 
 # Configuration
 
-The rustlet container is configured via the [rustlet_init](https://bitcoinmw.github.io/rustlet/librustlet/macro.rustlet_init.html) macro. All configuration structs implement the Default trait so the defaults can be used. Also, all of the fields are fully documented in the documentation linked to above.
+The rustlet container is configured via the [rustlet_init](https://37miners.github.io/rustlet/librustlet/macro.rustlet_init.html) macro. All configuration structs implement the Default trait so the defaults can be used. Also, all of the fields are fully documented in the documentation linked to above.
 
 # Samples
 
-The Rustlet [macro library](https://bitcoinmw.github.io/rustlet/librustlet/index.html)  documentation provides numerous working examples. Also, the [rustlet-simple](https://github.com/bitcoinmw/rustlet-simple) project shows how to write and deploy a hello world rustlet in 3 easy steps. More examples to come...
+The Rustlet [macro library](https://37miners.github.io/rustlet/librustlet/index.html)  documentation provides numerous working examples. Also, the [rustlet-simple](https://github.com/bitcoinmw/rustlet-simple) project shows how to write and deploy a hello world rustlet in 3 easy steps. More examples to come...
 
