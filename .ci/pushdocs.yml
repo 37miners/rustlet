@@ -1,8 +1,8 @@
 steps:
 - script: |
-   git clone https://anything:$(github_pat)@github.com/bitcoinmw/rustlet.git rustlet_new
+   git clone https://anything:$(github_pat)@github.com/37miners/rustlet.git rustlet_new
    cd rustlet_new
-   git config user.name bitcoinmw
+   git config user.name hagridthegreat37
    git checkout master
    cargo doc
    mkdir -p docs
@@ -15,7 +15,7 @@ steps:
    else
       git add --all
       git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
-      git push https://$(github_pat)@github.com/bitcoinmw/rustlet.git
+      git push https://$(github_pat)@github.com/37miners/rustlet.git
    fi
 
   displayName: 'Create and Push Docs'
