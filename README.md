@@ -192,5 +192,5 @@ The rustlet container is configured via the [rustlet_init](https://37miners.gith
 
 # Samples
 
-The Rustlet [macro library](https://37miners.github.io/rustlet/librustlet/index.html)  documentation provides numerous working examples. Also, the [rustlet-simple](https://github.com/bitcoinmw/rustlet-simple) project shows how to write and deploy a hello world rustlet in 3 easy steps. More examples to come...
+The Rustlet [macro library](https://37miners.github.io/rustlet/librustlet/index.html)  documentation provides numerous working examples. Also, the [rustlet-simple](https://github.com/37miners/rustlet-simple) project shows how to write and deploy a hello world rustlet in 3 easy steps. More examples to come...
 
