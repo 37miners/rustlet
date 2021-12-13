@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/vsts/.cargo/git/checkouts/nioruntime-5f77931d44981d86/56b7546/http/src/http.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>http.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../nioruntime_http/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;vsts&#x2F;.cargo&#x2F;git&#x2F;checkouts&#x2F;nioruntime-5f77931d44981d86&#x2F;148dd65&#x2F;http&#x2F;src&#x2F;http.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>http.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../nioruntime_http/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2482,8 +2480,7 @@
 <span id="2480">2480</span>
 <span id="2481">2481</span>
 <span id="2482">2482</span>
-</pre><pre class="rust">
-<span class="comment">// Copyright 2021 The BMW Developers</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
 <span class="comment">// you may not use this file except in compliance with the License.</span>
@@ -2580,7 +2577,7 @@
 		<span class="ident">method</span>: <span class="ident">HttpMethod</span>,
 		<span class="ident">elapsed</span>: <span class="ident">u128</span>,
 		<span class="ident">is_async</span>: <span class="ident">bool</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	) -&gt; <span class="self">Self</span> {
 		<span class="ident">RequestLogItem</span> {
 			<span class="ident">uri</span>,
 			<span class="ident">query</span>,
@@ -2606,7 +2603,7 @@
 	<span class="ident">V09</span>,
 }
 
-<span class="kw">type</span> <span class="ident">Housekeeper</span> <span class="op">=</span> <span class="kw">fn</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span>;
+<span class="kw">type</span> <span class="ident">Housekeeper</span> <span class="op">=</span> <span class="kw">fn</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span>;
 
 <span class="kw">type</span> <span class="ident">Callback</span> <span class="op">=</span> <span class="kw">fn</span>(
 	<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -2622,7 +2619,7 @@
 	<span class="kw-2">&amp;</span><span class="ident">str</span>,
 	<span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
 	<span class="ident">bool</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span>;
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span>;
 
 <span class="kw">fn</span> <span class="ident">empty_callback</span>(
 	<span class="kw">_</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -2638,15 +2635,15 @@
 	<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,                    <span class="comment">// query</span>
 	<span class="kw">_</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>, <span class="comment">// headers</span>
 	<span class="kw">_</span>: <span class="ident">bool</span>,                    <span class="comment">// keep-alive</span>
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">fn</span> <span class="ident">empty_on_panic</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">empty_on_panic</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">fn</span> <span class="ident">empty_housekeeper</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">empty_housekeeper</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="prelude-val">Ok</span>(())
 }
 
@@ -2726,7 +2723,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">HttpConfig</span> {
-	<span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HttpConfig</span> {
+	<span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">HttpConfig</span> {
 		<span class="ident">HttpConfig</span> {
 			<span class="ident">host</span>: <span class="string">&quot;0.0.0.0&quot;</span>.<span class="ident">to_string</span>(),
 			<span class="ident">port</span>: <span class="number">8080</span>,
@@ -2774,7 +2771,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ConnData</span> {
-	<span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">wh</span>: <span class="ident">WriteHandle</span>, <span class="ident">config</span>: <span class="ident">HttpConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">wh</span>: <span class="ident">WriteHandle</span>, <span class="ident">config</span>: <span class="ident">HttpConfig</span>) -&gt; <span class="self">Self</span> {
 		<span class="kw">let</span> <span class="ident">start_time</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">START_TIME</span>;
 		<span class="kw">let</span> <span class="ident">since_start</span> <span class="op">=</span> <span class="ident">Instant::now</span>().<span class="ident">duration_since</span>(<span class="ident">start_time</span>);
 		<span class="ident">ConnData</span> {
@@ -2789,7 +2786,7 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">buffer</span>.<span class="ident">clone</span>()
 	}
 }
@@ -2806,7 +2803,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">HttpStats</span> {
-	<span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
 		<span class="ident">HttpStats</span> {
 			<span class="ident">requests</span>: <span class="number">0</span>,
 			<span class="ident">conns</span>: <span class="number">0</span>,
@@ -2831,7 +2828,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">HttpContext</span> {
-	<span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
 		<span class="ident">HttpContext</span> {
 			<span class="ident">stop</span>: <span class="bool-val">false</span>,
 			<span class="ident">map</span>: <span class="ident">Arc::new</span>(<span class="ident">RwLock::new</span>(<span class="ident">HashMap::new</span>())),
@@ -2872,11 +2869,11 @@
 <span class="kw">impl</span> <span class="ident">HttpServer</span> {
 	<span class="doccomment">/// Create a new HttpServer instance based on the [`HttpConfig`]</span>
 	<span class="doccomment">/// specified.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">config</span>: <span class="ident">HttpConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">config</span>: <span class="ident">HttpConfig</span>) -&gt; <span class="self">Self</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cloned_config</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">clone</span>();
 		<span class="kw">let</span> <span class="ident">home_dir</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">dirs::home_dir</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">p</span>,
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PathBuf::new</span>(),
+			<span class="prelude-val">Some</span>(<span class="ident">p</span>) =&gt; <span class="ident">p</span>,
+			<span class="prelude-val">None</span> =&gt; <span class="ident">PathBuf::new</span>(),
 		}
 		.<span class="ident">as_path</span>()
 		.<span class="ident">display</span>()
@@ -2884,14 +2881,14 @@
 		<span class="ident">cloned_config</span>.<span class="ident">root_dir</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">root_dir</span>.<span class="ident">replace</span>(<span class="string">&quot;~&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">home_dir</span>);
 
 		<span class="kw">let</span> <span class="ident">exists</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">std::fs::metadata</span>(<span class="ident">cloned_config</span>.<span class="ident">root_dir</span>.<span class="ident">clone</span>()) {
-			<span class="prelude-val">Ok</span>(<span class="ident">md</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">md</span>.<span class="ident">is_dir</span>(),
-			<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+			<span class="prelude-val">Ok</span>(<span class="ident">md</span>) =&gt; <span class="ident">md</span>.<span class="ident">is_dir</span>(),
+			<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
 		};
 
 		<span class="kw">if</span> <span class="op">!</span><span class="ident">exists</span> {
-			<span class="kw">match</span> <span class="self">Self</span><span class="ident">::build_webroot</span>(<span class="ident">cloned_config</span>.<span class="ident">root_dir</span>.<span class="ident">clone</span>()) {
-				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-				<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::build_webroot</span>(<span class="ident">cloned_config</span>.<span class="ident">root_dir</span>.<span class="ident">clone</span>()) {
+				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+				<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -2913,9 +2910,9 @@
 	<span class="doccomment">/// will be sent to the the specified [`HttpConfig::callback`]. This is used</span>
 	<span class="doccomment">/// by rsps to map all paths that end in &quot;.rsp&quot; to the rustlet container instead</span>
 	<span class="doccomment">/// of being processed by the [`HttpServer`].</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_api_extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">extension</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_api_extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">extension</span>: <span class="ident">String</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">http_context</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) =&gt; {
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 					<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span>
 						<span class="ident">ErrorKind::PoisonError</span>(<span class="macro">format!</span>(<span class="string">&quot;unexpected error: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>()))
@@ -2924,7 +2921,7 @@
 				})<span class="question-mark">?</span>;
 				<span class="ident">context</span>.<span class="ident">api_extensions</span>.<span class="ident">insert</span>(<span class="ident">extension</span>.<span class="ident">to_lowercase</span>());
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ErrorKind::SetupError</span>(
 					<span class="string">&quot;Context not set, must call start first.&quot;</span>.<span class="ident">to_string</span>(),
 				)
@@ -2938,9 +2935,9 @@
 	<span class="doccomment">/// Add an API mapping such that any requests that have this URI will be sent to the specified</span>
 	<span class="doccomment">/// [`HttpConfig::callback`] instead of being processed by the [`HttpServer`]. This is used</span>
 	<span class="doccomment">/// by rustlet mappings.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_api_mapping</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_api_mapping</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">String</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">http_context</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) =&gt; {
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 					<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span>
 						<span class="ident">ErrorKind::PoisonError</span>(<span class="macro">format!</span>(<span class="string">&quot;unexpected error: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>()))
@@ -2949,7 +2946,7 @@
 				})<span class="question-mark">?</span>;
 				<span class="ident">context</span>.<span class="ident">api_mappings</span>.<span class="ident">insert</span>(<span class="ident">path</span>);
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ErrorKind::SetupError</span>(
 					<span class="string">&quot;Context not set, must call start first.&quot;</span>.<span class="ident">to_string</span>(),
 				)
@@ -2960,7 +2957,7 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">fn</span> <span class="ident">check_config</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">check_config</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_frequency</span> <span class="op">&lt;</span> <span class="number">1000</span> {
 			<span class="macro">log_multi!</span>(
                         	<span class="ident">INFO</span>,
@@ -2980,15 +2977,15 @@
 	<span class="doccomment">/// which is initially configured to print to both standard output and the mainlog log file</span>
 	<span class="doccomment">/// location. After the startup parameters are printed, the server has begun and logging only</span>
 	<span class="doccomment">/// is printed to the mainlog file location.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}:{}&quot;</span>, <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">host</span>, <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">port</span>,);
 		<span class="kw">let</span> <span class="ident">certificates_file</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">evh_config</span>.<span class="ident">tls_config</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">tls_config</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">format!</span>(<span class="string">&quot;&#39;{}&#39;&quot;</span>, <span class="ident">tls_config</span>.<span class="ident">certificates_file</span>.<span class="ident">clone</span>()),
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;None&quot;</span>.<span class="ident">to_string</span>(),
+			<span class="prelude-val">Some</span>(<span class="ident">tls_config</span>) =&gt; <span class="macro">format!</span>(<span class="string">&quot;&#39;{}&#39;&quot;</span>, <span class="ident">tls_config</span>.<span class="ident">certificates_file</span>.<span class="ident">clone</span>()),
+			<span class="prelude-val">None</span> =&gt; <span class="string">&quot;None&quot;</span>.<span class="ident">to_string</span>(),
 		};
 		<span class="kw">let</span> <span class="ident">private_key_file</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">evh_config</span>.<span class="ident">tls_config</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">tls_config</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">format!</span>(<span class="string">&quot;&#39;{}&#39;&quot;</span>, <span class="ident">tls_config</span>.<span class="ident">private_key_file</span>.<span class="ident">clone</span>()),
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;None&quot;</span>.<span class="ident">to_string</span>(),
+			<span class="prelude-val">Some</span>(<span class="ident">tls_config</span>) =&gt; <span class="macro">format!</span>(<span class="string">&quot;&#39;{}&#39;&quot;</span>, <span class="ident">tls_config</span>.<span class="ident">private_key_file</span>.<span class="ident">clone</span>()),
+			<span class="prelude-val">None</span> =&gt; <span class="string">&quot;None&quot;</span>.<span class="ident">to_string</span>(),
 		};
 
 		<span class="macro">log_config_multi!</span>(
@@ -3032,13 +3029,13 @@
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;request_log_max_size: {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">request_log_max_size</span>)
+			<span class="ident"><span class="self">Self</span>::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">request_log_max_size</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;request_log_max_age:  {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">request_log_max_age_millis</span>)
+			<span class="ident"><span class="self">Self</span>::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">request_log_max_age_millis</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
@@ -3050,13 +3047,13 @@
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;mainlog_max_size:     {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">main_log_max_size</span>)
+			<span class="ident"><span class="self">Self</span>::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">main_log_max_size</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;mainlog_max_age:      {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">main_log_max_age_millis</span>)
+			<span class="ident"><span class="self">Self</span>::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">main_log_max_age_millis</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
@@ -3068,19 +3065,19 @@
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;stats_log_max_size:   {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_log_max_size</span>)
+			<span class="ident"><span class="self">Self</span>::format_bytes</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_log_max_size</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;stats_log_max_age:    {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_log_max_age_millis</span>)
+			<span class="ident"><span class="self">Self</span>::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_log_max_age_millis</span>)
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
 			<span class="ident">MAIN_LOG</span>,
 			<span class="string">&quot;stats_frequency:      {}&quot;</span>,
-			<span class="self">Self</span><span class="ident">::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_frequency</span>.<span class="ident">into</span>())
+			<span class="ident"><span class="self">Self</span>::format_time</span>(<span class="self">self</span>.<span class="ident">config</span>.<span class="ident">stats_frequency</span>.<span class="ident">into</span>())
 		);
 		<span class="macro">log_multi!</span>(
 			<span class="ident">INFO</span>,
@@ -3133,10 +3130,10 @@
 		<span class="ident">eh</span>.<span class="ident">set_on_panic</span>(<span class="ident">http_config</span>.<span class="ident">on_panic</span>)<span class="question-mark">?</span>;
 
 		<span class="ident">eh</span>.<span class="ident">set_on_read</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">buf</span>, <span class="ident">len</span>, <span class="ident">wh</span><span class="op">|</span> {
-			<span class="self">Self</span><span class="ident">::process_read</span>(<span class="ident">http_context</span>.<span class="ident">clone</span>(), <span class="ident">http_config</span>.<span class="ident">clone</span>(), <span class="ident">buf</span>, <span class="ident">len</span>, <span class="ident">wh</span>)
+			<span class="ident"><span class="self">Self</span>::process_read</span>(<span class="ident">http_context</span>.<span class="ident">clone</span>(), <span class="ident">http_config</span>.<span class="ident">clone</span>(), <span class="ident">buf</span>, <span class="ident">len</span>, <span class="ident">wh</span>)
 		})<span class="question-mark">?</span>;
 		<span class="ident">eh</span>.<span class="ident">set_on_accept</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">id</span>, <span class="ident">wh</span><span class="op">|</span> {
-			<span class="self">Self</span><span class="ident">::process_accept</span>(
+			<span class="ident"><span class="self">Self</span>::process_accept</span>(
 				<span class="ident">http_context_clone</span>.<span class="ident">clone</span>(),
 				<span class="ident">http_config_clone</span>.<span class="ident">clone</span>(),
 				<span class="ident">id</span>,
@@ -3145,7 +3142,7 @@
 		})<span class="question-mark">?</span>;
 		<span class="ident">eh</span>.<span class="ident">set_on_client_read</span>(<span class="op">|</span><span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">|</span> <span class="prelude-val">Ok</span>(()))<span class="question-mark">?</span>;
 		<span class="ident">eh</span>.<span class="ident">set_on_close</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">id</span><span class="op">|</span> {
-			<span class="self">Self</span><span class="ident">::process_close</span>(<span class="ident">http_context_clone2</span>.<span class="ident">clone</span>(), <span class="ident">http_config_clone2</span>.<span class="ident">clone</span>(), <span class="ident">id</span>)
+			<span class="ident"><span class="self">Self</span>::process_close</span>(<span class="ident">http_context_clone2</span>.<span class="ident">clone</span>(), <span class="ident">http_config_clone2</span>.<span class="ident">clone</span>(), <span class="ident">id</span>)
 		})<span class="question-mark">?</span>;
 		<span class="ident">eh</span>.<span class="ident">start</span>()<span class="question-mark">?</span>;
 		<span class="ident">eh</span>.<span class="ident">add_tcp_listener</span>(<span class="kw-2">&amp;</span><span class="ident">listener</span>)<span class="question-mark">?</span>;
@@ -3156,8 +3153,8 @@
 			<span class="ident">std::thread::sleep</span>(<span class="ident">std::time::Duration::from_millis</span>(<span class="number">100</span>));
 			{
 				<span class="kw">let</span> <span class="ident">http_context</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">http_context_clone4</span>.<span class="ident">read</span>() {
-					<span class="prelude-val">Ok</span>(<span class="ident">http_context</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">http_context</span>,
-					<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">http_context</span>) =&gt; <span class="ident">http_context</span>,
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 						<span class="macro">log_multi!</span>(
 							<span class="ident">ERROR</span>,
 							<span class="ident">MAIN_LOG</span>,
@@ -3172,8 +3169,8 @@
 					<span class="macro">log_multi!</span>(<span class="ident">INFO</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;Stopping HttpServer&quot;</span>);
 					<span class="kw">let</span> <span class="ident">stop_res</span> <span class="op">=</span> <span class="ident">eh</span>.<span class="ident">stop</span>();
 					<span class="kw">match</span> <span class="ident">stop_res</span> {
-						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-						<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+						<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 							<span class="macro">log_multi!</span>(
 								<span class="ident">ERROR</span>,
 								<span class="ident">MAIN_LOG</span>,
@@ -3188,14 +3185,14 @@
 		});
 
 		<span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-			<span class="self">Self</span><span class="ident">::request_log</span>(<span class="ident">http_context_clone5</span>, <span class="ident">http_config_clone3</span>.<span class="ident">clone</span>())
+			<span class="ident"><span class="self">Self</span>::request_log</span>(<span class="ident">http_context_clone5</span>, <span class="ident">http_config_clone3</span>.<span class="ident">clone</span>())
 		});
 
 		<span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-			<span class="self">Self</span><span class="ident">::stats_log</span>(<span class="ident">http_context_clone6</span>, <span class="ident">http_config_clone4</span>.<span class="ident">clone</span>())
+			<span class="ident"><span class="self">Self</span>::stats_log</span>(<span class="ident">http_context_clone6</span>, <span class="ident">http_config_clone4</span>.<span class="ident">clone</span>())
 		});
 
-		<span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> <span class="self">Self</span><span class="ident">::house_keeper</span>(<span class="kw-2">&amp;</span><span class="ident">http_context_clone7</span>, <span class="kw-2">&amp;</span><span class="ident">http_config_clone5</span>));
+		<span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> <span class="ident"><span class="self">Self</span>::house_keeper</span>(<span class="kw-2">&amp;</span><span class="ident">http_context_clone7</span>, <span class="kw-2">&amp;</span><span class="ident">http_config_clone5</span>));
 
 		<span class="macro">log_multi!</span>(<span class="ident">INFO</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;Server Started&quot;</span>);
 
@@ -3214,9 +3211,9 @@
 	}
 
 	<span class="doccomment">/// Stop the [`HttpServer`]. All resources including threads and file descriptors will be released.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">http_context</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">http_context</span>) =&gt; {
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">http_context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">_e</span><span class="op">|</span> {
 					<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span> <span class="ident">ErrorKind::InternalError</span>(
 						<span class="string">&quot;unexpected error obtaining http_context lock&quot;</span>.<span class="ident">to_string</span>(),
@@ -3226,7 +3223,7 @@
 				})<span class="question-mark">?</span>;
 				<span class="ident">http_context</span>.<span class="ident">stop</span> <span class="op">=</span> <span class="bool-val">true</span>;
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">WARN</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -3236,15 +3233,15 @@
 		}
 
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">listener</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">listener</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">drop</span>(<span class="ident">listener</span>),
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+			<span class="prelude-val">Some</span>(<span class="ident">listener</span>) =&gt; <span class="ident">drop</span>(<span class="ident">listener</span>),
+			<span class="prelude-val">None</span> =&gt; {}
 		}
 		<span class="self">self</span>.<span class="ident">listener</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 		<span class="prelude-val">Ok</span>(())
 	}
 
 	<span class="doccomment">/// Get the path of the file specified based on the the [`HttpConfig`] and the uri.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_path</span>(<span class="ident">config</span>: <span class="kw-2">&amp;</span><span class="ident">HttpConfig</span>, <span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_path</span>(<span class="ident">config</span>: <span class="kw-2">&amp;</span><span class="ident">HttpConfig</span>, <span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;{}/www{}&quot;</span>, <span class="ident">config</span>.<span class="ident">root_dir</span>, <span class="ident">uri</span>))
 	}
 
@@ -3263,14 +3260,14 @@
 		<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
 		<span class="ident">additional_headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span>,
 		<span class="ident">redirect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">1000</span>;
 		<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">additional_headers</span>.<span class="ident">len</span>() {
 			<span class="ident">size</span> <span class="op">+</span><span class="op">=</span> <span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">1</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">10</span>;
 		}
 		<span class="ident">buf</span>.<span class="ident">resize</span>(<span class="ident">size</span>, <span class="number">0</span>);
-		<span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::build_headers</span>(
+		<span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::build_headers</span>(
 			<span class="ident">config</span>,
 			<span class="ident">found</span>,
 			<span class="ident">found_404_content</span>,
@@ -3287,19 +3284,19 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">fn</span> <span class="ident">build_date</span>(<span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>], <span class="ident">itt</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">build_date</span>(<span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>], <span class="ident">itt</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">chrono::Utc::now</span>();
-		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">DATE_PRE</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">DATE_PRE</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">DATE_PRE</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">DATE_PRE</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		<span class="kw">let</span> <span class="ident">day_of_week_bytes</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">now</span>.<span class="ident">weekday</span>() {
-			<span class="ident">Weekday::Sun</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SUN_BYTES</span>,
-			<span class="ident">Weekday::Mon</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MON_BYTES</span>,
-			<span class="ident">Weekday::Tue</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TUE_BYTES</span>,
-			<span class="ident">Weekday::Wed</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">WED_BYTES</span>,
-			<span class="ident">Weekday::Thu</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">THU_BYTES</span>,
-			<span class="ident">Weekday::Fri</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FRI_BYTES</span>,
-			<span class="ident">Weekday::Sat</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SAT_BYTES</span>,
+			<span class="ident">Weekday::Sun</span> =&gt; <span class="ident">SUN_BYTES</span>,
+			<span class="ident">Weekday::Mon</span> =&gt; <span class="ident">MON_BYTES</span>,
+			<span class="ident">Weekday::Tue</span> =&gt; <span class="ident">TUE_BYTES</span>,
+			<span class="ident">Weekday::Wed</span> =&gt; <span class="ident">WED_BYTES</span>,
+			<span class="ident">Weekday::Thu</span> =&gt; <span class="ident">THU_BYTES</span>,
+			<span class="ident">Weekday::Fri</span> =&gt; <span class="ident">FRI_BYTES</span>,
+			<span class="ident">Weekday::Sat</span> =&gt; <span class="ident">SAT_BYTES</span>,
 		};
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">day_of_week_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">day_of_week_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">day_of_week_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">day_of_week_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		<span class="kw">let</span> <span class="ident">day_of_month</span> <span class="op">=</span> <span class="ident">now</span>.<span class="ident">day</span>();
 		<span class="kw">if</span> <span class="ident">day_of_month</span> <span class="op">&lt;</span> <span class="number">10</span> {
 			<span class="ident">buf</span>[<span class="ident">itt</span>] <span class="op">=</span> <span class="string">&#39;0&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>;
@@ -3316,21 +3313,21 @@
 		<span class="ident">itt</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 		<span class="kw">let</span> <span class="ident">month</span> <span class="op">=</span> <span class="ident">now</span>.<span class="ident">month</span>();
 		<span class="kw">let</span> <span class="ident">month_bytes</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">month</span> {
-			<span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">JAN_BYTES</span>,
-			<span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FEB_BYTES</span>,
-			<span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAR_BYTES</span>,
-			<span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">APR_BYTES</span>,
-			<span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAY_BYTES</span>,
-			<span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">JUN_BYTES</span>,
-			<span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">JUL_BYTES</span>,
-			<span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AUG_BYTES</span>,
-			<span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SEP_BYTES</span>,
-			<span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">OCT_BYTES</span>,
-			<span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NOV_BYTES</span>,
-			<span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DEC_BYTES</span>,
-			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DEC_BYTES</span>, <span class="comment">// should not happen</span>
+			<span class="number">1</span> =&gt; <span class="ident">JAN_BYTES</span>,
+			<span class="number">2</span> =&gt; <span class="ident">FEB_BYTES</span>,
+			<span class="number">3</span> =&gt; <span class="ident">MAR_BYTES</span>,
+			<span class="number">4</span> =&gt; <span class="ident">APR_BYTES</span>,
+			<span class="number">5</span> =&gt; <span class="ident">MAY_BYTES</span>,
+			<span class="number">6</span> =&gt; <span class="ident">JUN_BYTES</span>,
+			<span class="number">7</span> =&gt; <span class="ident">JUL_BYTES</span>,
+			<span class="number">8</span> =&gt; <span class="ident">AUG_BYTES</span>,
+			<span class="number">9</span> =&gt; <span class="ident">SEP_BYTES</span>,
+			<span class="number">10</span> =&gt; <span class="ident">OCT_BYTES</span>,
+			<span class="number">11</span> =&gt; <span class="ident">NOV_BYTES</span>,
+			<span class="number">12</span> =&gt; <span class="ident">DEC_BYTES</span>,
+			<span class="kw">_</span> =&gt; <span class="ident">DEC_BYTES</span>, <span class="comment">// should not happen</span>
 		};
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">month_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">month_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">month_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">month_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		<span class="ident">itoa::write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>[<span class="ident">itt</span>..], <span class="ident">now</span>.<span class="ident">year</span>())<span class="question-mark">?</span>;
 		<span class="ident">itt</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
 		<span class="ident">buf</span>[<span class="ident">itt</span>] <span class="op">=</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span>;
@@ -3380,7 +3377,7 @@
 		<span class="ident">buf</span>[<span class="ident">itt</span>] <span class="op">=</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span>;
 		<span class="ident">itt</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">DATE_POST</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">DATE_POST</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">DATE_POST</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">DATE_POST</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		<span class="prelude-val">Ok</span>(<span class="ident">itt</span>)
 	}
 
@@ -3400,7 +3397,7 @@
 		<span class="ident">additional_headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span>,
 		<span class="ident">redirect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 		<span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>],
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">server_bytes</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">server_name</span>.<span class="ident">as_bytes</span>();
 
 		<span class="kw">let</span> <span class="ident">transfer_encoding_bytes</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">keep_alive</span> {
@@ -3418,14 +3415,14 @@
 				<span class="ident">redirect</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>())
 			);
 			<span class="kw">let</span> <span class="ident">redir_bytes</span> <span class="op">=</span> <span class="ident">redir_str</span>.<span class="ident">as_bytes</span>();
-			<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">redir_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">redir_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+			<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">redir_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">redir_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">found</span> {
-			<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">FOUND_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">FOUND_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+			<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">FOUND_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">FOUND_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		} <span class="kw">else</span> {
-			<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">NOT_FOUND_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">NOT_FOUND_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+			<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">NOT_FOUND_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">NOT_FOUND_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		}
 
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::build_date</span>(<span class="ident">buf</span>, <span class="ident">itt</span>)<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::build_date</span>(<span class="ident">buf</span>, <span class="ident">itt</span>)<span class="question-mark">?</span>;
 		<span class="ident">itt</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">additional_headers</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">0</span> {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additional_headers_formatted</span> <span class="op">=</span> <span class="ident">String::new</span>();
 			<span class="kw">for</span> <span class="ident">header</span> <span class="kw">in</span> <span class="ident">additional_headers</span> {
@@ -3435,7 +3432,7 @@
 				);
 			}
 			<span class="kw">let</span> <span class="ident">additional_headers_formatted_bytes</span> <span class="op">=</span> <span class="ident">additional_headers_formatted</span>.<span class="ident">as_bytes</span>();
-			<span class="self">Self</span><span class="ident">::clone_in_bytes</span>(
+			<span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(
 				<span class="ident">additional_headers_formatted_bytes</span>,
 				<span class="ident">buf</span>,
 				<span class="ident">itt</span>,
@@ -3444,23 +3441,23 @@
 		} <span class="kw">else</span> {
 			<span class="ident">itt</span>
 		};
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">SERVER_PRE</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SERVER_PRE</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">server_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">server_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">SEPARATOR_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SEPARATOR_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">SERVER_PRE</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SERVER_PRE</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">server_bytes</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">server_bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">SEPARATOR_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SEPARATOR_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(
 			<span class="ident">transfer_encoding_bytes</span>,
 			<span class="ident">buf</span>,
 			<span class="ident">itt</span>,
 			<span class="ident">transfer_encoding_bytes</span>.<span class="ident">len</span>(),
 		)<span class="question-mark">?</span>;
-		<span class="ident">itt</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::clone_in_bytes</span>(<span class="ident">SEPARATOR_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SEPARATOR_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
+		<span class="ident">itt</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(<span class="ident">SEPARATOR_BYTES</span>, <span class="ident">buf</span>, <span class="ident">itt</span>, <span class="ident">SEPARATOR_BYTES</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
 		<span class="ident">itt</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">found</span> <span class="op">|</span><span class="op">|</span> <span class="ident">found_404_content</span> {
 			<span class="ident">itt</span>
 		} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">keep_alive</span> {
 			<span class="kw">let</span> <span class="ident">not_found_message</span> <span class="op">=</span>
 				<span class="macro">format!</span>(<span class="string">&quot;{:X}\r\n{}\r\n0\r\n\r\n&quot;</span>, <span class="ident">RESPONSE_404</span>.<span class="ident">len</span>(), <span class="ident">RESPONSE_404</span>);
 			<span class="kw">let</span> <span class="ident">not_found_message_bytes</span> <span class="op">=</span> <span class="ident">not_found_message</span>.<span class="ident">as_bytes</span>();
-			<span class="self">Self</span><span class="ident">::clone_in_bytes</span>(
+			<span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(
 				<span class="ident">not_found_message_bytes</span>,
 				<span class="ident">buf</span>,
 				<span class="ident">itt</span>,
@@ -3469,7 +3466,7 @@
 		} <span class="kw">else</span> {
 			<span class="kw">let</span> <span class="ident">not_found_message</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}\r\n&quot;</span>, <span class="ident">RESPONSE_404</span>);
 			<span class="kw">let</span> <span class="ident">not_found_message_bytes</span> <span class="op">=</span> <span class="ident">not_found_message</span>.<span class="ident">as_bytes</span>();
-			<span class="self">Self</span><span class="ident">::clone_in_bytes</span>(
+			<span class="ident"><span class="self">Self</span>::clone_in_bytes</span>(
 				<span class="ident">not_found_message_bytes</span>,
 				<span class="ident">buf</span>,
 				<span class="ident">itt</span>,
@@ -3484,7 +3481,7 @@
 		<span class="ident">dst</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>],
 		<span class="ident">offset</span>: <span class="ident">usize</span>,
 		<span class="ident">len</span>: <span class="ident">usize</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="ident">dst</span>[<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">len</span>].<span class="ident">clone_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>[<span class="number">0</span>..<span class="ident">len</span>]);
 		<span class="prelude-val">Ok</span>(<span class="ident">offset</span> <span class="op">+</span> <span class="ident">len</span>)
 	}
@@ -3493,14 +3490,14 @@
 		<span class="ident">resource</span>: <span class="ident">String</span>,
 		<span class="ident">root_dir</span>: <span class="ident">String</span>,
 		<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/www/{}&quot;</span>, <span class="ident">root_dir</span>, <span class="ident">resource</span>);
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>)<span class="question-mark">?</span>;
 		<span class="ident">file</span>.<span class="ident">write_all</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">fn</span> <span class="ident">format_bytes</span>(<span class="ident">n</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">format_bytes</span>(<span class="ident">n</span>: <span class="ident">u64</span>) -&gt; <span class="ident">String</span> {
 		<span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1_000_000</span> {
 			<span class="ident">bytefmt::format_to</span>(<span class="ident">n</span>, <span class="ident">bytefmt::Unit::MB</span>)
 		} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1_000</span> {
@@ -3510,7 +3507,7 @@
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">format_time</span>(<span class="ident">n</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">format_time</span>(<span class="ident">n</span>: <span class="ident">u128</span>) -&gt; <span class="ident">String</span> {
 		<span class="kw">let</span> <span class="ident">duration</span> <span class="op">=</span> <span class="ident">std::time::Duration::from_millis</span>(<span class="ident">n</span>.<span class="ident">try_into</span>().<span class="ident">unwrap_or</span>(<span class="ident">u64::MAX</span>));
 		<span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1000</span> <span class="op">*</span> <span class="number">60</span> {
 			<span class="macro">format!</span>(<span class="string">&quot;{} Minutes&quot;</span>, (<span class="ident">duration</span>.<span class="ident">as_secs</span>() <span class="op">/</span> <span class="number">60</span>))
@@ -3521,7 +3518,7 @@
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">format_float</span>(<span class="ident">num</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+	<span class="kw">fn</span> <span class="ident">format_float</span>(<span class="ident">num</span>: <span class="ident">f64</span>) -&gt; <span class="ident">String</span> {
 		<span class="kw">if</span> <span class="ident">num</span> <span class="op">&lt;</span> <span class="number">10.0</span> {
 			<span class="macro">format!</span>(<span class="string">&quot;{:.7}&quot;</span>, <span class="ident">num</span>)
 		} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">num</span> <span class="op">&lt;</span> <span class="number">100.0</span> {
@@ -3540,7 +3537,7 @@
 	<span class="kw">fn</span> <span class="ident">stats_log</span>(
 		<span class="ident">http_context</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HttpContext</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">http_config</span>: <span class="ident">HttpConfig</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">Instant::now</span>();
 		<span class="kw">let</span> <span class="ident">header_titles</span> <span class="op">=</span>
 <span class="string">&quot;Statistical Log V_1.0:         REQUESTS       CONNS        CONNECTS         QPS   IDLE_DISC    RTIMEOUT     AVG_LAT     MAX_LAT&quot;</span>
@@ -3582,7 +3579,7 @@
 				<span class="ident">error</span>
 			})<span class="question-mark">?</span>;
 
-			<span class="kw">if</span> <span class="ident">itt</span> <span class="op">%</span> <span class="number">6</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+			<span class="kw">if</span> <span class="ident">itt</span> <span class="op">%</span> <span class="number">6</span> <span class="op">==</span> <span class="number">0</span> {
 				<span class="macro">log_no_ts_multi!</span>(<span class="ident">INFO</span>, <span class="ident">STATS_LOG</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">HEADER</span>);
 				<span class="macro">log_no_ts_multi!</span>(<span class="ident">INFO</span>, <span class="ident">STATS_LOG</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">header_titles</span>);
 				<span class="macro">log_no_ts_multi!</span>(<span class="ident">INFO</span>, <span class="ident">STATS_LOG</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">HEADER</span>);
@@ -3619,7 +3616,7 @@
 					)
 				};
 
-				<span class="kw">let</span> <span class="ident">avg_lat</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_requests</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+				<span class="kw">let</span> <span class="ident">avg_lat</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_requests</span> <span class="op">==</span> <span class="number">0</span> {
 					<span class="number">0.0</span>
 				} <span class="kw">else</span> {
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_sum</span> <span class="kw">as</span> <span class="ident">f64</span>
@@ -3635,18 +3632,18 @@
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">requests</span>.<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">conns</span>.<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">connects</span>.<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
-					<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">requests</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="ident">secs</span> <span class="kw">as</span> <span class="ident">f64</span>),
+					<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">requests</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="ident">secs</span> <span class="kw">as</span> <span class="ident">f64</span>),
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">idledisc</span>,
 					<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">rtimeout</span>,
-					<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">avg_lat</span>),
-					<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">max_lat</span>),
+					<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">avg_lat</span>),
+					<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">max_lat</span>),
 				);
 				<span class="macro">log_no_ts_multi!</span>(<span class="ident">INFO</span>, <span class="ident">STATS_LOG</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">HEADER</span>);
 			}
 
 			<span class="kw">let</span> <span class="ident">qps</span> <span class="op">=</span> (<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">requests</span> <span class="op">-</span> <span class="ident">last_requests</span>) <span class="kw">as</span> <span class="ident">f64</span>
 				<span class="op">/</span> (<span class="ident">http_config</span>.<span class="ident">stats_frequency</span> <span class="op">/</span> <span class="number">1000</span>) <span class="kw">as</span> <span class="ident">f64</span>;
-			<span class="kw">let</span> <span class="ident">avg_lat</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_requests</span> <span class="op">-</span> <span class="ident">last_lat_reqs</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+			<span class="kw">let</span> <span class="ident">avg_lat</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_requests</span> <span class="op">-</span> <span class="ident">last_lat_reqs</span> <span class="op">==</span> <span class="number">0</span> {
 				<span class="number">0.0</span>
 			} <span class="kw">else</span> {
 				(<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">lat_sum</span> <span class="op">-</span> <span class="ident">last_lat_sum</span>) <span class="kw">as</span> <span class="ident">f64</span>
@@ -3661,11 +3658,11 @@
 				(<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">requests</span> <span class="op">-</span> <span class="ident">last_requests</span>).<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
 				<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">conns</span>.<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
 				(<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">connects</span> <span class="op">-</span> <span class="ident">last_connects</span>).<span class="ident">to_formatted_string</span>(<span class="kw-2">&amp;</span><span class="ident">Locale::en</span>),
-				<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">qps</span>),
+				<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">qps</span>),
 				<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">idledisc</span> <span class="op">-</span> <span class="ident">last_idledisc</span>,
 				<span class="ident">http_context</span>.<span class="ident">stats</span>.<span class="ident">rtimeout</span> <span class="op">-</span> <span class="ident">last_rtimeout</span>,
-				<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">avg_lat</span>),
-				<span class="self">Self</span><span class="ident">::format_float</span>(<span class="ident">max_lat</span>),
+				<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">avg_lat</span>),
+				<span class="ident"><span class="self">Self</span>::format_float</span>(<span class="ident">max_lat</span>),
 			);
 
 			<span class="kw">if</span> <span class="ident">http_context</span>.<span class="ident">stop</span> {
@@ -3680,29 +3677,29 @@
 				<span class="kw">let</span> <span class="ident">log_map</span> <span class="op">=</span> <span class="ident">static_log</span>.<span class="ident">lock</span>();
 
 				<span class="kw">match</span> <span class="ident">log_map</span> {
-					<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">log_map</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">log_map</span>) =&gt; {
 						<span class="kw">let</span> <span class="ident">log</span> <span class="op">=</span> <span class="ident">log_map</span>.<span class="ident">get_mut</span>(<span class="ident">STATS_LOG</span>);
 						<span class="kw">match</span> <span class="ident">log</span> {
-							<span class="prelude-val">Some</span>(<span class="ident">log</span>) <span class="op">=</span><span class="op">&gt;</span> {
+							<span class="prelude-val">Some</span>(<span class="ident">log</span>) =&gt; {
 								<span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotation_status</span>()<span class="question-mark">?</span> {
-									<span class="ident">RotationStatus::Needed</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
-										<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="ident">RotationStatus::Needed</span> =&gt; <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
+										<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
 											<span class="ident">rotate_complete</span> <span class="op">=</span> <span class="bool-val">true</span>;
 										}
-										<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+										<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 											<span class="macro">println!</span>(<span class="string">&quot;unexpected stats log err: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>());
 										}
 									},
-									<span class="ident">RotationStatus::AutoRotated</span> <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="ident">RotationStatus::AutoRotated</span> =&gt; {
 										<span class="ident">auto_rotate_complete</span> <span class="op">=</span> <span class="bool-val">true</span>;
 									}
-									<span class="ident">RotationStatus::NotNeeded</span> <span class="op">=</span><span class="op">&gt;</span> {}
+									<span class="ident">RotationStatus::NotNeeded</span> =&gt; {}
 								};
 							}
-							<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+							<span class="prelude-val">None</span> =&gt; {}
 						}
 					}
-					<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 						<span class="macro">println!</span>(<span class="string">&quot;Unexpected error rotate statslog: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>());
 					}
 				}
@@ -3734,7 +3731,7 @@
 	<span class="kw">fn</span> <span class="ident">request_log</span>(
 		<span class="ident">http_context</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HttpContext</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">http_config</span>: <span class="ident">HttpConfig</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">log</span> <span class="op">=</span> <span class="ident">Log::new</span>();
 
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">header</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;&quot;</span>);
@@ -3779,11 +3776,11 @@
 			<span class="kw">for</span> <span class="ident">item</span> <span class="kw">in</span> <span class="ident">to_log</span> {
 				<span class="kw">if</span> <span class="op">!</span><span class="ident">item</span>.<span class="ident">is_async</span> {
 					<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span>
-						<span class="self">Self</span><span class="ident">::log_item</span>(<span class="ident">item</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">log</span>, <span class="kw-2">&amp;</span><span class="ident">hash_set</span>, <span class="kw-2">&amp;</span><span class="ident">http_config</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">header_map</span>);
+						<span class="ident"><span class="self">Self</span>::log_item</span>(<span class="ident">item</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">log</span>, <span class="kw-2">&amp;</span><span class="ident">hash_set</span>, <span class="kw-2">&amp;</span><span class="ident">http_config</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">header_map</span>);
 
 					<span class="kw">match</span> <span class="ident">res</span> {
-						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-						<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+						<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 							<span class="macro">log_multi!</span>(
 								<span class="ident">ERROR</span>,
 								<span class="ident">MAIN_LOG</span>,
@@ -3802,12 +3799,12 @@
 			<span class="comment">// check if rotation is needed</span>
 			<span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">log</span>.<span class="ident">rotation_status</span>();
 			<span class="kw">match</span> <span class="ident">status</span> {
-				<span class="prelude-val">Ok</span>(<span class="ident">status</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">status</span> {
-					<span class="ident">RotationStatus::Needed</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
-						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Ok</span>(<span class="ident">status</span>) =&gt; <span class="kw">match</span> <span class="ident">status</span> {
+					<span class="ident">RotationStatus::Needed</span> =&gt; <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
+						<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
 							<span class="macro">log_multi!</span>(<span class="ident">INFO</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;requestlog rotated.&quot;</span>);
 						}
-						<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 							<span class="macro">log_multi!</span>(
 								<span class="ident">ERROR</span>,
 								<span class="ident">MAIN_LOG</span>,
@@ -3816,12 +3813,12 @@
 							);
 						}
 					},
-					<span class="ident">RotationStatus::NotNeeded</span> <span class="op">=</span><span class="op">&gt;</span> {}
-					<span class="ident">RotationStatus::AutoRotated</span> <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="ident">RotationStatus::NotNeeded</span> =&gt; {}
+					<span class="ident">RotationStatus::AutoRotated</span> =&gt; {
 						<span class="macro">log_multi!</span>(<span class="ident">INFO</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;requestlog rotated.&quot;</span>);
 					}
 				},
-				<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -3839,29 +3836,29 @@
 				<span class="kw">let</span> <span class="ident">log_map</span> <span class="op">=</span> <span class="ident">static_log</span>.<span class="ident">lock</span>();
 
 				<span class="kw">match</span> <span class="ident">log_map</span> {
-					<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">log_map</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">log_map</span>) =&gt; {
 						<span class="kw">let</span> <span class="ident">log</span> <span class="op">=</span> <span class="ident">log_map</span>.<span class="ident">get_mut</span>(<span class="ident">MAIN_LOG</span>);
 						<span class="kw">match</span> <span class="ident">log</span> {
-							<span class="prelude-val">Some</span>(<span class="ident">log</span>) <span class="op">=</span><span class="op">&gt;</span> {
+							<span class="prelude-val">Some</span>(<span class="ident">log</span>) =&gt; {
 								<span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotation_status</span>()<span class="question-mark">?</span> {
-									<span class="ident">RotationStatus::Needed</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
-										<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="ident">RotationStatus::Needed</span> =&gt; <span class="kw">match</span> <span class="ident">log</span>.<span class="ident">rotate</span>() {
+										<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
 											<span class="ident">rotate_complete</span> <span class="op">=</span> <span class="bool-val">true</span>;
 										}
-										<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+										<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 											<span class="macro">println!</span>(<span class="string">&quot;unexpected mainlog err: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>());
 										}
 									},
-									<span class="ident">RotationStatus::AutoRotated</span> <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="ident">RotationStatus::AutoRotated</span> =&gt; {
 										<span class="ident">auto_rotate_complete</span> <span class="op">=</span> <span class="bool-val">true</span>;
 									}
-									<span class="ident">RotationStatus::NotNeeded</span> <span class="op">=</span><span class="op">&gt;</span> {}
+									<span class="ident">RotationStatus::NotNeeded</span> =&gt; {}
 								};
 							}
-							<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+							<span class="prelude-val">None</span> =&gt; {}
 						}
 					}
-					<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 						<span class="macro">println!</span>(<span class="string">&quot;Unexpected error rotate mainlog: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>());
 					}
 				}
@@ -3883,7 +3880,7 @@
 		<span class="ident">hash_set</span>: <span class="kw-2">&amp;</span><span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 		<span class="ident">http_config</span>: <span class="kw-2">&amp;</span><span class="ident">HttpConfig</span>,
 		<span class="ident">header_map</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">http_config</span>.<span class="ident">request_log_params</span>.<span class="ident">len</span>();
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">log_line</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>();
 		<span class="kw">if</span> <span class="ident">hash_set</span>.<span class="ident">get</span>(<span class="string">&quot;method&quot;</span>).<span class="ident">is_some</span>() {
@@ -3891,7 +3888,7 @@
 				<span class="string">&quot;{}{}{}&quot;</span>,
 				<span class="ident">log_line</span>,
 				<span class="ident">http_config</span>.<span class="ident">request_log_separator_char</span>,
-				<span class="kw">if</span> <span class="ident">item</span>.<span class="ident">method</span> <span class="op">=</span><span class="op">=</span> <span class="ident">HttpMethod::Get</span> {
+				<span class="kw">if</span> <span class="ident">item</span>.<span class="ident">method</span> <span class="op">==</span> <span class="ident">HttpMethod::Get</span> {
 					<span class="string">&quot;GET&quot;</span>
 				} <span class="kw">else</span> {
 					<span class="string">&quot;POST&quot;</span>
@@ -3921,7 +3918,7 @@
 			<span class="kw">if</span> <span class="ident">config_name</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;query&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">config_name</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;method&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">config_name</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;uri&quot;</span> {
 				<span class="kw">let</span> <span class="ident">config_value</span> <span class="op">=</span> <span class="ident">header_map</span>.<span class="ident">get</span>(<span class="ident">config_name</span>.<span class="ident">as_bytes</span>());
 				<span class="kw">match</span> <span class="ident">config_value</span> {
-					<span class="prelude-val">Some</span>(<span class="ident">config_value</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Some</span>(<span class="ident">config_value</span>) =&gt; {
 						<span class="ident">log_line</span> <span class="op">=</span> <span class="macro">format!</span>(
 							<span class="string">&quot;{}{}{}&quot;</span>,
 							<span class="ident">log_line</span>,
@@ -3929,7 +3926,7 @@
 							<span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">config_value</span>)<span class="question-mark">?</span>
 						);
 					}
-					<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">None</span> =&gt; {
 						<span class="ident">log_line</span> <span class="op">=</span>
 							<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, <span class="ident">log_line</span>, <span class="ident">http_config</span>.<span class="ident">request_log_separator_char</span>,);
 					}
@@ -3956,7 +3953,7 @@
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">do_house_keeping</span>(
 		<span class="ident">http_context</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HttpContext</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">http_config</span>: <span class="kw-2">&amp;</span><span class="ident">HttpConfig</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">idledisc_incr</span> <span class="op">=</span> <span class="number">0</span>;
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rtimeout_incr</span> <span class="op">=</span> <span class="number">0</span>;
 
@@ -3984,14 +3981,14 @@
 				<span class="kw">let</span> <span class="ident">read_timeout</span> <span class="op">=</span> <span class="ident">http_config</span>.<span class="ident">read_timeout</span>;
 
 				<span class="kw">for</span> (<span class="ident">k</span>, <span class="ident">v</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">map</span> {
-					<span class="kw">let</span> (<span class="ident">idledisc</span>, <span class="ident">rtimeout</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">Self</span><span class="ident">::check_idle</span>(
+					<span class="kw">let</span> (<span class="ident">idledisc</span>, <span class="ident">rtimeout</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident"><span class="self">Self</span>::check_idle</span>(
 						<span class="ident">time_now</span>,
 						<span class="ident">v</span>,
 						<span class="ident">last_request_timeout</span>,
 						<span class="ident">read_timeout</span>,
 					) {
-						<span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>,
-						<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Ok</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
+						<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 							<span class="ident">del_list</span>.<span class="ident">push</span>(<span class="ident">k</span>.<span class="ident">clone</span>());
 							<span class="macro">log_multi!</span>(
                                                                         <span class="ident">ERROR</span>,
@@ -4041,8 +4038,8 @@
 		}
 
 		<span class="kw">match</span> (<span class="ident">http_config</span>.<span class="ident">on_housekeeper</span>)() {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4057,10 +4054,10 @@
 	<span class="kw">fn</span> <span class="ident">house_keeper</span>(
 		<span class="ident">http_context</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HttpContext</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">http_config</span>: <span class="kw-2">&amp;</span><span class="ident">HttpConfig</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">loop</span> {
 			<span class="ident">std::thread::sleep</span>(<span class="ident">std::time::Duration::from_millis</span>(<span class="number">1000</span>));
-			<span class="kw">if</span> <span class="self">Self</span><span class="ident">::do_house_keeping</span>(<span class="ident">http_context</span>, <span class="ident">http_config</span>)<span class="question-mark">?</span> {
+			<span class="kw">if</span> <span class="ident"><span class="self">Self</span>::do_house_keeping</span>(<span class="ident">http_context</span>, <span class="ident">http_config</span>)<span class="question-mark">?</span> {
 				<span class="kw">break</span>;
 			}
 		}
@@ -4072,7 +4069,7 @@
 		<span class="ident">conn_data</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">ConnData</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">last_request_timeout</span>: <span class="ident">u128</span>,
 		<span class="ident">read_timeout</span>: <span class="ident">u128</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">bool</span>, <span class="ident">bool</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">bool</span>, <span class="ident">bool</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">conn_data</span> <span class="op">=</span> <span class="ident">conn_data</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">conn_data</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">into_inner</span>();
 
@@ -4080,8 +4077,8 @@
 				<span class="kw">let</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">conn_data</span>.<span class="ident">wh</span>.<span class="ident">callback_state</span>.<span class="ident">read</span>();
 				<span class="kw">if</span> <span class="ident">callback_state</span>.<span class="ident">is_ok</span>() {
 					<span class="kw">let</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">callback_state</span>.<span class="ident">unwrap</span>();
-					<span class="kw">if</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span><span class="op">=</span> <span class="ident">State::Init</span> {
-						<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::write_headers</span>(
+					<span class="kw">if</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">==</span> <span class="ident">State::Init</span> {
+						<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::write_headers</span>(
 							<span class="kw-2">&amp;</span><span class="ident">conn_data</span>.<span class="ident">wh</span>,
 							<span class="kw-2">&amp;</span><span class="ident">conn_data</span>.<span class="ident">config</span>,
 							<span class="bool-val">true</span>,
@@ -4091,8 +4088,8 @@
 							<span class="prelude-val">None</span>,
 						);
 						<span class="kw">match</span> <span class="ident">res</span> {
-							<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-							<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+							<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+							<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 								<span class="macro">log_multi!</span>(
 									<span class="ident">ERROR</span>,
 									<span class="ident">MAIN_LOG</span>,
@@ -4108,7 +4105,7 @@
 				<span class="kw">let</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">conn_data</span>.<span class="ident">wh</span>.<span class="ident">callback_state</span>.<span class="ident">read</span>();
 				<span class="kw">if</span> <span class="ident">callback_state</span>.<span class="ident">is_ok</span>() {
 					<span class="kw">let</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">callback_state</span>.<span class="ident">unwrap</span>();
-					<span class="kw">if</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span><span class="op">=</span> <span class="ident">State::HeadersChunked</span> {
+					<span class="kw">if</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">==</span> <span class="ident">State::HeadersChunked</span> {
 						<span class="kw">let</span> <span class="ident">byte_msg</span> <span class="op">=</span> <span class="macro">format!</span>(
 							<span class="string">&quot;&lt;/br&gt;{}&lt;/br&gt;Internal Server Error. See logs for details.&quot;</span>,
 							<span class="ident">HEADER</span>
@@ -4123,8 +4120,8 @@
 							.<span class="ident">wh</span>
 							.<span class="ident">write</span>(<span class="string">&quot;Internal Server Error. See logs for details.&quot;</span>.<span class="ident">as_bytes</span>());
 						<span class="kw">match</span> <span class="ident">res</span> {
-							<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-							<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+							<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+							<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 								<span class="macro">log_multi!</span>(
 									<span class="ident">ERROR</span>,
 									<span class="ident">MAIN_LOG</span>,
@@ -4137,8 +4134,8 @@
 				}
 			}
 			<span class="kw">match</span> <span class="ident">conn_data</span>.<span class="ident">wh</span>.<span class="ident">close</span>() {
-				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-				<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+				<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -4161,7 +4158,7 @@
 			<span class="ident">idledisc</span> <span class="op">=</span> <span class="bool-val">true</span>;
 		}
 
-		<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">last_request_time</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+		<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">last_request_time</span> <span class="op">==</span> <span class="number">0</span>
 			<span class="op">&amp;&amp;</span> <span class="ident">time_now</span> <span class="op">&gt;</span> <span class="ident">conn_data</span>.<span class="ident">create_time</span> <span class="comment">// overflow case</span>
 			<span class="op">&amp;&amp;</span> <span class="ident">time_now</span> <span class="op">-</span> <span class="ident">conn_data</span>.<span class="ident">create_time</span> <span class="op">&gt;</span> <span class="ident">read_timeout</span>
 		{
@@ -4177,7 +4174,7 @@
 		<span class="ident">http_config</span>: <span class="ident">HttpConfig</span>,
 		<span class="ident">id</span>: <span class="ident">u128</span>,
 		<span class="ident">wh</span>: <span class="ident">WriteHandle</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">http_context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span>
 				<span class="ident">ErrorKind::PoisonError</span>(<span class="macro">format!</span>(<span class="string">&quot;unexpected error: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>())).<span class="ident">into</span>();
@@ -4203,7 +4200,7 @@
 		<span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
 		<span class="ident">len</span>: <span class="ident">usize</span>,
 		<span class="ident">wh</span>: <span class="ident">WriteHandle</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> (<span class="ident">conn_data</span>, <span class="ident">mappings</span>, <span class="ident">extensions</span>) <span class="op">=</span> {
 			<span class="kw">let</span> <span class="ident">http_context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 				<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span>
@@ -4220,12 +4217,12 @@
 			<span class="kw">let</span> <span class="ident">conn_data</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">wh</span>.<span class="ident">get_connection_id</span>());
 
 			<span class="kw">match</span> <span class="ident">conn_data</span> {
-				<span class="prelude-val">Some</span>(<span class="ident">conn_data</span>) <span class="op">=</span><span class="op">&gt;</span> (
+				<span class="prelude-val">Some</span>(<span class="ident">conn_data</span>) =&gt; (
 					<span class="ident">conn_data</span>.<span class="ident">clone</span>(),
 					<span class="ident">http_context</span>.<span class="ident">api_mappings</span>.<span class="ident">clone</span>(),
 					<span class="ident">http_context</span>.<span class="ident">api_extensions</span>.<span class="ident">clone</span>(),
 				),
-				<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">None</span> =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -4256,7 +4253,7 @@
 				<span class="ident">conn_data</span>.<span class="ident">buffer</span>.<span class="ident">push</span>(<span class="ident">buf</span>[<span class="ident">i</span>]);
 			}
 
-			<span class="kw">match</span> <span class="self">Self</span><span class="ident">::process_request</span>(
+			<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::process_request</span>(
 				<span class="ident">conn_data_is_async</span>,
 				<span class="ident">http_config</span>.<span class="ident">clone</span>(),
 				<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">conn_data</span>,
@@ -4264,8 +4261,8 @@
 				<span class="ident">mappings</span>,
 				<span class="ident">extensions</span>,
 			) {
-				<span class="prelude-val">Ok</span>(<span class="ident">log_item</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">log_item</span>,
-				<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Ok</span>(<span class="ident">log_item</span>) =&gt; <span class="ident">log_item</span>,
+				<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -4321,7 +4318,7 @@
 		<span class="ident">wh</span>: <span class="ident">WriteHandle</span>,
 		<span class="ident">mappings</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 		<span class="ident">extensions</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RequestLogItem</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RequestLogItem</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">log_vec</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 		<span class="kw">if</span> (<span class="kw-2">*</span><span class="ident">conn_data</span>).<span class="ident">begin_request_time</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
 			<span class="comment">// async request completing</span>
@@ -4371,12 +4368,12 @@
 			<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">3</span>..<span class="ident">len</span> {
 				<span class="ident">start_buf</span> <span class="op">=</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>;
 				<span class="ident">end_buf</span> <span class="op">=</span> <span class="ident">i</span>;
-				<span class="kw">if</span> (<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">3</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">2</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>)
+				<span class="kw">if</span> (<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">3</span>] <span class="op">==</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">2</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">==</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+				<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>)
 				<span class="comment">// we are tolerant of the incorrect format too</span>
-				<span class="op">|</span><span class="op">|</span> (<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>)
+				<span class="op">|</span><span class="op">|</span> (<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">i</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>)
 				{
 					<span class="comment">// end of a request found.</span>
 					<span class="kw">if</span> <span class="ident">len</span> <span class="op">&lt;</span> <span class="number">6</span>
@@ -4390,10 +4387,10 @@
 							<span class="ident">connection_id</span>,
 							<span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="number">0</span>..<span class="ident">len</span>]),
 						);
-						<span class="self">Self</span><span class="ident">::send_bad_request_error</span>(<span class="kw-2">&amp;</span><span class="ident">wh</span>)<span class="question-mark">?</span>;
+						<span class="ident"><span class="self">Self</span>::send_bad_request_error</span>(<span class="kw-2">&amp;</span><span class="ident">wh</span>)<span class="question-mark">?</span>;
 						<span class="kw">break</span>;
 					} <span class="kw">else</span> {
-						<span class="kw">let</span> <span class="ident">method</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="number">0</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;G&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+						<span class="kw">let</span> <span class="ident">method</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="number">0</span>] <span class="op">==</span> <span class="string">&#39;G&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 							<span class="ident">HttpMethod::Get</span>
 						} <span class="kw">else</span> {
 							<span class="ident">HttpMethod::Post</span>
@@ -4403,17 +4400,17 @@
 						<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">http_ver_string</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 
 						<span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">len</span> {
-							<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-								<span class="op">|</span><span class="op">|</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-								<span class="op">|</span><span class="op">|</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+							<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">==</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+								<span class="op">|</span><span class="op">|</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">==</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+								<span class="op">|</span><span class="op">|</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
 							{
 								<span class="ident">space_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 							}
-							<span class="kw">if</span> <span class="ident">space_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">1</span> {
+							<span class="kw">if</span> <span class="ident">space_count</span> <span class="op">==</span> <span class="number">1</span> {
 								<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">!</span><span class="op">=</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 									<span class="ident">uri</span>.<span class="ident">push</span>(<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>]);
 								}
-							} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">space_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">2</span> {
+							} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">space_count</span> <span class="op">==</span> <span class="number">2</span> {
 								<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">!</span><span class="op">=</span> <span class="string">&#39; &#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 									<span class="ident">http_ver_string</span>.<span class="ident">push</span>(<span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>]);
 								}
@@ -4426,11 +4423,11 @@
 						<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nl_count</span> <span class="op">=</span> <span class="number">0</span>;
 						<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">headers_vec</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 						<span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">len</span> {
-							<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+							<span class="kw">if</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 								<span class="ident">nl_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 								<span class="kw">if</span> <span class="ident">j</span> <span class="op">+</span> <span class="number">2</span> <span class="op">&lt;</span> <span class="ident">len</span>
-									<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span> <span class="op">+</span> <span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
-									<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span> <span class="op">+</span> <span class="number">2</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+									<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span> <span class="op">+</span> <span class="number">1</span>] <span class="op">==</span> <span class="string">&#39;\r&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
+									<span class="op">&amp;&amp;</span> <span class="ident">conn_data</span>.<span class="ident">buffer</span>[<span class="ident">j</span> <span class="op">+</span> <span class="number">2</span>] <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>
 								{
 									<span class="kw">break</span>;
 								}
@@ -4451,7 +4448,7 @@
 							<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">found_sep</span> <span class="op">=</span> <span class="bool-val">false</span>;
 							<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">found_sep_plus_1</span> <span class="op">=</span> <span class="bool-val">false</span>;
 							<span class="kw">for</span> <span class="ident">k</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">header_j_len</span> {
-								<span class="kw">if</span> <span class="op">!</span><span class="ident">found_sep</span> <span class="op">&amp;&amp;</span> <span class="ident">headers_vec</span>[<span class="ident">j</span>][<span class="ident">k</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;:&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+								<span class="kw">if</span> <span class="op">!</span><span class="ident">found_sep</span> <span class="op">&amp;&amp;</span> <span class="ident">headers_vec</span>[<span class="ident">j</span>][<span class="ident">k</span>] <span class="op">==</span> <span class="string">&#39;:&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 									<span class="ident">found_sep</span> <span class="op">=</span> <span class="bool-val">true</span>;
 								} <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">found_sep</span> {
 									<span class="ident">sep_headers_vec</span>[<span class="ident">j</span>].<span class="number">0</span>.<span class="ident">push</span>(<span class="ident">headers_vec</span>[<span class="ident">j</span>][<span class="ident">k</span>]);
@@ -4468,15 +4465,15 @@
 							}
 							<span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">sep_headers_vec</span>[<span class="ident">j</span>].<span class="number">0</span>[..])<span class="question-mark">?</span>;
 							<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">sep_headers_vec</span>[<span class="ident">j</span>].<span class="number">1</span>[..])<span class="question-mark">?</span>;
-							<span class="kw">if</span> <span class="ident">header</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;Connection&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;keep-alive&quot;</span> {
+							<span class="kw">if</span> <span class="ident">header</span> <span class="op">==</span> <span class="string">&quot;Connection&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">==</span> <span class="string">&quot;keep-alive&quot;</span> {
 								<span class="ident">keep_alive</span> <span class="op">=</span> <span class="bool-val">true</span>;
 							}
 
-							<span class="kw">if</span> <span class="ident">header</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;Content-Length&quot;</span> {
+							<span class="kw">if</span> <span class="ident">header</span> <span class="op">==</span> <span class="string">&quot;Content-Length&quot;</span> {
 								<span class="ident">has_content</span> <span class="op">=</span> <span class="bool-val">true</span>;
 								<span class="kw">let</span> <span class="ident">content_len</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">ParseIntError</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">parse</span>();
 								<span class="kw">match</span> <span class="ident">content_len</span> {
-									<span class="prelude-val">Ok</span>(<span class="ident">content_len</span>) <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="prelude-val">Ok</span>(<span class="ident">content_len</span>) =&gt; {
 										<span class="ident">end_buf</span> <span class="op">+</span><span class="op">=</span> <span class="ident">content_len</span>;
 										<span class="kw">if</span> <span class="ident">end_buf</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">len</span> {
 											<span class="comment">// we don&#39;t have enough data</span>
@@ -4485,7 +4482,7 @@
 											<span class="ident">content_complete</span> <span class="op">=</span> <span class="bool-val">false</span>;
 										}
 									}
-									<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+									<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 										<span class="macro">log_multi!</span>(
 											<span class="ident">ERROR</span>,
 											<span class="ident">MAIN_LOG</span>,
@@ -4506,11 +4503,11 @@
 						<span class="ident">processed_page</span> <span class="op">=</span> <span class="bool-val">true</span>;
 
 						<span class="kw">let</span> <span class="ident">http_ver_string</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">http_ver_string</span>[..])<span class="question-mark">?</span>;
-						<span class="kw">let</span> <span class="ident">http_version</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;HTTP/1.1&quot;</span> {
+						<span class="kw">let</span> <span class="ident">http_version</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">==</span> <span class="string">&quot;HTTP/1.1&quot;</span> {
 							<span class="ident">HttpVersion::V11</span>
-						} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;HTTP/2.0&quot;</span> {
+						} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">==</span> <span class="string">&quot;HTTP/2.0&quot;</span> {
 							<span class="ident">HttpVersion::V20</span>
-						} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;HTTP/1.0&quot;</span> {
+						} <span class="kw">else</span> <span class="kw">if</span> <span class="ident">http_ver_string</span> <span class="op">==</span> <span class="string">&quot;HTTP/1.0&quot;</span> {
 							<span class="ident">keep_alive</span> <span class="op">=</span> <span class="bool-val">false</span>;
 							<span class="ident">HttpVersion::V10</span>
 						} <span class="kw">else</span> {
@@ -4525,7 +4522,7 @@
 						<span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">uri</span>.<span class="ident">len</span>() {
 							<span class="kw">if</span> <span class="op">!</span><span class="ident">start_query</span> <span class="op">&amp;&amp;</span> <span class="ident">uri</span>[<span class="ident">j</span>] <span class="op">!</span><span class="op">=</span> <span class="string">&#39;?&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 								<span class="ident">uri_path</span>.<span class="ident">push</span>(<span class="ident">uri</span>[<span class="ident">j</span>]);
-							} <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">start_query</span> <span class="op">&amp;&amp;</span> <span class="ident">uri</span>[<span class="ident">j</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;?&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+							} <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">start_query</span> <span class="op">&amp;&amp;</span> <span class="ident">uri</span>[<span class="ident">j</span>] <span class="op">==</span> <span class="string">&#39;?&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 								<span class="ident">start_query</span> <span class="op">=</span> <span class="bool-val">true</span>;
 							} <span class="kw">else</span> {
 								<span class="ident">query_string</span>.<span class="ident">push</span>(<span class="ident">uri</span>[<span class="ident">j</span>]);
@@ -4548,8 +4545,8 @@
 
 						<span class="kw">let</span> <span class="ident">last_dot</span> <span class="op">=</span> <span class="ident">uri</span>.<span class="ident">rfind</span>(<span class="string">&#39;.&#39;</span>);
 						<span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">last_dot</span> {
-							<span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">uri</span>[(<span class="ident">pos</span> <span class="op">+</span> <span class="number">1</span>)..],
-							<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;&quot;</span>,
+							<span class="prelude-val">Some</span>(<span class="ident">pos</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">uri</span>[(<span class="ident">pos</span> <span class="op">+</span> <span class="number">1</span>)..],
+							<span class="prelude-val">None</span> =&gt; <span class="string">&quot;&quot;</span>,
 						}
 						.<span class="ident">to_lowercase</span>();
 
@@ -4577,7 +4574,7 @@
 								<span class="ident">keep_alive</span>,
 							)<span class="question-mark">?</span>;
 						} <span class="kw">else</span> {
-							<span class="self">Self</span><span class="ident">::send_response</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>, <span class="kw-2">&amp;</span><span class="ident">wh</span>, <span class="ident">http_version</span>, <span class="ident">uri</span>, <span class="ident">keep_alive</span>)<span class="question-mark">?</span>;
+							<span class="ident"><span class="self">Self</span>::send_response</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>, <span class="kw-2">&amp;</span><span class="ident">wh</span>, <span class="ident">http_version</span>, <span class="ident">uri</span>, <span class="ident">keep_alive</span>)<span class="question-mark">?</span>;
 						}
 
 						<span class="kw">let</span> <span class="ident">elapsed</span> <span class="op">=</span> {
@@ -4628,7 +4625,7 @@
 		<span class="prelude-val">Ok</span>(<span class="ident">log_vec</span>)
 	}
 
-	<span class="kw">fn</span> <span class="ident">send_bad_request_error</span>(<span class="ident">wh</span>: <span class="kw-2">&amp;</span><span class="ident">WriteHandle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">send_bad_request_error</span>(<span class="ident">wh</span>: <span class="kw-2">&amp;</span><span class="ident">WriteHandle</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">num</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen</span>();
 		<span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(
 			<span class="string">&quot;HTTP/1.1 400 Bad Request\r\n\r\nInvalid Request {}.\r\n\r\n&quot;</span>,
@@ -4646,22 +4643,22 @@
 		<span class="ident">_version</span>: <span class="ident">HttpVersion</span>,
 		<span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
 		<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::get_path</span>(<span class="ident">config</span>, <span class="ident">uri</span>)<span class="question-mark">?</span>;
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::get_path</span>(<span class="ident">config</span>, <span class="ident">uri</span>)<span class="question-mark">?</span>;
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">is_404</span> <span class="op">=</span> <span class="bool-val">false</span>;
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">found_404_content</span> <span class="op">=</span> <span class="bool-val">true</span>;
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flen</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">metadata</span>(<span class="ident">path</span>.<span class="ident">clone</span>()) {
-			<span class="prelude-val">Ok</span>(<span class="ident">md</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="ident">md</span>) =&gt; {
 				<span class="kw">if</span> <span class="ident">md</span>.<span class="ident">is_dir</span>() {
 					<span class="ident">path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/www{}/index.html&quot;</span>, <span class="ident">config</span>.<span class="ident">root_dir</span>, <span class="ident">uri</span>);
 					<span class="kw">match</span> <span class="ident">metadata</span>(<span class="ident">path</span>.<span class="ident">clone</span>()) {
-						<span class="prelude-val">Ok</span>(<span class="ident">md</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">md</span>.<span class="ident">len</span>(),
-						<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Ok</span>(<span class="ident">md</span>) =&gt; <span class="ident">md</span>.<span class="ident">len</span>(),
+						<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
 							<span class="ident">is_404</span> <span class="op">=</span> <span class="bool-val">true</span>;
 							<span class="ident">path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/www/404.html&quot;</span>, <span class="ident">config</span>.<span class="ident">root_dir</span>);
 							<span class="kw">match</span> <span class="ident">metadata</span>(<span class="ident">path</span>.<span class="ident">clone</span>()) {
-								<span class="prelude-val">Ok</span>(<span class="ident">md</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">md</span>.<span class="ident">len</span>(),
-								<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+								<span class="prelude-val">Ok</span>(<span class="ident">md</span>) =&gt; <span class="ident">md</span>.<span class="ident">len</span>(),
+								<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="number">0</span>,
 							}
 						}
 					}
@@ -4669,13 +4666,13 @@
 					<span class="ident">md</span>.<span class="ident">len</span>()
 				}
 			}
-			<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
 				<span class="comment">// try to return the 404 page.</span>
 				<span class="ident">is_404</span> <span class="op">=</span> <span class="bool-val">true</span>;
 				<span class="ident">path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/www/404.html&quot;</span>, <span class="ident">config</span>.<span class="ident">root_dir</span>);
 				<span class="kw">match</span> <span class="ident">metadata</span>(<span class="ident">path</span>.<span class="ident">clone</span>()) {
-					<span class="prelude-val">Ok</span>(<span class="ident">md</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">md</span>.<span class="ident">len</span>(),
-					<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">md</span>) =&gt; <span class="ident">md</span>.<span class="ident">len</span>(),
+					<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
 						<span class="ident">found_404_content</span> <span class="op">=</span> <span class="bool-val">false</span>;
 						<span class="number">0</span>
 					}
@@ -4686,7 +4683,7 @@
 		<span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">path</span>.<span class="ident">clone</span>());
 
 		<span class="kw">match</span> <span class="ident">file</span> {
-			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">file</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">file</span>) =&gt; {
 				<span class="kw">let</span> <span class="ident">buflen</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">flen</span> <span class="op">&gt;</span> <span class="ident">MAX_CHUNK_SIZE</span> {
 					<span class="ident">MAX_CHUNK_SIZE</span>
 				} <span class="kw">else</span> {
@@ -4698,9 +4695,9 @@
 				<span class="kw">loop</span> {
 					<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">file</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>);
 					<span class="kw">match</span> <span class="ident">res</span> {
-						<span class="prelude-val">Ok</span>(<span class="ident">amt</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Ok</span>(<span class="ident">amt</span>) =&gt; {
 							<span class="kw">if</span> <span class="ident">first_loop</span> {
-								<span class="self">Self</span><span class="ident">::write_headers</span>(
+								<span class="ident"><span class="self">Self</span>::write_headers</span>(
 									<span class="ident">wh</span>,
 									<span class="ident">config</span>,
 									<span class="op">!</span><span class="ident">is_404</span>,
@@ -4735,9 +4732,9 @@
 							}
 							<span class="ident">flen</span> <span class="op">-</span><span class="op">=</span> <span class="ident">amt</span>.<span class="ident">try_into</span>().<span class="ident">unwrap_or</span>(<span class="number">0</span>);
 						}
-						<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
 							<span class="comment">// directory</span>
-							<span class="self">Self</span><span class="ident">::write_headers</span>(
+							<span class="ident"><span class="self">Self</span>::write_headers</span>(
 								<span class="ident">wh</span>,
 								<span class="ident">config</span>,
 								<span class="bool-val">false</span>,
@@ -4756,9 +4753,9 @@
 					<span class="ident">first_loop</span> <span class="op">=</span> <span class="bool-val">false</span>;
 				}
 			}
-			<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
 				<span class="comment">// file not found</span>
-				<span class="self">Self</span><span class="ident">::write_headers</span>(
+				<span class="ident"><span class="self">Self</span>::write_headers</span>(
 					<span class="ident">wh</span>,
 					<span class="ident">config</span>,
 					<span class="bool-val">false</span>,
@@ -4777,7 +4774,7 @@
 		<span class="ident">http_context</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HttpContext</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 		<span class="ident">_http_config</span>: <span class="ident">HttpConfig</span>,
 		<span class="ident">id</span>: <span class="ident">u128</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">http_context</span> <span class="op">=</span> <span class="ident">http_context</span>.<span class="ident">write</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">error</span>: <span class="ident">Error</span> <span class="op">=</span>
 				<span class="ident">ErrorKind::PoisonError</span>(<span class="macro">format!</span>(<span class="string">&quot;unexpected error: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>())).<span class="ident">into</span>();
@@ -4796,15 +4793,15 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">fn</span> <span class="ident">build_webroot</span>(<span class="ident">root_dir</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">build_webroot</span>(<span class="ident">root_dir</span>: <span class="ident">String</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="ident">fsutils::mkdir</span>(<span class="kw-2">&amp;</span><span class="ident">root_dir</span>);
 		<span class="ident">fsutils::mkdir</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/www&quot;</span>, <span class="ident">root_dir</span>));
 		<span class="ident">fsutils::mkdir</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/logs&quot;</span>, <span class="ident">root_dir</span>));
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/DERP.jpeg&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;DERP.jpeg&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;DERP.jpeg&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4815,9 +4812,9 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/index.html&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;index.html&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;index.html&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4828,9 +4825,9 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/404.html&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;404.html&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;404.html&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4841,9 +4838,9 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/favicon.ico&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;favicon.ico&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;favicon.ico&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4854,10 +4851,10 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/favicon-16x16.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;favicon-16x16.png&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>)
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;favicon-16x16.png&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>)
 		{
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4868,10 +4865,10 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/favicon-32x32.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;favicon-32x32.png&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>)
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;favicon-32x32.png&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>)
 		{
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4882,9 +4879,9 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/about.txt&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(<span class="string">&quot;about.txt&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(<span class="string">&quot;about.txt&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">root_dir</span>.<span class="ident">clone</span>(), <span class="ident">bytes</span>) {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4895,13 +4892,13 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/android-chrome-192x192.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(
 			<span class="string">&quot;android-chrome-192x192.png&quot;</span>.<span class="ident">to_string</span>(),
 			<span class="ident">root_dir</span>.<span class="ident">clone</span>(),
 			<span class="ident">bytes</span>,
 		) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4912,13 +4909,13 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/android-chrome-512x512.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(
 			<span class="string">&quot;android-chrome-512x512.png&quot;</span>.<span class="ident">to_string</span>(),
 			<span class="ident">root_dir</span>.<span class="ident">clone</span>(),
 			<span class="ident">bytes</span>,
 		) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4929,13 +4926,13 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/apple-touch-icon.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(
 			<span class="string">&quot;apple-touch-icon.png&quot;</span>.<span class="ident">to_string</span>(),
 			<span class="ident">root_dir</span>.<span class="ident">clone</span>(),
 			<span class="ident">bytes</span>,
 		) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4946,13 +4943,13 @@
 		}
 
 		<span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(<span class="string">&quot;resources/lettherebebitcom.png&quot;</span>);
-		<span class="kw">match</span> <span class="self">Self</span><span class="ident">::create_file_from_bytes</span>(
+		<span class="kw">match</span> <span class="ident"><span class="self">Self</span>::create_file_from_bytes</span>(
 			<span class="string">&quot;lettherebebitcom.png&quot;</span>.<span class="ident">to_string</span>(),
 			<span class="ident">root_dir</span>.<span class="ident">clone</span>(),
 			<span class="ident">bytes</span>,
 		) {
-			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -4965,5 +4962,7 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="nioruntime_http" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="nioruntime_http" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `rustlet/src/rustlet_impls.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rustlet_impls.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../librustlet/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `rustlet&#x2F;src&#x2F;rustlet_impls.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rustlet_impls.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../librustlet/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1172,8 +1170,7 @@
 <span id="1170">1170</span>
 <span id="1171">1171</span>
 <span id="1172">1172</span>
-</pre><pre class="rust">
-<span class="comment">// Copyright 2021 The BMW Developers</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
 <span class="comment">// you may not use this file except in compliance with the License.</span>
@@ -1221,12 +1218,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">RustletAsyncContext</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">response</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">response</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">response</span>) =&gt; {
 				<span class="ident">response</span>.<span class="ident">async_complete</span>()<span class="question-mark">?</span>;
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="macro">log_multi!</span>(<span class="ident">ERROR</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;response not found in async context&quot;</span>);
 			}
 		}
@@ -1241,7 +1238,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SessionData</span> {
-	<span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
 		<span class="kw">let</span> <span class="ident">start_time</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">START_TIME</span>;
 		<span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">Instant::now</span>().<span class="ident">duration_since</span>(<span class="ident">start_time</span>).<span class="ident">as_millis</span>();
 
@@ -1279,7 +1276,7 @@
 		<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
 		<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
 		<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	) -&gt; <span class="self">Self</span> {
 		<span class="ident">RustletRequest</span> {
 			<span class="ident">uri</span>,
 			<span class="ident">query</span>,
@@ -1296,32 +1293,32 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_session_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">session_id</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_session_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">session_id</span>: <span class="ident">u128</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">session_id</span> <span class="op">=</span> <span class="ident">session_id</span>;
 
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_session</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Readable</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_session</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Readable</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">create_session</span> <span class="op">=</span> <span class="bool-val">false</span>;
 		{
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">session_map</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">session_map</span>);
 			<span class="kw">match</span> <span class="ident">session_map</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session_id</span>) {
-				<span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">data</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">data</span>) =&gt; {
 					<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">name</span>.<span class="ident">to_string</span>());
 					<span class="kw">let</span> <span class="ident">start_time</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">START_TIME</span>;
 					<span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">Instant::now</span>().<span class="ident">duration_since</span>(<span class="ident">start_time</span>).<span class="ident">as_millis</span>();
 					<span class="ident">data</span>.<span class="ident">mod_time</span> <span class="op">=</span> <span class="ident">now</span>;
 					<span class="kw">match</span> <span class="ident">value</span> {
-						<span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
+						<span class="prelude-val">Some</span>(<span class="ident">value</span>) =&gt; {
 							<span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">Readable::read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">BinReader::new</span>(
 								<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">value</span>.<span class="ident">as_slice</span>(),
 							))<span class="question-mark">?</span>))
 						}
-						<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+						<span class="prelude-val">None</span> =&gt; {}
 					}
 				}
-				<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">None</span> =&gt; {
 					<span class="ident">create_session</span> <span class="op">=</span> <span class="bool-val">true</span>;
 				}
 			}
@@ -1333,10 +1330,10 @@
 		<span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_session</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Writeable</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_session</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Writeable</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">session_map</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">session_map</span>);
 		<span class="kw">match</span> <span class="ident">session_map</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session_id</span>) {
-			<span class="prelude-val">Some</span>(<span class="ident">session_data</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">session_data</span>) =&gt; {
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sink</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">BinWriter::new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sink</span>);
 				<span class="ident">value</span>.<span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">writer</span>)<span class="question-mark">?</span>;
@@ -1345,7 +1342,7 @@
 				<span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">Instant::now</span>().<span class="ident">duration_since</span>(<span class="ident">start_time</span>).<span class="ident">as_millis</span>();
 				<span class="ident">session_data</span>.<span class="ident">mod_time</span> <span class="op">=</span> <span class="ident">now</span>;
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">session_data</span> <span class="op">=</span> <span class="ident">SessionData::new</span>();
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sink</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">BinWriter::new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sink</span>);
@@ -1361,64 +1358,64 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_session_entry</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_session_entry</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">session_map</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">session_map</span>);
 
 		<span class="kw">match</span> <span class="ident">session_map</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session_id</span>) {
-			<span class="prelude-val">Some</span>(<span class="ident">session_data</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">session_data</span>) =&gt; {
 				<span class="ident">session_data</span>.<span class="ident">data</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">name</span>.<span class="ident">to_string</span>());
 				<span class="kw">let</span> <span class="ident">start_time</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">START_TIME</span>;
 				<span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">Instant::now</span>().<span class="ident">duration_since</span>(<span class="ident">start_time</span>).<span class="ident">as_millis</span>();
 				<span class="ident">session_data</span>.<span class="ident">mod_time</span> <span class="op">=</span> <span class="ident">now</span>;
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+			<span class="prelude-val">None</span> =&gt; {}
 		}
 
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invalidate_session</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invalidate_session</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">session_map</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">session_map</span>);
 		<span class="ident">session_map</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">session_id</span>);
 
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cookie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cookie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">is_none</span>() {
 			<span class="self">self</span>.<span class="ident">build_header_map</span>()<span class="question-mark">?</span>;
 		}
 
 		<span class="kw">let</span> <span class="ident">cookie_str</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">get</span>(<span class="string">&quot;Cookie&quot;</span>);
 		<span class="kw">match</span> <span class="ident">cookie_str</span> {
-			<span class="prelude-val">Some</span>(<span class="ident">cookie_str</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">cookie_str</span>) =&gt; {
 				<span class="kw">let</span> <span class="ident">cookie_spl</span> <span class="op">=</span> <span class="ident">cookie_str</span>.<span class="ident">split</span>(<span class="string">&quot;;&quot;</span>);
 				<span class="kw">for</span> <span class="ident">cookie</span> <span class="kw">in</span> <span class="ident">cookie_spl</span> {
 					<span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">cookie</span>.<span class="ident">trim</span>();
 					<span class="kw">let</span> <span class="ident">cookie_spl</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">cookie</span>.<span class="ident">split</span>(<span class="string">&quot;=&quot;</span>).<span class="ident">collect</span>();
-					<span class="kw">if</span> <span class="ident">cookie_spl</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span> <span class="op">&amp;&amp;</span> <span class="ident">cookie_spl</span>[<span class="number">0</span>] <span class="op">=</span><span class="op">=</span> <span class="ident">name</span> {
+					<span class="kw">if</span> <span class="ident">cookie_spl</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span> <span class="op">&amp;&amp;</span> <span class="ident">cookie_spl</span>[<span class="number">0</span>] <span class="op">==</span> <span class="ident">name</span> {
 						<span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">cookie_spl</span>[<span class="number">1</span>].<span class="ident">to_string</span>()));
 					}
 				}
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+			<span class="prelude-val">None</span> =&gt; {}
 		}
 
 		<span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_len</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_len</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">is_none</span>() {
 			<span class="self">self</span>.<span class="ident">build_header_map</span>()<span class="question-mark">?</span>;
 		}
 
 		<span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">map</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">map</span>.<span class="ident">len</span>(),
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+			<span class="prelude-val">Some</span>(<span class="ident">map</span>) =&gt; <span class="ident">map</span>.<span class="ident">len</span>(),
+			<span class="prelude-val">None</span> =&gt; <span class="number">0</span>,
 		})
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_i_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_i_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">vec_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">headers</span>.<span class="ident">len</span>();
 		<span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">vec_len</span> {
 			<span class="prelude-val">Ok</span>(<span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>())
@@ -1429,7 +1426,7 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_i_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header_i_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">vec_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">headers</span>.<span class="ident">len</span>();
 		<span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">vec_len</span> {
 			<span class="prelude-val">Ok</span>(<span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>())
@@ -1440,67 +1437,67 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">name</span>.<span class="ident">to_string</span>();
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">is_none</span>() {
 			<span class="self">self</span>.<span class="ident">build_header_map</span>()<span class="question-mark">?</span>;
 		}
 
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">header_map</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">map</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">map</span>) =&gt; {
 				<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">name</span>);
 				<span class="kw">match</span> <span class="ident">value</span> {
-					<span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>((<span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">clone</span>())),
-					<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+					<span class="prelude-val">Some</span>(<span class="ident">value</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>((<span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">clone</span>())),
+					<span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
 				}
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+			<span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_headers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_headers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">headers</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_method</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HttpMethod</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_method</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HttpMethod</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">http_method</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HttpVersion</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HttpVersion</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">http_version</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_content</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_content</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">content</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uri</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uri</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">uri</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_query</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_query</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">query</span>.<span class="ident">clone</span>())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_query_parameter</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_query_parameter</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">name</span>.<span class="ident">to_string</span>();
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">query_map</span>.<span class="ident">is_none</span>() {
 			<span class="self">self</span>.<span class="ident">build_query_map</span>()<span class="question-mark">?</span>;
 		}
 
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">query_map</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">map</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">map</span>) =&gt; {
 				<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">name</span>);
 				<span class="kw">match</span> <span class="ident">value</span> {
-					<span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>((<span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">clone</span>())),
-					<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+					<span class="prelude-val">Some</span>(<span class="ident">value</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>((<span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">clone</span>())),
+					<span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
 				}
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+			<span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">build_header_map</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">build_header_map</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
 		<span class="kw">let</span> <span class="ident">vec_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">headers</span>.<span class="ident">len</span>();
 		<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">vec_len</span> {
@@ -1518,7 +1515,7 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">fn</span> <span class="ident">build_query_map</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">build_query_map</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">vec</span> <span class="op">=</span> <span class="ident">querystring::querify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">query</span>);
 		<span class="kw">let</span> <span class="ident">vec_len</span> <span class="op">=</span> <span class="ident">vec</span>.<span class="ident">len</span>();
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
@@ -1551,7 +1548,7 @@
 		<span class="ident">config</span>: <span class="ident">HttpConfig</span>,
 		<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
 		<span class="ident">chained</span>: <span class="ident">bool</span>,
-	) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	) -&gt; <span class="self">Self</span> {
 		<span class="ident">RustletResponse</span> {
 			<span class="ident">wh</span>,
 			<span class="ident">config</span>,
@@ -1566,13 +1563,13 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cookie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cookie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">get_headers_written</span>() {
-			<span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ErrorKind::OrderingError</span>(
+			<span class="bool-val">true</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ErrorKind::OrderingError</span>(
 				<span class="string">&quot;Headers already written. Cannot set a cookie&quot;</span>.<span class="ident">to_string</span>(),
 			)
 			.<span class="ident">into</span>()),
-			<span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="bool-val">false</span> =&gt; {
 				<span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">push</span>((
 					<span class="string">&quot;Set-Cookie&quot;</span>.<span class="ident">to_string</span>(),
 					<span class="macro">format!</span>(<span class="string">&quot;{}={}; {}&quot;</span>, <span class="ident">name</span>, <span class="ident">value</span>, <span class="ident">other</span>),
@@ -1582,28 +1579,28 @@
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">get_headers_written</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+	<span class="kw">fn</span> <span class="ident">get_headers_written</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">headers_written</span>.<span class="ident">lock</span>() {
-			<span class="prelude-val">Ok</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">v</span>,
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>(),
+			<span class="prelude-val">Ok</span>(<span class="ident">v</span>) =&gt; <span class="kw-2">*</span><span class="ident">v</span>,
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>(),
 		}
 	}
 
 	<span class="kw">fn</span> <span class="ident">set_headers_written</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">headers_written</span>.<span class="ident">lock</span>() {
-			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">v</span> <span class="op">=</span> <span class="ident">value</span>,
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>() <span class="op">=</span> <span class="ident">value</span>,
+			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">v</span>) =&gt; <span class="kw-2">*</span><span class="ident">v</span> <span class="op">=</span> <span class="ident">value</span>,
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>() <span class="op">=</span> <span class="ident">value</span>,
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">get_redirect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">get_redirect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">redirect</span>.<span class="ident">lock</span>() {
-			<span class="prelude-val">Ok</span>(<span class="ident">r</span>) <span class="op">=</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="ident">r</span>).<span class="ident">clone</span>(),
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>()).<span class="ident">clone</span>(),
+			<span class="prelude-val">Ok</span>(<span class="ident">r</span>) =&gt; (<span class="kw-2">*</span><span class="ident">r</span>).<span class="ident">clone</span>(),
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; (<span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>()).<span class="ident">clone</span>(),
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_redirect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_redirect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_headers_written</span>() {
 			<span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ErrorKind::OrderingError</span>(
 				<span class="string">&quot;headers already written. Cannot set redirect&quot;</span>.<span class="ident">to_string</span>(),
@@ -1611,14 +1608,14 @@
 			.<span class="ident">into</span>());
 		}
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">redirect</span>.<span class="ident">lock</span>() {
-			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">r</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">r</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>.<span class="ident">to_string</span>()),
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>() <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>.<span class="ident">to_string</span>()),
+			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">r</span>) =&gt; <span class="kw-2">*</span><span class="ident">r</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>.<span class="ident">to_string</span>()),
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw-2">*</span><span class="ident">e</span>.<span class="ident">into_inner</span>() <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>.<span class="ident">to_string</span>()),
 		}
 
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_header</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_headers_written</span>() {
 			<span class="prelude-val">Err</span>(<span class="ident">ErrorKind::OrderingError</span>(
 				<span class="string">&quot;headers already written. Cannot add a header&quot;</span>.<span class="ident">to_string</span>(),
@@ -1631,7 +1628,7 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_content_type</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_content_type</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_headers_written</span>() {
 			<span class="prelude-val">Err</span>(<span class="ident">ErrorKind::OrderingError</span>(
 				<span class="string">&quot;headers already written. Cannot set content-type&quot;</span>.<span class="ident">to_string</span>(),
@@ -1644,7 +1641,7 @@
 		}
 	}
 
-	<span class="kw">fn</span> <span class="ident">calculate_buffer_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buffer_len</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">fn</span> <span class="ident">calculate_buffer_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buffer_len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_headers_written</span>() {
 			<span class="prelude-val">Ok</span>(<span class="ident">buffer_len</span>)
 		} <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_redirect</span>().<span class="ident">is_some</span>() {
@@ -1668,7 +1665,7 @@
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffer</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">buffer</span>);
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">to_write</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
 
@@ -1722,33 +1719,33 @@
 		<span class="self">self</span>.<span class="ident">wh</span>.<span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="ident">to_write</span>)<span class="question-mark">?</span>;
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">wh</span>.<span class="ident">callback_state</span>);
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">keep_alive</span> {
-			<span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersChunked</span>,
-			<span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersClose</span>,
+			<span class="bool-val">true</span> =&gt; <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersChunked</span>,
+			<span class="bool-val">false</span> =&gt; <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersClose</span>,
 		}
 		<span class="ident">buffer</span>.<span class="ident">clear</span>();
 
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffer</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">buffer</span>);
 		<span class="ident">buffer</span>.<span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">to_vec</span>());
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_is_async</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_is_async</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		(<span class="kw-2">*</span><span class="macro">nioruntime_util::lockw!</span>(<span class="self">self</span>.<span class="ident">is_async</span>)) <span class="op">=</span> <span class="ident">value</span>;
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">async_complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">async_complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="self">self</span>.<span class="ident">set_is_async</span>(<span class="bool-val">false</span>)<span class="question-mark">?</span>;
 		<span class="self">self</span>.<span class="ident">complete</span>()<span class="question-mark">?</span>;
 		<span class="self">self</span>.<span class="ident">wh</span>.<span class="ident">async_recheck</span>()<span class="question-mark">?</span>;
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">complete</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">chained</span> <span class="op">|</span><span class="op">|</span> (<span class="kw-2">*</span><span class="macro">nioruntime_util::lockr!</span>(<span class="self">self</span>.<span class="ident">is_async</span>)) {
 			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">chained</span> {
 				<span class="self">self</span>.<span class="ident">flush</span>()<span class="question-mark">?</span>;
@@ -1768,7 +1765,7 @@
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Rustlet</span> <span class="op">=</span>
-	<span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RustletRequest</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RustletResponse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+	<span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RustletRequest</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RustletResponse</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">RustletContainerHolder</span> {
 	<span class="ident">rustlets</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Rustlet</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -1776,7 +1773,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">RustletContainerHolder</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
 		<span class="ident">RustletContainerHolder</span> {
 			<span class="ident">rustlets</span>: <span class="ident">HashMap::new</span>(),
 			<span class="ident">mappings</span>: <span class="ident">HashMap::new</span>(),
@@ -1808,7 +1805,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">RustletConfig</span> {
-	<span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RustletConfig</span> {
+	<span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">RustletConfig</span> {
 		<span class="ident">RustletConfig</span> {
 			<span class="ident">session_timeout</span>: <span class="number">60</span> <span class="op">*</span> <span class="number">30</span>, <span class="comment">// 30 mins</span>
 			<span class="ident">http_config</span>: <span class="ident">HttpConfig::default</span>(),
@@ -1816,12 +1813,12 @@
 	}
 }
 
-<span class="kw">fn</span> <span class="ident">housekeeper</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">housekeeper</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="ident">session_timeout</span> <span class="op">=</span> {
 		<span class="kw">let</span> <span class="ident">config</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockr!</span>(<span class="ident">RUSTLET_CONFIG</span>);
 		<span class="kw">match</span> <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">config</span>) {
-			<span class="prelude-val">Some</span>(<span class="ident">config</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">config</span>.<span class="ident">session_timeout</span>,
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+			<span class="prelude-val">Some</span>(<span class="ident">config</span>) =&gt; <span class="ident">config</span>.<span class="ident">session_timeout</span>,
+			<span class="prelude-val">None</span> =&gt; <span class="number">0</span>,
 		}
 	};
 
@@ -1847,15 +1844,15 @@
 	<span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">fn</span> <span class="ident">on_panic</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-	<span class="kw">let</span> <span class="ident">container</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="kw">crate</span><span class="ident">::macros::RUSTLET_CONTAINER</span>);
+<span class="kw">fn</span> <span class="ident">on_panic</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">let</span> <span class="ident">container</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="ident"><span class="kw">crate</span>::macros::RUSTLET_CONTAINER</span>);
 	<span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">container</span>.<span class="ident">http</span> {
-		<span class="prelude-val">Some</span>(<span class="ident">http</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">http</span>) =&gt; {
 			<span class="kw">if</span> <span class="ident">http</span>.<span class="ident">http_context</span>.<span class="ident">is_some</span>() {
 				<span class="ident">HttpServer::do_house_keeping</span>(<span class="ident">http</span>.<span class="ident">http_context</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>(), <span class="kw-2">&amp;</span><span class="ident">http</span>.<span class="ident">config</span>)<span class="question-mark">?</span>;
 			}
 		}
-		<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {}
+		<span class="prelude-val">None</span> =&gt; {}
 	}
 	<span class="prelude-val">Ok</span>(())
 }
@@ -1874,7 +1871,7 @@
 	<span class="ident">query</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,                           <span class="comment">// query</span>
 	<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,      <span class="comment">// headers</span>
 	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,                      <span class="comment">// keep-alive</span>
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">do_api_callback</span>(
 		<span class="ident">conn_data_is_async</span>.<span class="ident">clone</span>(),
 		<span class="ident">conn_data</span>,
@@ -1893,8 +1890,8 @@
 	);
 
 	<span class="kw">match</span> <span class="ident">res</span> {
-		<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-		<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+		<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 			<span class="macro">log_multi!</span>(
 				<span class="ident">ERROR</span>,
 				<span class="ident">MAIN_LOG</span>,
@@ -1905,11 +1902,11 @@
 			);
 
 			<span class="kw">let</span> (<span class="ident">headers_written</span>, <span class="ident">_redir</span>) <span class="op">=</span>
-				<span class="kw">crate</span><span class="ident">::macros::LOCALRUSTLET</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw">match</span> <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">f</span>.<span class="ident">borrow</span>()) {
-					<span class="prelude-val">Some</span>((<span class="ident">_request</span>, <span class="ident">response</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="ident"><span class="kw">crate</span>::macros::LOCALRUSTLET</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw">match</span> <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">f</span>.<span class="ident">borrow</span>()) {
+					<span class="prelude-val">Some</span>((<span class="ident">_request</span>, <span class="ident">response</span>)) =&gt; {
 						(<span class="ident">response</span>.<span class="ident">get_headers_written</span>(), <span class="ident">response</span>.<span class="ident">get_redirect</span>())
 					}
-					<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="bool-val">false</span>, <span class="prelude-val">None</span>),
+					<span class="prelude-val">None</span> =&gt; (<span class="bool-val">false</span>, <span class="prelude-val">None</span>),
 				});
 			<span class="kw">if</span> <span class="ident">headers_written</span> {
 				<span class="kw">if</span> <span class="op">!</span><span class="ident">keep_alive</span> {
@@ -1968,17 +1965,17 @@
 	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,                           <span class="comment">// keep-alive</span>
 	<span class="ident">chained</span>: <span class="ident">bool</span>,                              <span class="comment">// is this a chained rustlet call?</span>
 	<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="ident">rustlets</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockr!</span>(<span class="ident">RUSTLETS</span>);
 	<span class="kw">let</span> <span class="ident">rustlet</span> <span class="op">=</span> <span class="ident">rustlets</span>.<span class="ident">rustlets</span>.<span class="ident">get</span>(<span class="ident">rustlet_name</span>);
 
 	<span class="kw">match</span> <span class="ident">rustlet</span> {
-		<span class="prelude-val">Some</span>(<span class="ident">rustlet</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">rustlet</span>) =&gt; {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span>
 				<span class="ident">RustletResponse::new</span>(<span class="ident">conn_data_is_async</span>, <span class="ident">wh</span>, <span class="ident">config</span>.<span class="ident">clone</span>(), <span class="ident">keep_alive</span>, <span class="ident">chained</span>);
 			<span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">has_content</span> {
-				<span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="ident">conn_data</span>).<span class="ident">get_buffer</span>()[<span class="ident">start_content</span>..<span class="ident">end_content</span>].<span class="ident">to_vec</span>(),
-				<span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">vec!</span>[],
+				<span class="bool-val">true</span> =&gt; (<span class="kw-2">*</span><span class="ident">conn_data</span>).<span class="ident">get_buffer</span>()[<span class="ident">start_content</span>..<span class="ident">end_content</span>].<span class="ident">to_vec</span>(),
+				<span class="bool-val">false</span> =&gt; <span class="macro">vec!</span>[],
 			};
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">RustletRequest::new</span>(
 				<span class="ident">uri</span>.<span class="ident">to_string</span>(),
@@ -1995,14 +1992,14 @@
 			<span class="kw">let</span> <span class="ident">rsessionid</span> <span class="op">=</span> <span class="ident">request</span>.<span class="ident">get_cookie</span>(<span class="string">&quot;rustletsessionid&quot;</span>);
 
 			<span class="kw">let</span> <span class="ident">rsessionid</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">rsessionid</span> {
-				<span class="prelude-val">Ok</span>(<span class="ident">rsessionid</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">rsessionid</span> {
-					<span class="prelude-val">Some</span>(<span class="ident">rsessionid</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">rsessionid</span>.<span class="ident">parse</span>() {
-						<span class="prelude-val">Ok</span>(<span class="ident">rsessionid</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">rsessionid</span>,
-						<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">id</span>,
+				<span class="prelude-val">Ok</span>(<span class="ident">rsessionid</span>) =&gt; <span class="kw">match</span> <span class="ident">rsessionid</span> {
+					<span class="prelude-val">Some</span>(<span class="ident">rsessionid</span>) =&gt; <span class="kw">match</span> <span class="ident">rsessionid</span>.<span class="ident">parse</span>() {
+						<span class="prelude-val">Ok</span>(<span class="ident">rsessionid</span>) =&gt; <span class="ident">rsessionid</span>,
+						<span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">id</span>,
 					},
-					<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">id</span>,
+					<span class="prelude-val">None</span> =&gt; <span class="ident">id</span>,
 				},
-				<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+				<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 					<span class="macro">log_multi!</span>(
 						<span class="ident">ERROR</span>,
 						<span class="ident">MAIN_LOG</span>,
@@ -2013,7 +2010,7 @@
 				}
 			};
 
-			<span class="kw">if</span> <span class="ident">rsessionid</span> <span class="op">=</span><span class="op">=</span> <span class="ident">id</span> {
+			<span class="kw">if</span> <span class="ident">rsessionid</span> <span class="op">==</span> <span class="ident">id</span> {
 				<span class="comment">// we have to set this as it&#39;s a new id</span>
 				<span class="ident">response</span>.<span class="ident">set_cookie</span>(<span class="string">&quot;rustletsessionid&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">id</span>), <span class="string">&quot;path=/&quot;</span>)<span class="question-mark">?</span>;
 			}
@@ -2021,8 +2018,8 @@
 			<span class="ident">request</span>.<span class="ident">set_session_id</span>(<span class="ident">rsessionid</span>)<span class="question-mark">?</span>;
 			(<span class="ident">rustlet</span>)(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">request</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">response</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 				<span class="kw">match</span> <span class="ident">response</span>.<span class="ident">flush</span>() {
-					<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-					<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 						<span class="macro">log_multi!</span>(<span class="ident">ERROR</span>, <span class="ident">MAIN_LOG</span>, <span class="string">&quot;error flushing: {}&quot;</span>, <span class="ident">e</span>.<span class="ident">to_string</span>());
 					}
 				}
@@ -2031,7 +2028,7 @@
 			})<span class="question-mark">?</span>;
 			<span class="ident">response</span>.<span class="ident">complete</span>()<span class="question-mark">?</span>;
 		}
-		<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">None</span> =&gt; {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span>
 				<span class="ident">RustletResponse::new</span>(<span class="ident">conn_data_is_async</span>, <span class="ident">wh</span>.<span class="ident">clone</span>(), <span class="ident">config</span>, <span class="ident">keep_alive</span>, <span class="ident">chained</span>);
 			<span class="ident">response</span>.<span class="ident">write</span>(<span class="macro">format!</span>(<span class="string">&quot;Rustlet &#39;{}&#39; does not exist.&quot;</span>, <span class="ident">rustlet_name</span>).<span class="ident">as_bytes</span>())<span class="question-mark">?</span>;
@@ -2060,12 +2057,12 @@
 	<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>, <span class="comment">// headers</span>
 	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,                 <span class="comment">// keep-alive</span>
 	<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="ident">rustlets</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockr!</span>(<span class="ident">RUSTLETS</span>);
 
 	<span class="kw">let</span> <span class="ident">rustlet</span> <span class="op">=</span> <span class="ident">rustlets</span>.<span class="ident">mappings</span>.<span class="ident">get</span>(<span class="ident">uri</span>);
 	<span class="kw">match</span> <span class="ident">rustlet</span> {
-		<span class="prelude-val">Some</span>(<span class="ident">rustlet_name</span>) <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">Some</span>(<span class="ident">rustlet_name</span>) =&gt; {
 			<span class="ident">execute_rustlet</span>(
 				<span class="ident">conn_data_is_async</span>,
 				<span class="ident">rustlet_name</span>,
@@ -2085,7 +2082,7 @@
 				<span class="ident">session_map</span>,
 			)<span class="question-mark">?</span>;
 		}
-		<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+		<span class="prelude-val">None</span> =&gt; {
 			<span class="comment">// see if it&#39;s an RSP.</span>
 			<span class="kw">if</span> <span class="ident">uri</span>.<span class="ident">to_lowercase</span>().<span class="ident">ends_with</span>(<span class="string">&quot;.rsp&quot;</span>) {
 				<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">process_rsp</span>(
@@ -2106,8 +2103,8 @@
 				);
 
 				<span class="kw">match</span> <span class="ident">res</span> {
-					<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
-					<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
 						<span class="macro">log_multi!</span>(
 							<span class="ident">ERROR</span>,
 							<span class="ident">MAIN_LOG</span>,
@@ -2155,7 +2152,7 @@
 	<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>, <span class="comment">// headers</span>
 	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,                 <span class="comment">// keep-alive</span>
 	<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 	<span class="kw">let</span> <span class="ident">rsp_path</span> <span class="op">=</span> <span class="ident">HttpServer::get_path</span>(<span class="kw-2">&amp;</span><span class="ident">config</span>, <span class="ident">uri</span>)<span class="question-mark">?</span>;
 	<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flen</span> <span class="op">=</span> <span class="ident">metadata</span>(<span class="ident">rsp_path</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>.<span class="ident">len</span>();
 	<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">rsp_path</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>;
@@ -2178,8 +2175,8 @@
 			<span class="ident">HttpServer::write_headers</span>(<span class="kw-2">&amp;</span><span class="ident">wh</span>, <span class="kw-2">&amp;</span><span class="ident">config</span>, <span class="bool-val">true</span>, <span class="bool-val">false</span>, <span class="ident">keep_alive</span>, <span class="macro">vec!</span>[], <span class="prelude-val">None</span>)<span class="question-mark">?</span>;
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">callback_state</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="ident">wh</span>.<span class="ident">callback_state</span>);
 			<span class="kw">match</span> <span class="ident">keep_alive</span> {
-				<span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersChunked</span>,
-				<span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersClose</span>,
+				<span class="bool-val">true</span> =&gt; <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersChunked</span>,
+				<span class="bool-val">false</span> =&gt; <span class="kw-2">*</span><span class="ident">callback_state</span> <span class="op">=</span> <span class="ident">State::HeadersClose</span>,
 			}
 		}
 
@@ -2188,7 +2185,7 @@
 		<span class="kw">loop</span> {
 			<span class="ident">end</span> <span class="op">=</span> <span class="ident">amt</span>;
 			<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> (<span class="ident">start</span> <span class="op">+</span> <span class="number">2</span>)..<span class="ident">amt</span> {
-				<span class="kw">if</span> <span class="ident">buf</span>[<span class="ident">i</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;=&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">buf</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;@&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">buf</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">2</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;&lt;&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+				<span class="kw">if</span> <span class="ident">buf</span>[<span class="ident">i</span>] <span class="op">==</span> <span class="string">&#39;=&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">buf</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">==</span> <span class="string">&#39;@&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&amp;&amp;</span> <span class="ident">buf</span>[<span class="ident">i</span> <span class="op">-</span> <span class="number">2</span>] <span class="op">==</span> <span class="string">&#39;&lt;&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 					<span class="comment">// we have begun an escape sequence</span>
 					<span class="ident">end</span> <span class="op">=</span> <span class="ident">i</span> <span class="op">-</span> <span class="number">2</span>;
 					<span class="kw">break</span>;
@@ -2219,12 +2216,12 @@
 				}
 			}
 
-			<span class="kw">if</span> <span class="ident">end</span> <span class="op">=</span><span class="op">=</span> <span class="ident">amt</span> {
+			<span class="kw">if</span> <span class="ident">end</span> <span class="op">==</span> <span class="ident">amt</span> {
 				<span class="kw">break</span>;
 			} <span class="kw">else</span> {
 				<span class="comment">// find the end of the escape sequence</span>
 				<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">end</span> <span class="op">+</span> <span class="number">3</span>..(<span class="ident">amt</span> <span class="op">-</span> <span class="number">1</span>) {
-					<span class="kw">if</span> <span class="ident">buf</span>[<span class="ident">i</span>] <span class="op">=</span><span class="op">=</span> <span class="string">&#39;&gt;&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
+					<span class="kw">if</span> <span class="ident">buf</span>[<span class="ident">i</span>] <span class="op">==</span> <span class="string">&#39;&gt;&#39;</span> <span class="kw">as</span> <span class="ident">u8</span> {
 						<span class="kw">let</span> <span class="ident">rustlet_name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>[(<span class="ident">end</span> <span class="op">+</span> <span class="number">3</span>)..<span class="ident">i</span>])<span class="question-mark">?</span>;
 						<span class="ident">execute_rustlet</span>(
 							<span class="ident">conn_data_is_async</span>.<span class="ident">clone</span>(),
@@ -2276,14 +2273,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">RustletContainer</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
 		<span class="ident">RustletContainer</span> {
 			<span class="ident">config</span>: <span class="prelude-val">None</span>,
 			<span class="ident">http</span>: <span class="prelude-val">None</span>,
 		}
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_config</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">config</span>: <span class="ident">RustletConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_config</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">config</span>: <span class="ident">RustletConfig</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">http</span> <span class="op">=</span> <span class="ident">HttpServer::new</span>(<span class="ident">config</span>.<span class="ident">http_config</span>.<span class="ident">clone</span>());
 		<span class="self">self</span>.<span class="ident">config</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">config</span>.<span class="ident">clone</span>());
 		<span class="self">self</span>.<span class="ident">http</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">http</span>);
@@ -2294,17 +2291,17 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="ident">http</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">http</span>.<span class="ident">as_mut</span>();
 		<span class="kw">match</span> <span class="ident">http</span> {
-			<span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">http</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">http</span>) =&gt; {
 				<span class="ident">http</span>.<span class="ident">config</span>.<span class="ident">callback</span> <span class="op">=</span> <span class="ident">api_callback</span>;
 				<span class="ident">http</span>.<span class="ident">config</span>.<span class="ident">on_panic</span> <span class="op">=</span> <span class="ident">on_panic</span>;
 				<span class="ident">http</span>.<span class="ident">config</span>.<span class="ident">on_housekeeper</span> <span class="op">=</span> <span class="ident">housekeeper</span>;
 				<span class="ident">http</span>.<span class="ident">start</span>()<span class="question-mark">?</span>;
 				<span class="ident">http</span>.<span class="ident">add_api_extension</span>(<span class="string">&quot;rsp&quot;</span>.<span class="ident">to_string</span>())<span class="question-mark">?</span>;
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -2316,7 +2313,7 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_rustlet</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">rustlet</span>: <span class="ident">Rustlet</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_rustlet</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">rustlet</span>: <span class="ident">Rustlet</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rustlets</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="ident">RUSTLETS</span>);
 		<span class="ident">rustlets</span>
 			.<span class="ident">rustlets</span>
@@ -2325,15 +2322,15 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_rustlet_mapping</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_rustlet_mapping</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rustlets</span> <span class="op">=</span> <span class="macro">nioruntime_util::lockw!</span>(<span class="ident">RUSTLETS</span>);
 
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">http</span>.<span class="ident">as_ref</span>() {
-			<span class="prelude-val">Some</span>(<span class="ident">http</span>) <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">Some</span>(<span class="ident">http</span>) =&gt; {
 				<span class="ident">http</span>.<span class="ident">add_api_mapping</span>(<span class="ident">path</span>.<span class="ident">to_string</span>())<span class="question-mark">?</span>;
 				<span class="ident">rustlets</span>.<span class="ident">mappings</span>.<span class="ident">insert</span>(<span class="ident">path</span>.<span class="ident">to_string</span>(), <span class="ident">name</span>.<span class="ident">to_string</span>());
 			}
-			<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+			<span class="prelude-val">None</span> =&gt; {
 				<span class="macro">log_multi!</span>(
 					<span class="ident">ERROR</span>,
 					<span class="ident">MAIN_LOG</span>,
@@ -2345,5 +2342,7 @@
 		<span class="prelude-val">Ok</span>(())
 	}
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="librustlet" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="librustlet" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

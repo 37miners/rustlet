@@ -96,6 +96,7 @@ sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};
 sourcesIndex["untrusted"] = {"name":"","files":["untrusted.rs"]};
 sourcesIndex["vec_map"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["webpki"] = {"name":"","dirs":[{"name":"name","files":["dns_name.rs","ip_address.rs","verify.rs"]}],"files":["calendar.rs","cert.rs","der.rs","end_entity.rs","error.rs","lib.rs","name.rs","signed_data.rs","time.rs","trust_anchor.rs","verify_cert.rs"]};
+sourcesIndex["webpki_roots"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["winapi"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["ws2_32"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["yaml_rust"] = {"name":"","files":["emitter.rs","lib.rs","parser.rs","scanner.rs","yaml.rs"]};
