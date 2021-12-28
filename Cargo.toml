@@ -26,6 +26,8 @@ libc = "^0.2.17"
 rustls = "0.20.0-beta1"
 rustls-pemfile = "0.2.0"
 native-tls = "0.2.8"
+mime_multipart = "0.6.0"
+hyper = "0.10.16"
 
 librustlet = { path = "./rustlet" }
 

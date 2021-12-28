@@ -512,6 +512,24 @@ fn main() {
 			bin_write!("test of bin write".as_bytes());
 		});
 
+		rustlet!("formupload", {
+			for i in 0..header_len!() {
+				let header_name = header_name!(i);
+				let header_value = header_value!(i);
+				response!("header[{}] [{}] -> [{}]\n", i, header_name, header_value);
+				flush!();
+			}
+			let content = request_content!();
+			let content = &mut &content[..];
+			let mut headers = hyper::header::Headers::new();
+			for i in 0..header_len!() {
+				headers.append_raw(header_name!(i), header_value!(i).as_bytes().to_vec());
+			}
+			let res =
+				mime_multipart::read_multipart_body(content, &headers, false).unwrap_or(vec![]);
+			response!("res={:?}", res);
+		});
+
 		let _ = fun();
 		let _ = fun2();
 
@@ -530,6 +548,7 @@ fn main() {
 		rustlet_mapping!("/delete_session", "delete_session");
 		rustlet_mapping!("/delete_abc", "delete_abc");
 		rustlet_mapping!("/content", "content");
+		rustlet_mapping!("/formupload", "formupload");
 
 		std::thread::park();
 	}
