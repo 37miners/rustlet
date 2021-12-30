@@ -4,7 +4,7 @@ version = "0.0.2-beta1"
 authors = ["BMW Developers"]
 description = "rustlet/rsp library"
 license = "Apache-2.0"
-repository = "https://github.com/bitcoinmw/rustlet"
+repository = "https://github.com/37miners/rustlet"
 keywords = [ "crypto", "nioruntime", "rustlet" ]
 exclude = ["**/*.rustlet"]
 edition = "2018"
@@ -12,18 +12,18 @@ edition = "2018"
 [dependencies]
 
 # release
-#nioruntime_util = { git = "http://github.com/bitcoinmw/nioruntime", tag = "0.0.2" }
-#nioruntime_http = { git = "http://github.com/bitcoinmw/nioruntime", tag = "0.0.2" }
-#nioruntime_log  = { git = "http://github.com/bitcoinmw/nioruntime", tag = "0.0.2" }
-#nioruntime_err  = { git = "http://github.com/bitcoinmw/nioruntime", tag = "0.0.2" }
-#nioruntime_evh  = { git = "http://github.com/bitcoinmw/nioruntime", tag = "0.0.2" }
+#nioruntime_util = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
+#nioruntime_http = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
+#nioruntime_log  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
+#nioruntime_err  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
+#nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
 
 # master
-nioruntime_util = { git = "http://github.com/bitcoinmw/nioruntime", branch = "master" }
-nioruntime_http = { git = "http://github.com/bitcoinmw/nioruntime", branch = "master" }
-nioruntime_log  = { git = "http://github.com/bitcoinmw/nioruntime", branch = "master" }
-nioruntime_err  = { git = "http://github.com/bitcoinmw/nioruntime", branch = "master" }
-nioruntime_evh  = { git = "http://github.com/bitcoinmw/nioruntime", branch = "master" }
+nioruntime_util = { git = "http://github.com/37miners/nioruntime", branch = "master" }
+nioruntime_http = { git = "http://github.com/37miners/nioruntime", branch = "master" }
+nioruntime_log  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
+nioruntime_err  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
+nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
 
 # local testing
 #nioruntime_util = { path = "../../nioruntime/util"         }

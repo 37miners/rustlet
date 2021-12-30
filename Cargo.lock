@@ -797,7 +797,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_err"
 version = "0.0.2-beta1"
-source = "git+http://github.com/bitcoinmw/nioruntime?branch=master#148dd65f90ea90d8fa5711c5a7b11084ba3cb4e7"
+source = "git+http://github.com/37miners/nioruntime?branch=master#15b97c9bac168ed8c8d09dad108705c0b3e8d230"
 dependencies = [
  "byteorder",
  "bytes",
@@ -815,7 +815,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_evh"
 version = "0.0.2-beta1"
-source = "git+http://github.com/bitcoinmw/nioruntime?branch=master#148dd65f90ea90d8fa5711c5a7b11084ba3cb4e7"
+source = "git+http://github.com/37miners/nioruntime?branch=master#15b97c9bac168ed8c8d09dad108705c0b3e8d230"
 dependencies = [
  "errno",
  "futures",
@@ -838,7 +838,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_http"
 version = "0.0.2-beta1"
-source = "git+http://github.com/bitcoinmw/nioruntime?branch=master#148dd65f90ea90d8fa5711c5a7b11084ba3cb4e7"
+source = "git+http://github.com/37miners/nioruntime?branch=master#15b97c9bac168ed8c8d09dad108705c0b3e8d230"
 dependencies = [
  "bytefmt",
  "chrono",
@@ -857,7 +857,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_log"
 version = "0.0.2-beta1"
-source = "git+http://github.com/bitcoinmw/nioruntime?branch=master#148dd65f90ea90d8fa5711c5a7b11084ba3cb4e7"
+source = "git+http://github.com/37miners/nioruntime?branch=master#15b97c9bac168ed8c8d09dad108705c0b3e8d230"
 dependencies = [
  "chrono",
  "failure",
@@ -873,7 +873,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_util"
 version = "0.0.2-beta1"
-source = "git+http://github.com/bitcoinmw/nioruntime?branch=master#148dd65f90ea90d8fa5711c5a7b11084ba3cb4e7"
+source = "git+http://github.com/37miners/nioruntime?branch=master#15b97c9bac168ed8c8d09dad108705c0b3e8d230"
 dependencies = [
  "byteorder",
  "bytes",
