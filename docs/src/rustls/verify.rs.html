@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;vsts&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;rustls-0.20.0-beta2&#x2F;src&#x2F;verify.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>verify.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../rustls/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;vsts&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;rustls-0.20.2&#x2F;src&#x2F;verify.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>verify.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../rustls/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -699,13 +699,38 @@
 <span id="699">699</span>
 <span id="700">700</span>
 <span id="701">701</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
-<span class="kw">use</span> <span class="ident">std::time::SystemTime</span>;
-
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::anchors</span>::{<span class="ident">OwnedTrustAnchor</span>, <span class="ident">RootCertStore</span>};
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
+<span id="712">712</span>
+<span id="713">713</span>
+<span id="714">714</span>
+<span id="715">715</span>
+<span id="716">716</span>
+<span id="717">717</span>
+<span id="718">718</span>
+<span id="719">719</span>
+<span id="720">720</span>
+<span id="721">721</span>
+<span id="722">722</span>
+<span id="723">723</span>
+<span id="724">724</span>
+<span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::anchors</span>::{<span class="ident">OwnedTrustAnchor</span>, <span class="ident">RootCertStore</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::client::ServerName</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::WebPkiOp</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::key::Certificate</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::log</span>::{<span class="ident">debug</span>, <span class="ident">trace</span>, <span class="ident">warn</span>};
@@ -713,7 +738,10 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::msgs::handshake</span>::{<span class="ident">DigitallySignedStruct</span>, <span class="ident">DistinguishedNames</span>};
 
 <span class="kw">use</span> <span class="ident">ring::digest::Digest</span>;
+
 <span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::time::SystemTime</span>;
 
 <span class="kw">type</span> <span class="ident">SignatureAlgorithms</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">webpki::SignatureAlgorithm</span>];
 
@@ -896,21 +924,16 @@
     <span class="doccomment">/// Return `Some(true)` to require a client certificate and `Some(false)` to make</span>
     <span class="doccomment">/// client authentication optional. Return `None` to abort the connection.</span>
     <span class="doccomment">/// Defaults to `Some(self.offer_client_auth())`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `sni` is the server name quoted by the client in its ClientHello; it has</span>
-    <span class="doccomment">/// been validated as a proper DNS name but is otherwise untrusted.</span>
-    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">offer_client_auth</span>())
     }
 
     <span class="doccomment">/// Returns the subject names of the client authentication trust anchors to</span>
     <span class="doccomment">/// share with the client when requesting client authentication.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Return `None` to abort the connection.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `sni` is the server name quoted by the client in its ClientHello; it has</span>
-    <span class="doccomment">/// been validated as a proper DNS name but is otherwise untrusted.</span>
-    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// Return `None` to abort the connection. Return an empty `Vec` to continue</span>
+    <span class="doccomment">/// the handshake without passing a list of CA DNs.</span>
+    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Verify the end-entity certificate `end_entity` is valid for the</span>
     <span class="doccomment">/// and chains to at least one of the trust anchors in `roots`.</span>
@@ -918,14 +941,10 @@
     <span class="doccomment">/// `intermediates` contains the intermediate certificates the</span>
     <span class="doccomment">/// client sent along with the end-entity certificate; it is in the same</span>
     <span class="doccomment">/// order that the peer sent them and may be empty.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `sni` is the server name quoted by the client in its ClientHello; it has</span>
-    <span class="doccomment">/// been validated as a proper DNS name but is otherwise untrusted.</span>
     <span class="kw">fn</span> <span class="ident">verify_client_cert</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">end_entity</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
         <span class="ident">intermediates</span>: <span class="kw-2">&amp;</span>[<span class="ident">Certificate</span>],
-        <span class="ident">sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>,
         <span class="ident">now</span>: <span class="ident">SystemTime</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientCertVerified</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
 
@@ -956,7 +975,6 @@
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HandshakeSignatureValid</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="ident">verify_signed_struct</span>(<span class="ident">message</span>, <span class="ident">cert</span>, <span class="ident">dss</span>)
     }
-
 
     <span class="doccomment">/// Verify a signature allegedly by the given server certificate.</span>
     <span class="doccomment">///</span>
@@ -1017,17 +1035,19 @@
                 <span class="kw-2">&amp;</span><span class="ident">chain</span>,
                 <span class="ident">webpki_now</span>,
             )
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ValidateServerCert</span>))
+            .<span class="ident">map_err</span>(<span class="ident">pki_error</span>)
             .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">cert</span>)<span class="question-mark">?</span>;
 
-        <span class="ident">verify_scts</span>(<span class="ident">end_entity</span>, <span class="ident">now</span>, <span class="ident">scts</span>, <span class="self">self</span>.<span class="ident">ct_logs</span>)<span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">policy</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ct_policy</span> {
+            <span class="ident">policy</span>.<span class="ident">verify</span>(<span class="ident">end_entity</span>, <span class="ident">now</span>, <span class="ident">scts</span>)<span class="question-mark">?</span>;
+        }
 
         <span class="kw">if</span> <span class="op">!</span><span class="ident">ocsp_response</span>.<span class="ident">is_empty</span>() {
             <span class="macro">trace!</span>(<span class="string">&quot;Unvalidated OCSP response: {:?}&quot;</span>, <span class="ident">ocsp_response</span>.<span class="ident">to_vec</span>());
         }
 
         <span class="ident">cert</span>.<span class="ident">verify_is_valid_for_dns_name</span>(<span class="ident">dns_name</span>.<span class="number">0</span>.<span class="ident">as_ref</span>())
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ValidateForDnsName</span>))
+            .<span class="ident">map_err</span>(<span class="ident">pki_error</span>)
             .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">ServerCertVerified::assertion</span>())
     }
 }
@@ -1036,7 +1056,7 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unreachable_pub</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebPkiVerifier</span> {
     <span class="ident">roots</span>: <span class="ident">RootCertStore</span>,
-    <span class="ident">ct_logs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">sct::Log</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>],
+    <span class="ident">ct_policy</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CertificateTransparencyPolicy</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unreachable_pub</span>)]</span>
@@ -1047,9 +1067,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `ct_logs` is the list of logs that are trusted for Certificate</span>
     <span class="doccomment">/// Transparency. Currently CT log enforcement is opportunistic; see</span>
-    <span class="doccomment">/// &lt;https://github.com/ctz/rustls/issues/479&gt;.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">roots</span>: <span class="ident">RootCertStore</span>, <span class="ident">ct_logs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">sct::Log</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">roots</span>, <span class="ident">ct_logs</span> }
+    <span class="doccomment">/// &lt;https://github.com/rustls/rustls/issues/479&gt;.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">roots</span>: <span class="ident">RootCertStore</span>, <span class="ident">ct_policy</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CertificateTransparencyPolicy</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">roots</span>, <span class="ident">ct_policy</span> }
     }
 
     <span class="doccomment">/// Returns the signature verification methods supported by</span>
@@ -1069,6 +1089,82 @@
     }
 }
 
+<span class="doccomment">/// Policy for enforcing Certificate Transparency.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Because Certificate Transparency logs are sharded on a per-year basis and can be trusted or</span>
+<span class="doccomment">/// distrusted relatively quickly, rustls stores a validation deadline. Server certificates will</span>
+<span class="doccomment">/// be validated against the configured CT logs until the deadline expires. After the deadline,</span>
+<span class="doccomment">/// certificates will no longer be validated, and a warning message will be logged. The deadline</span>
+<span class="doccomment">/// may vary depending on how often you deploy builds with updated dependencies.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unreachable_pub</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CertificateTransparencyPolicy</span> {
+    <span class="ident">logs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">sct::Log</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>],
+    <span class="ident">validation_deadline</span>: <span class="ident">SystemTime</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">CertificateTransparencyPolicy</span> {
+    <span class="doccomment">/// Create a new policy.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unreachable_pub</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">logs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">sct::Log</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>],
+        <span class="ident">validation_deadline</span>: <span class="ident">SystemTime</span>,
+    ) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">logs</span>,
+            <span class="ident">validation_deadline</span>,
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">verify</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">cert</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
+        <span class="ident">now</span>: <span class="ident">SystemTime</span>,
+        <span class="ident">scts</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">logs</span>.<span class="ident">is_empty</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>
+            .<span class="ident">validation_deadline</span>
+            .<span class="ident">duration_since</span>(<span class="ident">now</span>)
+            .<span class="ident">is_err</span>()
+        {
+            <span class="macro">warn!</span>(<span class="string">&quot;certificate transparency logs have expired, validation disabled&quot;</span>);
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
+        }
+
+        <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">unix_time_millis</span>(<span class="ident">now</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_sct_error</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">for</span> <span class="ident">sct</span> <span class="kw">in</span> <span class="ident">scts</span> {
+            <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>), <span class="ident">allow</span>(<span class="ident">unused_variables</span>))]</span>
+            <span class="kw">match</span> <span class="ident">sct::verify_sct</span>(<span class="kw-2">&amp;</span><span class="ident">cert</span>.<span class="number">0</span>, <span class="ident">sct</span>, <span class="ident">now</span>, <span class="self">self</span>.<span class="ident">logs</span>) {
+                <span class="prelude-val">Ok</span>(<span class="ident">index</span>) =&gt; {
+                    <span class="macro">debug!</span>(
+                        <span class="string">&quot;Valid SCT signed by {} on {}&quot;</span>,
+                        <span class="self">self</span>.<span class="ident">logs</span>[<span class="ident">index</span>].<span class="ident">operated_by</span>, <span class="self">self</span>.<span class="ident">logs</span>[<span class="ident">index</span>].<span class="ident">description</span>
+                    );
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
+                }
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                    <span class="kw">if</span> <span class="ident">e</span>.<span class="ident">should_be_fatal</span>() {
+                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidSct</span>(<span class="ident">e</span>));
+                    }
+                    <span class="macro">debug!</span>(<span class="string">&quot;SCT ignored because {:?}&quot;</span>, <span class="ident">e</span>);
+                    <span class="ident">last_sct_error</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">e</span>);
+                }
+            }
+        }
+
+        <span class="comment">/* If we were supplied with some logs, and some SCTs,
+         * but couldn&#39;t verify any of them, fail the handshake. */</span>
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">last_sct_error</span>) <span class="op">=</span> <span class="ident">last_sct_error</span> {
+            <span class="macro">warn!</span>(<span class="string">&quot;No valid SCTs provided&quot;</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidSct</span>(<span class="ident">last_sct_error</span>));
+        }
+
+        <span class="prelude-val">Ok</span>(())
+    }
+}
+
 <span class="kw">type</span> <span class="ident">CertChainAndRoots</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="op">=</span> (
     <span class="ident">webpki::EndEntityCert</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>,
@@ -1081,8 +1177,7 @@
     <span class="ident">roots</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">RootCertStore</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CertChainAndRoots</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="comment">// EE cert must appear first.</span>
-    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">end_entity</span>.<span class="number">0</span>.<span class="ident">as_ref</span>())
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ParseEndEntity</span>))<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">end_entity</span>.<span class="number">0</span>.<span class="ident">as_ref</span>()).<span class="ident">map_err</span>(<span class="ident">pki_error</span>)<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="ident">intermediates</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">intermediates</span>
         .<span class="ident">iter</span>()
@@ -1118,11 +1213,11 @@
         <span class="bool-val">true</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="bool-val">true</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">roots</span>.<span class="ident">subjects</span>())
     }
 
@@ -1130,7 +1225,6 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">end_entity</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
         <span class="ident">intermediates</span>: <span class="kw-2">&amp;</span>[<span class="ident">Certificate</span>],
-        <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>,
         <span class="ident">now</span>: <span class="ident">SystemTime</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientCertVerified</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">cert</span>, <span class="ident">chain</span>, <span class="ident">trustroots</span>) <span class="op">=</span> <span class="ident">prepare</span>(<span class="ident">end_entity</span>, <span class="ident">intermediates</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">roots</span>)<span class="question-mark">?</span>;
@@ -1141,7 +1235,7 @@
             <span class="kw-2">&amp;</span><span class="ident">chain</span>,
             <span class="ident">now</span>,
         )
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ValidateClientCert</span>))
+        .<span class="ident">map_err</span>(<span class="ident">pki_error</span>)
         .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">ClientCertVerified::assertion</span>())
     }
 }
@@ -1172,24 +1266,34 @@
         <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">offer_client_auth</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">client_auth_mandatory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="bool-val">false</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">inner</span>
-            .<span class="ident">client_auth_root_subjects</span>(<span class="ident">sni</span>)
+    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">client_auth_root_subjects</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">verify_client_cert</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">end_entity</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
         <span class="ident">intermediates</span>: <span class="kw-2">&amp;</span>[<span class="ident">Certificate</span>],
-        <span class="ident">sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>,
         <span class="ident">now</span>: <span class="ident">SystemTime</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientCertVerified</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">inner</span>
-            .<span class="ident">verify_client_cert</span>(<span class="ident">end_entity</span>, <span class="ident">intermediates</span>, <span class="ident">sni</span>, <span class="ident">now</span>)
+            .<span class="ident">verify_client_cert</span>(<span class="ident">end_entity</span>, <span class="ident">intermediates</span>, <span class="ident">now</span>)
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">pki_error</span>(<span class="ident">error</span>: <span class="ident">webpki::Error</span>) -&gt; <span class="ident">Error</span> {
+    <span class="kw">use</span> <span class="ident">webpki::Error</span>::<span class="kw-2">*</span>;
+    <span class="kw">match</span> <span class="ident">error</span> {
+        <span class="ident">BadDer</span> <span class="op">|</span> <span class="ident">BadDerTime</span> =&gt; <span class="ident">Error::InvalidCertificateEncoding</span>,
+        <span class="ident">InvalidSignatureForPublicKey</span> =&gt; <span class="ident">Error::InvalidCertificateSignature</span>,
+        <span class="ident">UnsupportedSignatureAlgorithm</span> <span class="op">|</span> <span class="ident">UnsupportedSignatureAlgorithmForPublicKey</span> =&gt; {
+            <span class="ident">Error::InvalidCertificateSignatureType</span>
+        }
+        <span class="ident">e</span> =&gt; <span class="ident">Error::InvalidCertificateData</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid peer certificate: {}&quot;</span>, <span class="ident">e</span>)),
     }
 }
 
@@ -1208,7 +1312,7 @@
         <span class="bool-val">false</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">client_auth_root_subjects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DistinguishedNames</span><span class="op">&gt;</span> {
         <span class="macro">unimplemented!</span>();
     }
 
@@ -1216,7 +1320,6 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">_end_entity</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
         <span class="ident">_intermediates</span>: <span class="kw-2">&amp;</span>[<span class="ident">Certificate</span>],
-        <span class="ident">_sni</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DnsName</span><span class="op">&gt;</span>,
         <span class="ident">_now</span>: <span class="ident">SystemTime</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientCertVerified</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="macro">unimplemented!</span>();
@@ -1285,11 +1388,10 @@
     <span class="ident">dss</span>: <span class="kw-2">&amp;</span><span class="ident">DigitallySignedStruct</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HandshakeSignatureValid</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">possible_algs</span> <span class="op">=</span> <span class="ident">convert_scheme</span>(<span class="ident">dss</span>.<span class="ident">scheme</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">cert</span>.<span class="number">0</span>.<span class="ident">as_ref</span>())
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ParseEndEntity</span>))<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">cert</span>.<span class="number">0</span>.<span class="ident">as_ref</span>()).<span class="ident">map_err</span>(<span class="ident">pki_error</span>)<span class="question-mark">?</span>;
 
     <span class="ident">verify_sig_using_any_alg</span>(<span class="kw-2">&amp;</span><span class="ident">cert</span>, <span class="ident">possible_algs</span>, <span class="ident">message</span>, <span class="kw-2">&amp;</span><span class="ident">dss</span>.<span class="ident">sig</span>.<span class="number">0</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::VerifySignature</span>))
+        .<span class="ident">map_err</span>(<span class="ident">pki_error</span>)
         .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">HandshakeSignatureValid::assertion</span>())
 }
 
@@ -1340,12 +1442,10 @@
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HandshakeSignatureValid</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">alg</span> <span class="op">=</span> <span class="ident">convert_alg_tls13</span>(<span class="ident">dss</span>.<span class="ident">scheme</span>)<span class="question-mark">?</span>;
 
-
-    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">cert</span>.<span class="number">0</span>.<span class="ident">as_ref</span>())
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::ParseEndEntity</span>))<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">cert</span> <span class="op">=</span> <span class="ident">webpki::EndEntityCert::try_from</span>(<span class="ident">cert</span>.<span class="number">0</span>.<span class="ident">as_ref</span>()).<span class="ident">map_err</span>(<span class="ident">pki_error</span>)<span class="question-mark">?</span>;
 
     <span class="ident">cert</span>.<span class="ident">verify_signature</span>(<span class="ident">alg</span>, <span class="ident">msg</span>, <span class="kw-2">&amp;</span><span class="ident">dss</span>.<span class="ident">sig</span>.<span class="number">0</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::WebPkiError</span>(<span class="ident">e</span>.<span class="ident">into</span>(), <span class="ident">WebPkiOp::VerifySignature</span>))
+        .<span class="ident">map_err</span>(<span class="ident">pki_error</span>)
         .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">HandshakeSignatureValid::assertion</span>())
 }
 
@@ -1357,48 +1457,6 @@
             <span class="ident">secs</span>.<span class="ident">checked_mul</span>(<span class="number">1000</span>)
                 .<span class="ident">ok_or</span>(<span class="ident">Error::FailedToGetCurrentTime</span>)
         })
-}
-
-<span class="kw">fn</span> <span class="ident">verify_scts</span>(
-    <span class="ident">cert</span>: <span class="kw-2">&amp;</span><span class="ident">Certificate</span>,
-    <span class="ident">now</span>: <span class="ident">SystemTime</span>,
-    <span class="ident">scts</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
-    <span class="ident">logs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">sct::Log</span>],
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">logs</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-    }
-
-    <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">unix_time_millis</span>(<span class="ident">now</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_sct_error</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">for</span> <span class="ident">sct</span> <span class="kw">in</span> <span class="ident">scts</span> {
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>), <span class="ident">allow</span>(<span class="ident">unused_variables</span>))]</span>
-        <span class="kw">match</span> <span class="ident">sct::verify_sct</span>(<span class="kw-2">&amp;</span><span class="ident">cert</span>.<span class="number">0</span>, <span class="ident">sct</span>, <span class="ident">now</span>, <span class="ident">logs</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">index</span>) =&gt; {
-                <span class="macro">debug!</span>(
-                    <span class="string">&quot;Valid SCT signed by {} on {}&quot;</span>,
-                    <span class="ident">logs</span>[<span class="ident">index</span>].<span class="ident">operated_by</span>, <span class="ident">logs</span>[<span class="ident">index</span>].<span class="ident">description</span>
-                );
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-            }
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="kw">if</span> <span class="ident">e</span>.<span class="ident">should_be_fatal</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidSct</span>(<span class="ident">e</span>));
-                }
-                <span class="macro">debug!</span>(<span class="string">&quot;SCT ignored because {:?}&quot;</span>, <span class="ident">e</span>);
-                <span class="ident">last_sct_error</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">e</span>);
-            }
-        }
-    }
-
-    <span class="comment">/* If we were supplied with some logs, and some SCTs,
-     * but couldn&#39;t verify any of them, fail the handshake. */</span>
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">last_sct_error</span>) <span class="op">=</span> <span class="ident">last_sct_error</span> {
-        <span class="macro">warn!</span>(<span class="string">&quot;No valid SCTs provided&quot;</span>);
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidSct</span>(<span class="ident">last_sct_error</span>));
-    }
-
-    <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rustls" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
