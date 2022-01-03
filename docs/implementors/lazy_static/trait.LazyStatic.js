@@ -1,4 +1,3 @@
 (function() {var implementors = {};
-implementors["librustlet"] = [{"text":"impl <a class=\"trait\" href=\"lazy_static/trait.LazyStatic.html\" title=\"trait lazy_static::LazyStatic\">LazyStatic</a> for <a class=\"struct\" href=\"librustlet/macros/struct.RUSTLET_CONTAINER.html\" title=\"struct librustlet::macros::RUSTLET_CONTAINER\">RUSTLET_CONTAINER</a>","synthetic":false,"types":["librustlet::macros::RUSTLET_CONTAINER"]}];
 implementors["nioruntime_log"] = [{"text":"impl <a class=\"trait\" href=\"lazy_static/trait.LazyStatic.html\" title=\"trait lazy_static::LazyStatic\">LazyStatic</a> for <a class=\"struct\" href=\"nioruntime_log/logger/struct.STATIC_LOG.html\" title=\"struct nioruntime_log::logger::STATIC_LOG\">STATIC_LOG</a>","synthetic":false,"types":["nioruntime_log::logger::STATIC_LOG"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
