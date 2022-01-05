@@ -138,7 +138,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4152116fd6e9dadb291ae18fc1ec3575ed6d84c29642d97890f4b4a3417297e4"
 dependencies = [
- "generic-array 0.14.4",
+ "generic-array 0.14.5",
 ]
 
 [[package]]
@@ -373,7 +373,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3dd60d1080a57a05ab032377049e0591415d2b31afd7028356dbf3cc6dcb066"
 dependencies = [
- "generic-array 0.14.4",
+ "generic-array 0.14.5",
 ]
 
 [[package]]
@@ -692,9 +692,9 @@ dependencies = [
 
 [[package]]
 name = "generic-array"
-version = "0.14.4"
+version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "501466ecc8a30d1d3b7fc9229b122b2ce8ed6e9d9223f1138d4babb253e51817"
+checksum = "fd48d33ec7f05fbfa152300fdad764757cbded343c1aa1cff2fbaf4134851803"
 dependencies = [
  "typenum",
  "version_check 0.9.4",
@@ -1018,7 +1018,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_err"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "byteorder",
  "bytes",
@@ -1036,7 +1036,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_evh"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "errno",
  "futures",
@@ -1059,7 +1059,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_http"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "bytefmt",
  "chrono",
@@ -1080,7 +1080,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_log"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "chrono",
  "failure",
@@ -1096,7 +1096,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_tor"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "chrono",
  "data-encoding",
@@ -1105,6 +1105,7 @@ dependencies = [
  "failure",
  "futures",
  "grin_secp256k1zkp",
+ "lazy_static",
  "libc",
  "log 0.4.14",
  "nioruntime_err",
@@ -1129,7 +1130,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_util"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#66458b054824f494810c9df1adaa486b01749c3e"
+source = "git+http://github.com/37miners/nioruntime?branch=master#25c69a14940fd6fc1a0cb860a98965b113a42d99"
 dependencies = [
  "byteorder",
  "bytes",
@@ -1837,9 +1838,9 @@ dependencies = [
 
 [[package]]
 name = "signature"
-version = "1.4.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "02658e48d89f2bec991f9a78e69cfa4c316f8d6a6c4ec12fae1aeb263d486788"
+checksum = "f054c6c1a6e95179d6f23ed974060dcefb2d9388bb7256900badad682c499de4"
 
 [[package]]
 name = "slab"
