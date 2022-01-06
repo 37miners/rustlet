@@ -487,9 +487,6 @@ impl RustletResponse {
 				.as_ref()
 				.unwrap_or(&"".to_string())
 				.len();
-                                .get_redirect()
-                                .as_ref()
-                                .unwrap_or(&"".to_string()), HEADER_SIZE_LESS_SERVER_NAME );
 			Ok(redir_len
 				+ additional_header_buffer_len
 				+ HEADER_SIZE_LESS_SERVER_NAME_REDIR
