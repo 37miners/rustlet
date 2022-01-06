@@ -1170,6 +1170,8 @@
 <span id="1170">1170</span>
 <span id="1171">1171</span>
 <span id="1172">1172</span>
+<span id="1173">1173</span>
+<span id="1174">1174</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -1254,11 +1256,11 @@
 	<span class="ident">content</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 	<span class="ident">http_method</span>: <span class="ident">HttpMethod</span>,
 	<span class="ident">http_version</span>: <span class="ident">HttpVersion</span>,
-	<span class="ident">http_config</span>: <span class="ident">HttpConfig</span>,
+	<span class="ident">_http_config</span>: <span class="ident">HttpConfig</span>,
 	<span class="ident">uri</span>: <span class="ident">String</span>,
 	<span class="ident">query</span>: <span class="ident">String</span>,
 	<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
-	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
+	<span class="ident">_keep_alive</span>: <span class="ident">bool</span>,
 	<span class="ident">query_map</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	<span class="ident">header_map</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -1272,9 +1274,9 @@
 		<span class="ident">content</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 		<span class="ident">http_method</span>: <span class="ident">HttpMethod</span>,
 		<span class="ident">http_version</span>: <span class="ident">HttpVersion</span>,
-		<span class="ident">http_config</span>: <span class="ident">HttpConfig</span>,
+		<span class="ident">_http_config</span>: <span class="ident">HttpConfig</span>,
 		<span class="ident">headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
-		<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
+		<span class="ident">_keep_alive</span>: <span class="ident">bool</span>,
 		<span class="ident">session_map</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u128</span>, <span class="ident">SessionData</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	) -&gt; <span class="self">Self</span> {
 		<span class="ident">RustletRequest</span> {
@@ -1283,9 +1285,9 @@
 			<span class="ident">content</span>,
 			<span class="ident">http_method</span>,
 			<span class="ident">http_version</span>,
-			<span class="ident">http_config</span>,
+			<span class="ident">_http_config</span>,
 			<span class="ident">headers</span>,
-			<span class="ident">keep_alive</span>,
+			<span class="ident">_keep_alive</span>,
 			<span class="ident">query_map</span>: <span class="prelude-val">None</span>,
 			<span class="ident">header_map</span>: <span class="prelude-val">None</span>,
 			<span class="ident">session_map</span>,
@@ -1532,7 +1534,7 @@
 	<span class="ident">wh</span>: <span class="ident">WriteHandle</span>,
 	<span class="ident">config</span>: <span class="ident">HttpConfig</span>,
 	<span class="ident">headers_written</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-	<span class="ident">additional_headers</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span>,
+	<span class="ident">additional_headers</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	<span class="ident">redirect</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 	<span class="ident">keep_alive</span>: <span class="ident">bool</span>,
 	<span class="ident">chained</span>: <span class="ident">bool</span>,
@@ -1554,7 +1556,7 @@
 			<span class="ident">config</span>,
 			<span class="ident">headers_written</span>: <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="bool-val">false</span>)),
 			<span class="ident">keep_alive</span>,
-			<span class="ident">additional_headers</span>: <span class="macro">vec!</span>[],
+			<span class="ident">additional_headers</span>: <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="macro">vec!</span>[])),
 			<span class="ident">redirect</span>: <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="prelude-val">None</span>)),
 			<span class="ident">chained</span>,
 			<span class="ident">buffer</span>: <span class="ident">Arc::new</span>(<span class="ident">RwLock::new</span>(<span class="macro">vec!</span>[])),
@@ -1570,7 +1572,8 @@
 			)
 			.<span class="ident">into</span>()),
 			<span class="bool-val">false</span> =&gt; {
-				<span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">push</span>((
+				<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additional_headers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">lock</span>()<span class="question-mark">?</span>;
+				<span class="ident">additional_headers</span>.<span class="ident">push</span>((
 					<span class="string">&quot;Set-Cookie&quot;</span>.<span class="ident">to_string</span>(),
 					<span class="macro">format!</span>(<span class="string">&quot;{}={}; {}&quot;</span>, <span class="ident">name</span>, <span class="ident">value</span>, <span class="ident">other</span>),
 				));
@@ -1622,8 +1625,8 @@
 			)
 			.<span class="ident">into</span>())
 		} <span class="kw">else</span> {
-			<span class="self">self</span>.<span class="ident">additional_headers</span>
-				.<span class="ident">push</span>((<span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">value</span>.<span class="ident">to_string</span>()));
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additional_headers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">lock</span>()<span class="question-mark">?</span>;
+			<span class="ident">additional_headers</span>.<span class="ident">push</span>((<span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">value</span>.<span class="ident">to_string</span>()));
 			<span class="prelude-val">Ok</span>(())
 		}
 	}
@@ -1635,8 +1638,8 @@
 			)
 			.<span class="ident">into</span>())
 		} <span class="kw">else</span> {
-			<span class="self">self</span>.<span class="ident">additional_headers</span>
-				.<span class="ident">push</span>((<span class="string">&quot;Content-Type&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">ctype</span>.<span class="ident">to_string</span>()));
+			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additional_headers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">lock</span>()<span class="question-mark">?</span>;
+			<span class="ident">additional_headers</span>.<span class="ident">push</span>((<span class="string">&quot;Content-Type&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">ctype</span>.<span class="ident">to_string</span>()));
 			<span class="prelude-val">Ok</span>(())
 		}
 	}
@@ -1653,10 +1656,11 @@
 			<span class="prelude-val">Ok</span>(<span class="ident">redir_len</span> <span class="op">+</span> <span class="ident">HEADER_SIZE_LESS_SERVER_NAME</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">server_name</span>.<span class="ident">len</span>())
 		} <span class="kw">else</span> {
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additional_header_buffer_len</span> <span class="op">=</span> <span class="number">0</span>;
-			<span class="kw">let</span> <span class="ident">additional_headers_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">len</span>();
+			<span class="kw">let</span> <span class="ident">additional_headers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">lock</span>()<span class="question-mark">?</span>;
+			<span class="kw">let</span> <span class="ident">additional_headers_len</span> <span class="op">=</span> <span class="ident">additional_headers</span>.<span class="ident">len</span>();
 			<span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">additional_headers_len</span> {
 				<span class="ident">additional_header_buffer_len</span> <span class="op">+</span><span class="op">=</span>
-					<span class="self">self</span>.<span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">1</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">4</span>;
+					<span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="ident">additional_headers</span>[<span class="ident">i</span>].<span class="number">1</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">4</span>;
 			}
 			<span class="prelude-val">Ok</span>(<span class="ident">buffer_len</span>
 				<span class="op">+</span> <span class="ident">additional_header_buffer_len</span>
@@ -1682,12 +1686,13 @@
 			<span class="ident">to_write</span>.<span class="ident">resize</span>(<span class="ident">buffer_size</span>, <span class="string">&#39;q&#39;</span> <span class="kw">as</span> <span class="ident">u8</span>);
 
 			<span class="self">self</span>.<span class="ident">set_headers_written</span>(<span class="bool-val">true</span>);
+			<span class="kw">let</span> <span class="ident">additional_headers</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">lock</span>()<span class="question-mark">?</span>;
 			<span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">HttpServer::build_headers</span>(
 				<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">config</span>,
 				<span class="bool-val">true</span>,
 				<span class="bool-val">false</span>,
 				<span class="self">self</span>.<span class="ident">keep_alive</span>,
-				<span class="self">self</span>.<span class="ident">additional_headers</span>.<span class="ident">clone</span>(),
+				<span class="ident">additional_headers</span>.<span class="ident">clone</span>(),
 				<span class="self">self</span>.<span class="ident">get_redirect</span>(),
 				<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">to_write</span>,
 			)<span class="question-mark">?</span>;
@@ -2014,7 +2019,6 @@
 				<span class="comment">// we have to set this as it&#39;s a new id</span>
 				<span class="ident">response</span>.<span class="ident">set_cookie</span>(<span class="string">&quot;rustletsessionid&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">id</span>), <span class="string">&quot;path=/&quot;</span>)<span class="question-mark">?</span>;
 			}
-
 			<span class="ident">request</span>.<span class="ident">set_session_id</span>(<span class="ident">rsessionid</span>)<span class="question-mark">?</span>;
 			(<span class="ident">rustlet</span>)(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">request</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">response</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
 				<span class="kw">match</span> <span class="ident">response</span>.<span class="ident">flush</span>() {

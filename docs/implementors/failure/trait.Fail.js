@@ -1,4 +1,5 @@
 (function() {var implementors = {};
 implementors["failure"] = [];
 implementors["nioruntime_err"] = [{"text":"impl <a class=\"trait\" href=\"failure/trait.Fail.html\" title=\"trait failure::Fail\">Fail</a> for <a class=\"struct\" href=\"nioruntime_err/struct.Error.html\" title=\"struct nioruntime_err::Error\">Error</a>","synthetic":false,"types":["nioruntime_err::error::Error"]},{"text":"impl <a class=\"trait\" href=\"failure/trait.Fail.html\" title=\"trait failure::Fail\">Fail</a> for <a class=\"enum\" href=\"nioruntime_err/enum.ErrorKind.html\" title=\"enum nioruntime_err::ErrorKind\">ErrorKind</a>","synthetic":false,"types":["nioruntime_err::error::ErrorKind"]}];
+implementors["nioruntime_tor"] = [{"text":"impl <a class=\"trait\" href=\"failure/trait.Fail.html\" title=\"trait failure::Fail\">Fail</a> for <a class=\"enum\" href=\"nioruntime_tor/ov3/enum.OnionV3Error.html\" title=\"enum nioruntime_tor::ov3::OnionV3Error\">OnionV3Error</a>","synthetic":false,"types":["nioruntime_tor::ov3::OnionV3Error"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
