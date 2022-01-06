@@ -33,6 +33,7 @@ use std::time::Instant;
 info!();
 
 const HEADER_SIZE_LESS_SERVER_NAME: usize = 94;
+const HEADER_SIZE_LESS_SERVER_NAME_REDIR: usize = 121;
 const MAIN_LOG: &str = "mainlog";
 const MAX_CHUNK_SIZE: usize = 1024 * 1024 * 10;
 const MAX_ESCAPE_SEQUENCE: usize = 100;
@@ -471,6 +472,13 @@ impl RustletResponse {
 	}
 
 	fn calculate_buffer_size(&self, buffer_len: usize) -> Result<usize, Error> {
+		let mut additional_header_buffer_len = 0;
+		let additional_headers = self.additional_headers.lock()?;
+		let additional_headers_len = additional_headers.len();
+		for i in 0..additional_headers_len {
+			additional_header_buffer_len +=
+				additional_headers[i].0.len() + additional_headers[i].1.len() + 4;
+		}
 		if self.get_headers_written() {
 			Ok(buffer_len)
 		} else if self.get_redirect().is_some() {
@@ -479,15 +487,14 @@ impl RustletResponse {
 				.as_ref()
 				.unwrap_or(&"".to_string())
 				.len();
-			Ok(redir_len + HEADER_SIZE_LESS_SERVER_NAME + self.config.server_name.len())
+                                .get_redirect()
+                                .as_ref()
+                                .unwrap_or(&"".to_string()), HEADER_SIZE_LESS_SERVER_NAME );
+			Ok(redir_len
+				+ additional_header_buffer_len
+				+ HEADER_SIZE_LESS_SERVER_NAME_REDIR
+				+ self.config.server_name.len())
 		} else {
-			let mut additional_header_buffer_len = 0;
-			let additional_headers = self.additional_headers.lock()?;
-			let additional_headers_len = additional_headers.len();
-			for i in 0..additional_headers_len {
-				additional_header_buffer_len +=
-					additional_headers[i].0.len() + additional_headers[i].1.len() + 4;
-			}
 			Ok(buffer_len
 				+ additional_header_buffer_len
 				+ HEADER_SIZE_LESS_SERVER_NAME
