@@ -360,7 +360,7 @@ pub struct RustletResponse {
 	wh: WriteHandle,
 	config: HttpConfig,
 	headers_written: Arc<Mutex<bool>>,
-	additional_headers: Vec<(String, String)>,
+	additional_headers: Arc<Mutex<Vec<(String, String)>>>,
 	redirect: Arc<Mutex<Option<String>>>,
 	keep_alive: bool,
 	chained: bool,
@@ -382,7 +382,7 @@ impl RustletResponse {
 			config,
 			headers_written: Arc::new(Mutex::new(false)),
 			keep_alive,
-			additional_headers: vec![],
+			additional_headers: Arc::new(Mutex::new(vec![])),
 			redirect: Arc::new(Mutex::new(None)),
 			chained,
 			buffer: Arc::new(RwLock::new(vec![])),
@@ -398,7 +398,8 @@ impl RustletResponse {
 			)
 			.into()),
 			false => {
-				self.additional_headers.push((
+				let mut additional_headers = self.additional_headers.lock()?;
+				additional_headers.push((
 					"Set-Cookie".to_string(),
 					format!("{}={}; {}", name, value, other),
 				));
@@ -450,8 +451,8 @@ impl RustletResponse {
 			)
 			.into())
 		} else {
-			self.additional_headers
-				.push((name.to_string(), value.to_string()));
+			let mut additional_headers = self.additional_headers.lock()?;
+			additional_headers.push((name.to_string(), value.to_string()));
 			Ok(())
 		}
 	}
@@ -463,8 +464,8 @@ impl RustletResponse {
 			)
 			.into())
 		} else {
-			self.additional_headers
-				.push(("Content-Type".to_string(), ctype.to_string()));
+			let mut additional_headers = self.additional_headers.lock()?;
+			additional_headers.push(("Content-Type".to_string(), ctype.to_string()));
 			Ok(())
 		}
 	}
@@ -481,10 +482,11 @@ impl RustletResponse {
 			Ok(redir_len + HEADER_SIZE_LESS_SERVER_NAME + self.config.server_name.len())
 		} else {
 			let mut additional_header_buffer_len = 0;
-			let additional_headers_len = self.additional_headers.len();
+			let additional_headers = self.additional_headers.lock()?;
+			let additional_headers_len = additional_headers.len();
 			for i in 0..additional_headers_len {
 				additional_header_buffer_len +=
-					self.additional_headers[i].0.len() + self.additional_headers[i].1.len() + 4;
+					additional_headers[i].0.len() + additional_headers[i].1.len() + 4;
 			}
 			Ok(buffer_len
 				+ additional_header_buffer_len
@@ -510,12 +512,13 @@ impl RustletResponse {
 			to_write.resize(buffer_size, 'q' as u8);
 
 			self.set_headers_written(true);
+			let additional_headers = self.additional_headers.lock()?;
 			let len = HttpServer::build_headers(
 				&self.config,
 				true,
 				false,
 				self.keep_alive,
-				self.additional_headers.clone(),
+				additional_headers.clone(),
 				self.get_redirect(),
 				&mut to_write,
 			)?;
@@ -842,7 +845,6 @@ fn execute_rustlet(
 				// we have to set this as it's a new id
 				response.set_cookie("rustletsessionid", &format!("{}", id), "path=/")?;
 			}
-
 			request.set_session_id(rsessionid)?;
 			(rustlet)(&mut request, &mut response).map_err(|e| {
 				match response.flush() {
