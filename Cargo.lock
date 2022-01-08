@@ -1018,7 +1018,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_err"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "byteorder",
  "bytes",
@@ -1036,7 +1036,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_evh"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "errno",
  "futures",
@@ -1059,7 +1059,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_http"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "bytefmt",
  "chrono",
@@ -1080,7 +1080,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_log"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "chrono",
  "failure",
@@ -1096,7 +1096,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_tor"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "chrono",
  "data-encoding",
@@ -1130,7 +1130,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_util"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#e2d68c3e5a8ce81d9cae83562ee2c902c56a8055"
+source = "git+http://github.com/37miners/nioruntime?branch=master#6d605a2a3633c137658656d3ddef2885bb58561d"
 dependencies = [
  "byteorder",
  "bytes",
