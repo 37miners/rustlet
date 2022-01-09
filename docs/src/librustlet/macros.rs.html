@@ -1931,7 +1931,7 @@
 <span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
 <span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
 <span class="doccomment">///         let message = &quot;abc&quot;.as_bytes();</span>
-<span class="doccomment">///         let signature = tor_sign!(message).unwrap();</span>
+<span class="doccomment">///         let signature = sign!(message).unwrap();</span>
 <span class="doccomment">///         let verification = verify!(message, tor_pubkey, signature);</span>
 <span class="doccomment">///         response!(&quot;verification = {}&quot;, verification.unwrap());</span>
 <span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
@@ -1943,7 +1943,7 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">tor_sign</span> {
+<span class="macro">macro_rules!</span> <span class="ident">sign</span> {
 	(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>) =&gt; {{
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">container</span> <span class="op">=</span> <span class="ident">librustlet::macros::RUSTLET_CONTAINER</span>.<span class="ident">write</span>();
 		<span class="kw">match</span> <span class="ident">container</span> {
@@ -1977,7 +1977,7 @@
 	}};
 }
 
-<span class="doccomment">/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and tor_sign!() macros.</span>
+<span class="doccomment">/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and sign!() macros.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Examples</span>
 <span class="doccomment">/// ```</span>
@@ -1998,7 +1998,7 @@
 <span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
 <span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
 <span class="doccomment">///         let message = &quot;abc&quot;.as_bytes();</span>
-<span class="doccomment">///         let signature = tor_sign!(message).unwrap();</span>
+<span class="doccomment">///         let signature = sign!(message).unwrap();</span>
 <span class="doccomment">///         let verification = verify!(message, tor_pubkey, signature);</span>
 <span class="doccomment">///         response!(&quot;verification = {}&quot;, verification.unwrap());</span>
 <span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
