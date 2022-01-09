@@ -284,7 +284,7 @@ macro_rules! session {
 ///         let tor_pubkey = tor_pubkey!();
 ///         response!("tor pubkey = {:?}", tor_pubkey);
 ///         let message = "abc".as_bytes();
-///         let signature = tor_sign!(message).unwrap();
+///         let signature = sign!(message).unwrap();
 ///         let verification = verify!(message, tor_pubkey, signature);
 ///         response!("verification = {}", verification.unwrap());
 ///         response!("</strong></body></html>");
@@ -296,7 +296,7 @@ macro_rules! session {
 /// }
 /// ```
 #[macro_export]
-macro_rules! tor_sign {
+macro_rules! sign {
 	($a:expr) => {{
 		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
 		match container {
@@ -330,7 +330,7 @@ macro_rules! tor_sign {
 	}};
 }
 
-/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and tor_sign!() macros.
+/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and sign!() macros.
 ///
 /// # Examples
 /// ```
@@ -351,7 +351,7 @@ macro_rules! tor_sign {
 ///         let tor_pubkey = tor_pubkey!();
 ///         response!("tor pubkey = {:?}", tor_pubkey);
 ///         let message = "abc".as_bytes();
-///         let signature = tor_sign!(message).unwrap();
+///         let signature = sign!(message).unwrap();
 ///         let verification = verify!(message, tor_pubkey, signature);
 ///         response!("verification = {}", verification.unwrap());
 ///         response!("</strong></body></html>");
