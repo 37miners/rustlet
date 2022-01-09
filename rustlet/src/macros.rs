@@ -263,6 +263,140 @@ macro_rules! session {
 	};
 }
 
+/// Create a signature using dalek algorithm. This is useful with the tor_pubkey!() and verify!() macros.
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///     
+///     rustlet!("set_content_type", {
+///         set_content_type!("text/html");
+///         response!("<html><body><strong>");
+///         let tor_pubkey = tor_pubkey!();
+///         response!("tor pubkey = {:?}", tor_pubkey);
+///         let message = "abc".as_bytes();
+///         let signature = tor_sign!(message).unwrap();
+///         let verification = verify!(message, tor_pubkey, signature);
+///         response!("verification = {}", verification.unwrap());
+///         response!("</strong></body></html>");
+///     });
+///     
+///     rustlet_mapping!("/set_content_type", "set_content_type");
+///     
+///     Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! tor_sign {
+	($a:expr) => {{
+		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		match container {
+			Ok(mut container) => {
+				let res = container.tor_sign($a);
+				match res {
+					Ok(signature) => Some(signature),
+					Err(e) => {
+						const MAIN_LOG: &str = "mainlog";
+						nioruntime_log::log_multi!(
+							nioruntime_log::ERROR,
+							MAIN_LOG,
+							"Error signing: {}",
+							e.to_string()
+						);
+						None
+					}
+				}
+			}
+			Err(e) => {
+				const MAIN_LOG: &str = "mainlog";
+				nioruntime_log::log_multi!(
+					nioruntime_log::ERROR,
+					MAIN_LOG,
+					"Couldn't get tor pubkey: couldn't get lock: {}",
+					e.to_string()
+				);
+				None
+			}
+		}
+	}};
+}
+
+/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and tor_sign!() macros.
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///
+///     rustlet!("set_content_type", {
+///         set_content_type!("text/html");
+///         response!("<html><body><strong>");
+///         let tor_pubkey = tor_pubkey!();
+///         response!("tor pubkey = {:?}", tor_pubkey);
+///         let message = "abc".as_bytes();
+///         let signature = tor_sign!(message).unwrap();
+///         let verification = verify!(message, tor_pubkey, signature);
+///         response!("verification = {}", verification.unwrap());
+///         response!("</strong></body></html>");
+///     });
+///
+///     rustlet_mapping!("/set_content_type", "set_content_type");
+///
+///     Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! verify {
+	($a:expr, $b:expr, $c:expr) => {{
+		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		match container {
+			Ok(mut container) => {
+				let res = container.verify($a, $b, $c);
+				match res {
+					Ok(b) => Some(b),
+					Err(e) => {
+						const MAIN_LOG: &str = "mainlog";
+						nioruntime_log::log_multi!(
+							nioruntime_log::ERROR,
+							MAIN_LOG,
+							"Error signing: {}",
+							e.to_string()
+						);
+						None
+					}
+				}
+			}
+			Err(e) => {
+				const MAIN_LOG: &str = "mainlog";
+				nioruntime_log::log_multi!(
+					nioruntime_log::ERROR,
+					MAIN_LOG,
+					"Couldn't get tor pubkey: couldn't get lock: {}",
+					e.to_string()
+				);
+				None
+			}
+		}
+	}};
+}
+
 /// Gets the tor pubkey associated with this rustlet container. Returns a Result with the optional
 /// byte array. If tor is not congfigured, this will return None.
 ///

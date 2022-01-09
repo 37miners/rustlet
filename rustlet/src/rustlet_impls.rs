@@ -1147,6 +1147,25 @@ impl RustletContainer {
 		Ok(())
 	}
 
+	pub fn tor_sign(&self, message: &[u8]) -> Result<[u8; 64], Error> {
+		match &self.http {
+			None => Err(ErrorKind::ApplicationError("http not available".to_string()).into()),
+			Some(http) => http.tor_sign(message),
+		}
+	}
+
+	pub fn verify(
+		&self,
+		message: &[u8],
+		pubkey: Option<[u8; 32]>,
+		signature: [u8; 64],
+	) -> Result<bool, Error> {
+		match &self.http {
+			None => Err(ErrorKind::ApplicationError("http not available".to_string()).into()),
+			Some(http) => http.verify(message, pubkey, signature),
+		}
+	}
+
 	pub fn get_onion_address_pubkey(&self) -> Result<Option<[u8; 32]>, Error> {
 		match &self.http {
 			None => Ok(None),

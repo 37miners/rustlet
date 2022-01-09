@@ -1036,12 +1036,13 @@ dependencies = [
 [[package]]
 name = "nioruntime_err"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "base64 0.13.0",
  "byteorder",
  "bytes",
  "chrono",
+ "ed25519-dalek",
  "failure",
  "failure_derive",
  "futures",
@@ -1055,7 +1056,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_evh"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "errno",
  "futures",
@@ -1078,11 +1079,12 @@ dependencies = [
 [[package]]
 name = "nioruntime_http"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "bytefmt",
  "chrono",
  "dirs",
+ "ed25519-dalek",
  "fsutils",
  "grin_secp256k1zkp",
  "itoa 0.4.8",
@@ -1099,7 +1101,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_log"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "chrono",
  "failure",
@@ -1115,7 +1117,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_tor"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "chrono",
  "data-encoding",
@@ -1149,7 +1151,7 @@ dependencies = [
 [[package]]
 name = "nioruntime_util"
 version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#90e31adf1cdd9b982fa480be552dd682df2afbb6"
+source = "git+http://github.com/37miners/nioruntime?branch=master#c8b16773317a7b0a48c09870b5df6ddfc6b65fbb"
 dependencies = [
  "byteorder",
  "bytes",
