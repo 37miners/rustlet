@@ -1147,6 +1147,13 @@ impl RustletContainer {
 		Ok(())
 	}
 
+	pub fn get_onion_address_pubkey(&self) -> Result<Option<[u8; 32]>, Error> {
+		match &self.http {
+			None => Ok(None),
+			Some(http) => http.get_tor_pubkey(),
+		}
+	}
+
 	pub fn add_rustlet(&mut self, name: &str, rustlet: Rustlet) -> Result<(), Error> {
 		let mut rustlets = nioruntime_util::lockw!(RUSTLETS);
 		rustlets

@@ -263,6 +263,71 @@ macro_rules! session {
 	};
 }
 
+/// Gets the tor pubkey associated with this rustlet container.
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///
+///     rustlet!("set_content_type", {
+///         set_content_type!("text/html");
+///         response!("<html><body><strong>");
+///         let tor_pubkey = tor_pubkey!();
+///         response!("tor pubkey = {:?}", tor_pubkey);
+///         response!("</strong></body></html>");
+///         // flush called automatically by the container after control is returned.
+///     });
+///
+///     rustlet_mapping!("/set_content_type", "set_content_type");
+///
+///     Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! tor_pubkey {
+	() => {{
+		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		match container {
+			Ok(mut container) => {
+				let res = container.get_onion_address_pubkey();
+				match res {
+					Ok(onion_pubkey) => onion_pubkey,
+					Err(e) => {
+						const MAIN_LOG: &str = "mainlog";
+						nioruntime_log::log_multi!(
+							nioruntime_log::ERROR,
+							MAIN_LOG,
+							"Error getting onion pubkey: {}",
+							e.to_string()
+						);
+						None
+					}
+				}
+			}
+			Err(e) => {
+				const MAIN_LOG: &str = "mainlog";
+				nioruntime_log::log_multi!(
+					nioruntime_log::ERROR,
+					MAIN_LOG,
+					"Couldn't get tor pubkey: couldn't get lock: {}",
+					e.to_string()
+				);
+
+				None
+			}
+		}
+	}};
+}
+
 /// Flushes any buffered data previously sent via the [`response`] macro.
 ///
 /// # Examples
