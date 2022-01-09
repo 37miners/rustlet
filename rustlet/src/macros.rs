@@ -263,7 +263,8 @@ macro_rules! session {
 	};
 }
 
-/// Gets the tor pubkey associated with this rustlet container.
+/// Gets the tor pubkey associated with this rustlet container. Returns a Result with the optional
+/// byte array. If tor is not congfigured, this will return None.
 ///
 /// # Examples
 /// ```
