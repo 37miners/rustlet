@@ -1445,6 +1445,71 @@
 <span id="1445">1445</span>
 <span id="1446">1446</span>
 <span id="1447">1447</span>
+<span id="1448">1448</span>
+<span id="1449">1449</span>
+<span id="1450">1450</span>
+<span id="1451">1451</span>
+<span id="1452">1452</span>
+<span id="1453">1453</span>
+<span id="1454">1454</span>
+<span id="1455">1455</span>
+<span id="1456">1456</span>
+<span id="1457">1457</span>
+<span id="1458">1458</span>
+<span id="1459">1459</span>
+<span id="1460">1460</span>
+<span id="1461">1461</span>
+<span id="1462">1462</span>
+<span id="1463">1463</span>
+<span id="1464">1464</span>
+<span id="1465">1465</span>
+<span id="1466">1466</span>
+<span id="1467">1467</span>
+<span id="1468">1468</span>
+<span id="1469">1469</span>
+<span id="1470">1470</span>
+<span id="1471">1471</span>
+<span id="1472">1472</span>
+<span id="1473">1473</span>
+<span id="1474">1474</span>
+<span id="1475">1475</span>
+<span id="1476">1476</span>
+<span id="1477">1477</span>
+<span id="1478">1478</span>
+<span id="1479">1479</span>
+<span id="1480">1480</span>
+<span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
+<span id="1498">1498</span>
+<span id="1499">1499</span>
+<span id="1500">1500</span>
+<span id="1501">1501</span>
+<span id="1502">1502</span>
+<span id="1503">1503</span>
+<span id="1504">1504</span>
+<span id="1505">1505</span>
+<span id="1506">1506</span>
+<span id="1507">1507</span>
+<span id="1508">1508</span>
+<span id="1509">1509</span>
+<span id="1510">1510</span>
+<span id="1511">1511</span>
+<span id="1512">1512</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -1708,6 +1773,71 @@
 			}
 		})
 	};
+}
+
+<span class="doccomment">/// Gets the tor pubkey associated with this rustlet container.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Examples</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// use nioruntime_err::Error;</span>
+<span class="doccomment">/// use librustlet::*;</span>
+<span class="doccomment">/// use nioruntime_log::*;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// debug!();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// fn test() -&gt; Result&lt;(), Error&gt; {</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     // init the rustlet container, in this case with default values</span>
+<span class="doccomment">///     rustlet_init!(RustletConfig::default());</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     rustlet!(&quot;set_content_type&quot;, {</span>
+<span class="doccomment">///         set_content_type!(&quot;text/html&quot;);</span>
+<span class="doccomment">///         response!(&quot;&lt;html&gt;&lt;body&gt;&lt;strong&gt;&quot;);</span>
+<span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
+<span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
+<span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
+<span class="doccomment">///         // flush called automatically by the container after control is returned.</span>
+<span class="doccomment">///     });</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     rustlet_mapping!(&quot;/set_content_type&quot;, &quot;set_content_type&quot;);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     Ok(())</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules!</span> <span class="ident">tor_pubkey</span> {
+	() =&gt; {{
+		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">container</span> <span class="op">=</span> <span class="ident">librustlet::macros::RUSTLET_CONTAINER</span>.<span class="ident">write</span>();
+		<span class="kw">match</span> <span class="ident">container</span> {
+			<span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">container</span>) =&gt; {
+				<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">container</span>.<span class="ident">get_onion_address_pubkey</span>();
+				<span class="kw">match</span> <span class="ident">res</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">onion_pubkey</span>) =&gt; <span class="ident">onion_pubkey</span>,
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+						<span class="kw">const</span> <span class="ident">MAIN_LOG</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mainlog&quot;</span>;
+						<span class="macro">nioruntime_log::log_multi!</span>(
+							<span class="ident">nioruntime_log::ERROR</span>,
+							<span class="ident">MAIN_LOG</span>,
+							<span class="string">&quot;Error getting onion pubkey: {}&quot;</span>,
+							<span class="ident">e</span>.<span class="ident">to_string</span>()
+						);
+						<span class="prelude-val">None</span>
+					}
+				}
+			}
+			<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+				<span class="kw">const</span> <span class="ident">MAIN_LOG</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mainlog&quot;</span>;
+				<span class="macro">nioruntime_log::log_multi!</span>(
+					<span class="ident">nioruntime_log::ERROR</span>,
+					<span class="ident">MAIN_LOG</span>,
+					<span class="string">&quot;Couldn&#39;t get tor pubkey: couldn&#39;t get lock: {}&quot;</span>,
+					<span class="ident">e</span>.<span class="ident">to_string</span>()
+				);
+
+				<span class="prelude-val">None</span>
+			}
+		}
+	}};
 }
 
 <span class="doccomment">/// Flushes any buffered data previously sent via the [`response`] macro.</span>
