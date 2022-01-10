@@ -263,7 +263,7 @@ macro_rules! session {
 	};
 }
 
-/// Create a signature using dalek algorithm. This is useful with the tor_pubkey!() and verify!() macros.
+/// Create a signature using dalek algorithm. This is useful with the pubkey!() and verify!() macros.
 ///
 /// # Examples
 /// ```
@@ -281,11 +281,11 @@ macro_rules! session {
 ///     rustlet!("set_content_type", {
 ///         set_content_type!("text/html");
 ///         response!("<html><body><strong>");
-///         let tor_pubkey = tor_pubkey!();
-///         response!("tor pubkey = {:?}", tor_pubkey);
+///         let pubkey = pubkey!();
+///         response!("pubkey = {:?}", pubkey);
 ///         let message = "abc".as_bytes();
 ///         let signature = sign!(message).unwrap();
-///         let verification = verify!(message, tor_pubkey, signature);
+///         let verification = verify!(message, pubkey, signature);
 ///         response!("verification = {}", verification.unwrap());
 ///         response!("</strong></body></html>");
 ///     });
@@ -330,7 +330,7 @@ macro_rules! sign {
 	}};
 }
 
-/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and sign!() macros.
+/// Verifies a signature using dalek algorithm. This is useful with the pubkey!() and sign!() macros.
 ///
 /// # Examples
 /// ```
@@ -348,11 +348,11 @@ macro_rules! sign {
 ///     rustlet!("set_content_type", {
 ///         set_content_type!("text/html");
 ///         response!("<html><body><strong>");
-///         let tor_pubkey = tor_pubkey!();
-///         response!("tor pubkey = {:?}", tor_pubkey);
+///         let pubkey = pubkey!();
+///         response!("pubkey = {:?}", pubkey);
 ///         let message = "abc".as_bytes();
 ///         let signature = sign!(message).unwrap();
-///         let verification = verify!(message, tor_pubkey, signature);
+///         let verification = verify!(message, pubkey, signature);
 ///         response!("verification = {}", verification.unwrap());
 ///         response!("</strong></body></html>");
 ///     });
@@ -416,8 +416,8 @@ macro_rules! verify {
 ///     rustlet!("set_content_type", {
 ///         set_content_type!("text/html");
 ///         response!("<html><body><strong>");
-///         let tor_pubkey = tor_pubkey!();
-///         response!("tor pubkey = {:?}", tor_pubkey);
+///         let pubkey = pubkey!();
+///         response!("tor pubkey = {:?}", pubkey);
 ///         response!("</strong></body></html>");
 ///         // flush called automatically by the container after control is returned.
 ///     });
@@ -428,7 +428,7 @@ macro_rules! verify {
 /// }
 /// ```
 #[macro_export]
-macro_rules! tor_pubkey {
+macro_rules! pubkey {
 	() => {{
 		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
 		match container {
