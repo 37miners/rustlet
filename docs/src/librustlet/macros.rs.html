@@ -1910,7 +1910,7 @@
 	};
 }
 
-<span class="doccomment">/// Create a signature using dalek algorithm. This is useful with the tor_pubkey!() and verify!() macros.</span>
+<span class="doccomment">/// Create a signature using dalek algorithm. This is useful with the pubkey!() and verify!() macros.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Examples</span>
 <span class="doccomment">/// ```</span>
@@ -1928,11 +1928,11 @@
 <span class="doccomment">///     rustlet!(&quot;set_content_type&quot;, {</span>
 <span class="doccomment">///         set_content_type!(&quot;text/html&quot;);</span>
 <span class="doccomment">///         response!(&quot;&lt;html&gt;&lt;body&gt;&lt;strong&gt;&quot;);</span>
-<span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
-<span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
+<span class="doccomment">///         let pubkey = pubkey!();</span>
+<span class="doccomment">///         response!(&quot;pubkey = {:?}&quot;, pubkey);</span>
 <span class="doccomment">///         let message = &quot;abc&quot;.as_bytes();</span>
 <span class="doccomment">///         let signature = sign!(message).unwrap();</span>
-<span class="doccomment">///         let verification = verify!(message, tor_pubkey, signature);</span>
+<span class="doccomment">///         let verification = verify!(message, pubkey, signature);</span>
 <span class="doccomment">///         response!(&quot;verification = {}&quot;, verification.unwrap());</span>
 <span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
 <span class="doccomment">///     });</span>
@@ -1977,7 +1977,7 @@
 	}};
 }
 
-<span class="doccomment">/// Verifies a signature using dalek algorithm. This is useful with the tor_pubkey!() and sign!() macros.</span>
+<span class="doccomment">/// Verifies a signature using dalek algorithm. This is useful with the pubkey!() and sign!() macros.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Examples</span>
 <span class="doccomment">/// ```</span>
@@ -1995,11 +1995,11 @@
 <span class="doccomment">///     rustlet!(&quot;set_content_type&quot;, {</span>
 <span class="doccomment">///         set_content_type!(&quot;text/html&quot;);</span>
 <span class="doccomment">///         response!(&quot;&lt;html&gt;&lt;body&gt;&lt;strong&gt;&quot;);</span>
-<span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
-<span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
+<span class="doccomment">///         let pubkey = pubkey!();</span>
+<span class="doccomment">///         response!(&quot;pubkey = {:?}&quot;, pubkey);</span>
 <span class="doccomment">///         let message = &quot;abc&quot;.as_bytes();</span>
 <span class="doccomment">///         let signature = sign!(message).unwrap();</span>
-<span class="doccomment">///         let verification = verify!(message, tor_pubkey, signature);</span>
+<span class="doccomment">///         let verification = verify!(message, pubkey, signature);</span>
 <span class="doccomment">///         response!(&quot;verification = {}&quot;, verification.unwrap());</span>
 <span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
 <span class="doccomment">///     });</span>
@@ -2063,8 +2063,8 @@
 <span class="doccomment">///     rustlet!(&quot;set_content_type&quot;, {</span>
 <span class="doccomment">///         set_content_type!(&quot;text/html&quot;);</span>
 <span class="doccomment">///         response!(&quot;&lt;html&gt;&lt;body&gt;&lt;strong&gt;&quot;);</span>
-<span class="doccomment">///         let tor_pubkey = tor_pubkey!();</span>
-<span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, tor_pubkey);</span>
+<span class="doccomment">///         let pubkey = pubkey!();</span>
+<span class="doccomment">///         response!(&quot;tor pubkey = {:?}&quot;, pubkey);</span>
 <span class="doccomment">///         response!(&quot;&lt;/strong&gt;&lt;/body&gt;&lt;/html&gt;&quot;);</span>
 <span class="doccomment">///         // flush called automatically by the container after control is returned.</span>
 <span class="doccomment">///     });</span>
@@ -2075,7 +2075,7 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">tor_pubkey</span> {
+<span class="macro">macro_rules!</span> <span class="ident">pubkey</span> {
 	() =&gt; {{
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">container</span> <span class="op">=</span> <span class="ident">librustlet::macros::RUSTLET_CONTAINER</span>.<span class="ident">write</span>();
 		<span class="kw">match</span> <span class="ident">container</span> {
