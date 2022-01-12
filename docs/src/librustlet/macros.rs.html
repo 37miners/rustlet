@@ -1643,8 +1643,6 @@
 <span id="1643">1643</span>
 <span id="1644">1644</span>
 <span id="1645">1645</span>
-<span id="1646">1646</span>
-<span id="1647">1647</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -3118,10 +3116,8 @@
 <span class="doccomment">///     rustlet_init!(RustletConfig::default());</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///     rustlet!(&quot;query&quot;, {</span>
-<span class="doccomment">///         let query = request!(&quot;query&quot;); // the full query for the request</span>
-<span class="doccomment">///         response!(&quot;query=&#39;{}&#39;\n&quot;, query);</span>
-<span class="doccomment">///         let email = request!(&quot;query&quot;, &quot;email&quot;); // get a specific value associated with the key. In this case &quot;email&quot;</span>
-<span class="doccomment">///         response!(&quot;email=&#39;{}&#39;\n&quot;, email);</span>
+<span class="doccomment">///         let name = query!(&quot;name&quot;); // get the name parameter from the query</span>
+<span class="doccomment">///         response!(&quot;name=&#39;{}&#39;\n&quot;, name); // print name. if not specified this will be an empty string.</span>
 <span class="doccomment">///     });</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///     rustlet_mapping!(&quot;/&quot;, &quot;query&quot;);</span>
