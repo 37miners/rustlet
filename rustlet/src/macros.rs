@@ -1471,10 +1471,8 @@ macro_rules! header_value {
 ///     rustlet_init!(RustletConfig::default());
 ///
 ///     rustlet!("query", {
-///         let query = request!("query"); // the full query for the request
-///         response!("query='{}'\n", query);
-///         let email = request!("query", "email"); // get a specific value associated with the key. In this case "email"
-///         response!("email='{}'\n", email);
+///         let name = query!("name"); // get the name parameter from the query
+///         response!("name='{}'\n", name); // print name. if not specified this will be an empty string.
 ///     });
 ///
 ///     rustlet_mapping!("/", "query");
