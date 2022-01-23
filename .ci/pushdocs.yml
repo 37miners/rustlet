@@ -6,7 +6,25 @@ steps:
    git checkout master
    cargo doc
    mkdir -p docs
-   cp -pr target/doc/* docs
+   mkdir -p docs/librustlet
+   mkdir -p docs/rustlet
+   mkdir -p docs/nioruntime_err
+   mkdir -p docs/nioruntime_evh
+   mkdir -p docs/nioruntime_http
+   mkdir -p docs/nioruntime_log
+   mkdir -p docs/nioruntime_tor
+   mkdir -p docs/nioruntime_util
+
+   cp -pr target/doc/librustlet/* docs/librustlet
+   cp -pr target/doc/rustlet/* docs/rustlet
+   cp -pr target/doc/nioruntime_err docs/nioruntime_err
+   cp -pr target/doc/nioruntime_evh docs/nioruntime_evh
+   cp -pr target/doc/nioruntime_http docs/nioruntime_http
+   cp -pr target/doc/nioruntime_log docs/nioruntime_log
+   cp -pr target/doc/nioruntime_tor docs/nioruntime_tor
+   cp -pr target/doc/nioruntime_util docs/nioruntime_util
+
+
    changes=`git diff HEAD^^ HEAD --name-only | grep "^rustlet" | wc -l`
 
    if [ $changes -eq 0 ]
