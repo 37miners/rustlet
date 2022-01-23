@@ -413,16 +413,15 @@ macro_rules! verify {
 ///     // init the rustlet container, in this case with default values
 ///     rustlet_init!(RustletConfig::default());
 ///
-///     rustlet!("set_content_type", {
+///     rustlet!("pubkey", {
 ///         set_content_type!("text/html");
 ///         response!("<html><body><strong>");
 ///         let pubkey = pubkey!();
 ///         response!("tor pubkey = {:?}", pubkey);
 ///         response!("</strong></body></html>");
-///         // flush called automatically by the container after control is returned.
 ///     });
 ///
-///     rustlet_mapping!("/set_content_type", "set_content_type");
+///     rustlet_mapping!("/pubkey", "pubkey");
 ///
 ///     Ok(())
 /// }
@@ -435,7 +434,18 @@ macro_rules! pubkey {
 			Ok(mut container) => {
 				let res = container.get_onion_address_pubkey();
 				match res {
-					Ok(onion_pubkey) => onion_pubkey,
+					Ok(onion_pubkey) => match onion_pubkey {
+						Some(onion_pubkey) => onion_pubkey,
+						None => {
+							const MAIN_LOG: &str = "mainlog";
+							nioruntime_log::log_multi!(
+								nioruntime_log::ERROR,
+								MAIN_LOG,
+								"Error getting onion pubkey: not found",
+							);
+							[0u8; 32]
+						}
+					},
 					Err(e) => {
 						const MAIN_LOG: &str = "mainlog";
 						nioruntime_log::log_multi!(
@@ -444,7 +454,7 @@ macro_rules! pubkey {
 							"Error getting onion pubkey: {}",
 							e.to_string()
 						);
-						None
+						[0u8; 32]
 					}
 				}
 			}
@@ -456,8 +466,7 @@ macro_rules! pubkey {
 					"Couldn't get tor pubkey: couldn't get lock: {}",
 					e.to_string()
 				);
-
-				None
+				[0u8; 32]
 			}
 		}
 	}};

@@ -1157,12 +1157,12 @@ impl RustletContainer {
 	pub fn verify(
 		&self,
 		message: &[u8],
-		pubkey: Option<[u8; 32]>,
+		pubkey: [u8; 32],
 		signature: [u8; 64],
 	) -> Result<bool, Error> {
 		match &self.http {
 			None => Err(ErrorKind::ApplicationError("http not available".to_string()).into()),
-			Some(http) => http.verify(message, pubkey, signature),
+			Some(http) => http.verify(message, Some(pubkey), signature),
 		}
 	}
 
