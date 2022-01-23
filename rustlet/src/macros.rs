@@ -91,7 +91,7 @@ lazy_static! {
 ///
 ///     rustlet!("set_session", {
 ///         // get the value of 'abc' in the query string and try to parse as u32
-///         let val: u32 = query!("abc").parse()?;
+///         let val: u32 = query!("abc").unwrap_or("".to_string()).parse()?;
 ///         // create an Example with this value and insert it into the session under var 'abc'
 ///         session!("abc", Example::new(val));
 ///     });
@@ -208,7 +208,7 @@ macro_rules! session_delete {
 ///     
 ///     rustlet!("set_session", {
 ///         // get the value of 'abc' in the query string and try to parse as u32
-///         let val: u32 = query!("abc").parse()?;
+///         let val: u32 = query!("abc").unwrap_or("".to_string()).parse()?;
 ///         // create an Example with this value and insert it into the session under var 'abc'
 ///         session!("abc", Example::new(val));
 ///     });
@@ -1472,7 +1472,8 @@ macro_rules! header_value {
 ///
 ///     rustlet!("query", {
 ///         let name = query!("name"); // get the name parameter from the query
-///         response!("name='{}'\n", name); // print name. if not specified this will be an empty string.
+///         response!("name='{:?}'\n", name); // print name. query returns an option.
+///                                           // If not specified, None is returned.
 ///     });
 ///
 ///     rustlet_mapping!("/", "query");
