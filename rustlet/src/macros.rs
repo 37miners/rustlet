@@ -32,7 +32,7 @@ lazy_static! {
 		Arc::new(RwLock::new(RustletContainer::new()));
 }
 
-/// Delete the session. See [`session`] for more info on sessions. If a parameter is specified,
+/// Delete the entire session. See [`session`] for more info on sessions. If a parameter is specified,
 /// only that parameter is deleted from the session. With no parameter specified, the entire session
 /// is invalidated.
 ///
