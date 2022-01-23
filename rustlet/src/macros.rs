@@ -1483,7 +1483,22 @@ macro_rules! header_value {
 #[macro_export]
 macro_rules! query {
 	($a:expr) => {{
-		request!("query", $a)
+		librustlet::macros::LOCALRUSTLET.with(|f| match &mut (*f.borrow_mut()) {
+			Some((request, response)) => {
+				let qp = request.get_query_parameter($a);
+				match qp {
+					Ok(qp) => qp,
+					Err(e) => {
+						mainlogerror!("query error: {}", e);
+						None
+					}
+				}
+			}
+			None => {
+				mainlogerror!("unexpected error no request/response found");
+				None
+			}
+		})
 	}};
 }
 

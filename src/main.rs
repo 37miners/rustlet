@@ -414,8 +414,10 @@ fn main() {
 		});
 
 		rustlet!("set_session", {
-			let val: u32 = query!("abc").parse()?;
-			session!("abc", Example::new(val));
+			match query!("abc") {
+				Some(abc) => session!("abc", Example::new(abc.parse().unwrap_or(0))),
+				None => {}
+			}
 		});
 
 		rustlet!("delete_session", {
@@ -469,7 +471,7 @@ fn main() {
 			*x += 1;
 			add_header!("my_header", "ok");
 			set_content_type!("text/plain");
-			response!("name: {}, x={}", name, x);
+			response!("name: {:?}, x={}", name, x);
 		});
 
 		rustlet!("myrustlet2", {
