@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["from_hex","Decode a hex string into bytes."],["to_hex","Encode the provided bytes into a hex string"]],"trait":[["ToHex","Convert to hex"]]});
