@@ -553,6 +553,8 @@
 <span id="553">553</span>
 <span id="554">554</span>
 <span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -969,8 +971,10 @@
 		});
 
 		<span class="macro">rustlet!</span>(<span class="string">&quot;set_session&quot;</span>, {
-			<span class="kw">let</span> <span class="ident">val</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="macro">query!</span>(<span class="string">&quot;abc&quot;</span>).<span class="ident">parse</span>()<span class="question-mark">?</span>;
-			<span class="macro">session!</span>(<span class="string">&quot;abc&quot;</span>, <span class="ident">Example::new</span>(<span class="ident">val</span>));
+			<span class="kw">match</span> <span class="macro">query!</span>(<span class="string">&quot;abc&quot;</span>) {
+				<span class="prelude-val">Some</span>(<span class="ident">abc</span>) =&gt; <span class="macro">session!</span>(<span class="string">&quot;abc&quot;</span>, <span class="ident">Example::new</span>(<span class="ident">abc</span>.<span class="ident">parse</span>().<span class="ident">unwrap_or</span>(<span class="number">0</span>))),
+				<span class="prelude-val">None</span> =&gt; {}
+			}
 		});
 
 		<span class="macro">rustlet!</span>(<span class="string">&quot;delete_session&quot;</span>, {
@@ -1024,7 +1028,7 @@
 			<span class="kw-2">*</span><span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 			<span class="macro">add_header!</span>(<span class="string">&quot;my_header&quot;</span>, <span class="string">&quot;ok&quot;</span>);
 			<span class="macro">set_content_type!</span>(<span class="string">&quot;text/plain&quot;</span>);
-			<span class="macro">response!</span>(<span class="string">&quot;name: {}, x={}&quot;</span>, <span class="ident">name</span>, <span class="ident">x</span>);
+			<span class="macro">response!</span>(<span class="string">&quot;name: {:?}, x={}&quot;</span>, <span class="ident">name</span>, <span class="ident">x</span>);
 		});
 
 		<span class="macro">rustlet!</span>(<span class="string">&quot;myrustlet2&quot;</span>, {

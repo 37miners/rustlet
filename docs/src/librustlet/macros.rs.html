@@ -1643,6 +1643,21 @@
 <span id="1643">1643</span>
 <span id="1644">1644</span>
 <span id="1645">1645</span>
+<span id="1646">1646</span>
+<span id="1647">1647</span>
+<span id="1648">1648</span>
+<span id="1649">1649</span>
+<span id="1650">1650</span>
+<span id="1651">1651</span>
+<span id="1652">1652</span>
+<span id="1653">1653</span>
+<span id="1654">1654</span>
+<span id="1655">1655</span>
+<span id="1656">1656</span>
+<span id="1657">1657</span>
+<span id="1658">1658</span>
+<span id="1659">1659</span>
+<span id="1660">1660</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The BMW Developers</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -3128,7 +3143,22 @@
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
 <span class="macro">macro_rules!</span> <span class="ident">query</span> {
 	(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>) =&gt; {{
-		<span class="macro">request!</span>(<span class="string">&quot;query&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>)
+		<span class="ident">librustlet::macros::LOCALRUSTLET</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> (<span class="kw-2">*</span><span class="ident">f</span>.<span class="ident">borrow_mut</span>()) {
+			<span class="prelude-val">Some</span>((<span class="ident">request</span>, <span class="ident">response</span>)) =&gt; {
+				<span class="kw">let</span> <span class="ident">qp</span> <span class="op">=</span> <span class="ident">request</span>.<span class="ident">get_query_parameter</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>);
+				<span class="kw">match</span> <span class="ident">qp</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">qp</span>) =&gt; <span class="ident">qp</span>,
+					<span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+						<span class="macro">mainlogerror!</span>(<span class="string">&quot;query error: {}&quot;</span>, <span class="ident">e</span>);
+						<span class="prelude-val">None</span>
+					}
+				}
+			}
+			<span class="prelude-val">None</span> =&gt; {
+				<span class="macro">mainlogerror!</span>(<span class="string">&quot;unexpected error no request/response found&quot;</span>);
+				<span class="prelude-val">None</span>
+			}
+		})
 	}};
 }
 
