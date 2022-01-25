@@ -22,6 +22,8 @@ pub use rustlet_impls::{
 	RustletResponse,
 };
 
+pub use nioruntime_err;
 pub use nioruntime_err::{Error, ErrorKind};
 pub use nioruntime_evh::{EventHandlerConfig, TlsConfig};
+pub use nioruntime_util;
 pub use nioruntime_util::ser::{Readable, Reader, Writeable, Writer};

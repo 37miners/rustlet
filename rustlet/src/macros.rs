@@ -298,7 +298,7 @@ macro_rules! session {
 #[macro_export]
 macro_rules! sign {
 	($a:expr) => {{
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
 				let res = container.tor_sign($a);
@@ -365,7 +365,7 @@ macro_rules! sign {
 #[macro_export]
 macro_rules! verify {
 	($a:expr, $b:expr, $c:expr) => {{
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
 				let res = container.verify($a, $b, $c);
@@ -429,7 +429,7 @@ macro_rules! verify {
 #[macro_export]
 macro_rules! pubkey {
 	() => {{
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
 				let res = container.get_onion_address_pubkey();
@@ -721,7 +721,7 @@ macro_rules! async_context {
 #[macro_export]
 macro_rules! rustlet {
 	($a:expr,$b:expr) => {
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
 				let res = container.add_rustlet(
@@ -820,8 +820,7 @@ macro_rules! rustlet {
 #[macro_export]
 macro_rules! rustlet_init {
 	($config:expr) => {{
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
-
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
 				let res = container.set_config($config);
@@ -897,8 +896,7 @@ macro_rules! rustlet_init {
 #[macro_export]
 macro_rules! rustlet_mapping {
 	($a:expr, $b:expr) => {{
-		let mut container = librustlet::macros::RUSTLET_CONTAINER.write();
-
+		let mut container = nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => match container.add_rustlet_mapping($a, $b) {
 				Ok(_) => {}
