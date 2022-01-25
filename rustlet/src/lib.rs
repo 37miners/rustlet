@@ -22,6 +22,7 @@ pub use rustlet_impls::{
 	RustletResponse,
 };
 
+pub use backtrace;
 pub use nioruntime_err;
 pub use nioruntime_err::{Error, ErrorKind};
 pub use nioruntime_evh::{EventHandlerConfig, TlsConfig};
