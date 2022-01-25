@@ -397,8 +397,8 @@ macro_rules! verify {
 	}};
 }
 
-/// Gets the tor pubkey associated with this rustlet container. Returns a Result with the optional
-/// byte array. If tor is not congfigured, this will return None.
+/// Gets the tor pubkey associated with this rustlet container. Returns a Result with the
+/// byte array. If tor is not congfigured, behavior is undefined.
 ///
 /// # Examples
 /// ```

@@ -35,3 +35,4 @@ nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", branch = "mas
 lazy_static = "1.4.0"
 querystring = "1.1.0"
 rand = "0.8.4"
+backtrace = "0.3.63"

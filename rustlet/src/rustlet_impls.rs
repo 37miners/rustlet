@@ -131,7 +131,7 @@ impl RustletRequest {
 	pub fn get_session<T: Readable>(&mut self, name: &str) -> Result<Option<T>, Error> {
 		let mut create_session = false;
 		{
-			let mut session_map = nioruntime_util::lockw!(self.session_map);
+			let mut session_map = nioruntime_util::lockw!(self.session_map)?;
 			match session_map.get_mut(&self.session_id) {
 				Some(mut data) => {
 					let value = data.data.get(&name.to_string());
@@ -160,7 +160,7 @@ impl RustletRequest {
 	}
 
 	pub fn set_session<T: Writeable>(&mut self, name: &str, value: T) -> Result<(), Error> {
-		let mut session_map = nioruntime_util::lockw!(self.session_map);
+		let mut session_map = nioruntime_util::lockw!(self.session_map)?;
 		match session_map.get_mut(&self.session_id) {
 			Some(session_data) => {
 				let mut sink: Vec<u8> = vec![];
@@ -188,7 +188,7 @@ impl RustletRequest {
 	}
 
 	pub fn remove_session_entry(&mut self, name: &str) -> Result<(), Error> {
-		let mut session_map = nioruntime_util::lockw!(self.session_map);
+		let mut session_map = nioruntime_util::lockw!(self.session_map)?;
 
 		match session_map.get_mut(&self.session_id) {
 			Some(session_data) => {
@@ -204,7 +204,7 @@ impl RustletRequest {
 	}
 
 	pub fn invalidate_session(&mut self) -> Result<(), Error> {
-		let mut session_map = nioruntime_util::lockw!(self.session_map);
+		let mut session_map = nioruntime_util::lockw!(self.session_map)?;
 		session_map.remove(&self.session_id);
 
 		Ok(())
@@ -500,7 +500,7 @@ impl RustletResponse {
 	}
 
 	pub fn flush(&mut self) -> Result<(), Error> {
-		let mut buffer = nioruntime_util::lockw!(self.buffer);
+		let mut buffer = nioruntime_util::lockw!(self.buffer)?;
 		let mut to_write: Vec<u8> = vec![];
 
 		if !self.get_headers_written() && !self.chained {
@@ -552,7 +552,7 @@ impl RustletResponse {
 		}
 
 		self.wh.write(&to_write)?;
-		let mut callback_state = nioruntime_util::lockw!(self.wh.callback_state);
+		let mut callback_state = nioruntime_util::lockw!(self.wh.callback_state)?;
 		match self.keep_alive {
 			true => *callback_state = State::HeadersChunked,
 			false => *callback_state = State::HeadersClose,
@@ -563,13 +563,13 @@ impl RustletResponse {
 	}
 
 	pub fn write(&mut self, data: &[u8]) -> Result<(), Error> {
-		let mut buffer = nioruntime_util::lockw!(self.buffer);
+		let mut buffer = nioruntime_util::lockw!(self.buffer)?;
 		buffer.append(&mut data.to_vec());
 		Ok(())
 	}
 
 	pub fn set_is_async(&mut self, value: bool) -> Result<(), Error> {
-		(*nioruntime_util::lockw!(self.is_async)) = value;
+		(*nioruntime_util::lockw!(self.is_async)?) = value;
 		Ok(())
 	}
 
@@ -581,7 +581,7 @@ impl RustletResponse {
 	}
 
 	pub fn complete(&mut self) -> Result<(), Error> {
-		if self.chained || (*nioruntime_util::lockr!(self.is_async)) {
+		if self.chained || (*nioruntime_util::lockr!(self.is_async)?) {
 			if self.chained {
 				self.flush()?;
 			}
@@ -650,7 +650,7 @@ impl Default for RustletConfig {
 
 fn housekeeper() -> Result<(), Error> {
 	let session_timeout = {
-		let config = nioruntime_util::lockr!(RUSTLET_CONFIG);
+		let config = nioruntime_util::lockr!(RUSTLET_CONFIG)?;
 		match &(*config) {
 			Some(config) => config.session_timeout,
 			None => 0,
@@ -658,7 +658,7 @@ fn housekeeper() -> Result<(), Error> {
 	};
 
 	if session_timeout > 0 {
-		let mut session_map = nioruntime_util::lockw!(SESSION_MAP);
+		let mut session_map = nioruntime_util::lockw!(SESSION_MAP)?;
 
 		let start_time = *START_TIME;
 		let now = Instant::now().duration_since(start_time).as_millis();
@@ -680,7 +680,7 @@ fn housekeeper() -> Result<(), Error> {
 }
 
 fn on_panic() -> Result<(), Error> {
-	let container = nioruntime_util::lockw!(crate::macros::RUSTLET_CONTAINER);
+	let container = nioruntime_util::lockw!(crate::macros::RUSTLET_CONTAINER)?;
 	match &container.http {
 		Some(http) => {
 			if http.http_context.is_some() {
@@ -801,7 +801,7 @@ fn execute_rustlet(
 	chained: bool,                              // is this a chained rustlet call?
 	session_map: Arc<RwLock<HashMap<u128, SessionData>>>,
 ) -> Result<(), Error> {
-	let rustlets = nioruntime_util::lockr!(RUSTLETS);
+	let rustlets = nioruntime_util::lockr!(RUSTLETS)?;
 	let rustlet = rustlets.rustlets.get(rustlet_name);
 
 	match rustlet {
@@ -892,7 +892,7 @@ fn do_api_callback(
 	keep_alive: bool,                 // keep-alive
 	session_map: Arc<RwLock<HashMap<u128, SessionData>>>,
 ) -> Result<(), Error> {
-	let rustlets = nioruntime_util::lockr!(RUSTLETS);
+	let rustlets = nioruntime_util::lockr!(RUSTLETS)?;
 
 	let rustlet = rustlets.mappings.get(uri);
 	match rustlet {
@@ -1007,7 +1007,7 @@ fn process_rsp(
 		let amt = file.read(&mut buf[0..buflen])?;
 		if first_loop {
 			HttpServer::write_headers(&wh, &config, true, false, keep_alive, vec![], None)?;
-			let mut callback_state = nioruntime_util::lockw!(wh.callback_state);
+			let mut callback_state = nioruntime_util::lockw!(wh.callback_state)?;
 			match keep_alive {
 				true => *callback_state = State::HeadersChunked,
 				false => *callback_state = State::HeadersClose,
@@ -1118,7 +1118,7 @@ impl RustletContainer {
 		let http = HttpServer::new(config.http_config.clone());
 		self.config = Some(config.clone());
 		self.http = Some(http);
-		let mut static_config = nioruntime_util::lockw!(RUSTLET_CONFIG);
+		let mut static_config = nioruntime_util::lockw!(RUSTLET_CONFIG)?;
 
 		*static_config = Some(config);
 
@@ -1174,7 +1174,7 @@ impl RustletContainer {
 	}
 
 	pub fn add_rustlet(&mut self, name: &str, rustlet: Rustlet) -> Result<(), Error> {
-		let mut rustlets = nioruntime_util::lockw!(RUSTLETS);
+		let mut rustlets = nioruntime_util::lockw!(RUSTLETS)?;
 		rustlets
 			.rustlets
 			.insert(name.to_string(), Box::pin(rustlet));
@@ -1183,7 +1183,7 @@ impl RustletContainer {
 	}
 
 	pub fn add_rustlet_mapping(&mut self, path: &str, name: &str) -> Result<(), Error> {
-		let mut rustlets = nioruntime_util::lockw!(RUSTLETS);
+		let mut rustlets = nioruntime_util::lockw!(RUSTLETS)?;
 
 		match self.http.as_ref() {
 			Some(http) => {
