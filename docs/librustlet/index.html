@@ -23,8 +23,8 @@ To ensure all data is written, the user must call the <a href="macro.flush.html"
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.header_value.html" title="librustlet::header_value macro">header_value</a></div><div class="item-right docblock-short"><p>Returns the header value for the specified index.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.mainlogerror.html" title="librustlet::mainlogerror macro">mainlogerror</a></div><div class="item-right docblock-short"><p>Internal macro used to log to the main log. Applications should use the default logger (or another
 user specified logger). See <a href="../nioruntime_log/index.html" title="nioruntime_log"><code>nioruntime_log</code></a> for details on logging.</p>
-</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.pubkey.html" title="librustlet::pubkey macro">pubkey</a></div><div class="item-right docblock-short"><p>Gets the tor pubkey associated with this rustlet container. Returns a Result with the optional
-byte array. If tor is not congfigured, this will return None.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.pubkey.html" title="librustlet::pubkey macro">pubkey</a></div><div class="item-right docblock-short"><p>Gets the tor pubkey associated with this rustlet container. Returns a Result with the
+byte array. If tor is not congfigured, behavior is undefined.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.query.html" title="librustlet::query macro">query</a></div><div class="item-right docblock-short"><p>Get the value of the specified query parameter. Parsing is done with
 the <a href="https://docs.rs/querystring/1.1.0/querystring/"><code>querystring</code></a> library.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.request.html" title="librustlet::request macro">request</a></div><div class="item-right docblock-short"><p>Get data from the request for this rustlet.
