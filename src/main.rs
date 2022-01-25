@@ -264,6 +264,15 @@ impl Readable for Example2 {
 }
 
 fn main() {
+	match real_main() {
+		Ok(_) => {}
+		Err(e) => {
+			fatal!("Real main generated error: {}", e);
+		}
+	}
+}
+
+fn real_main() -> Result<(), Error> {
 	let yml = load_yaml!("rustlet.yml");
 	let args = App::from_yaml(yml)
 		.version(built_info::PKG_VERSION)
@@ -280,7 +289,7 @@ fn main() {
 
 	if certs && !private_key || !certs && private_key {
 		error!("Either both cert and private_key or neither must be specified");
-		return;
+		return Ok(());
 	}
 
 	let tls_config = match args.value_of("certs") {
@@ -554,4 +563,5 @@ fn main() {
 
 		std::thread::park();
 	}
+	Ok(())
 }

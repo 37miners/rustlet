@@ -825,47 +825,9 @@ macro_rules! rustlet {
 macro_rules! rustlet_init {
 	($config:expr) => {{
 		let mut container =
-			librustlet::nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
-		match container {
-			Ok(mut container) => {
-				let res = container.set_config($config);
-				match res {
-					Ok(_) => {
-						let res = container.start();
-						match res {
-							Ok(_) => {}
-							Err(e) => {
-								const MAIN_LOG: &str = "mainlog";
-								nioruntime_log::log_multi!(
-									nioruntime_log::ERROR,
-									MAIN_LOG,
-									"Couldn't start rustlet: start: {}",
-									e.to_string()
-								);
-							}
-						}
-					}
-					Err(e) => {
-						const MAIN_LOG: &str = "mainlog";
-						nioruntime_log::log_multi!(
-							nioruntime_log::ERROR,
-							MAIN_LOG,
-							"Couldn't start rustlet: set_config: {}",
-							e.to_string()
-						);
-					}
-				}
-			}
-			Err(e) => {
-				const MAIN_LOG: &str = "mainlog";
-				nioruntime_log::log_multi!(
-					nioruntime_log::ERROR,
-					MAIN_LOG,
-					"Couldn't start rustlet: couldn't get lock: {}",
-					e.to_string()
-				);
-			}
-		}
+			librustlet::nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER)?;
+		container.set_config($config)?;
+		container.start()?;
 	}};
 }
 
