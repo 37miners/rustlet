@@ -925,6 +925,7 @@ dependencies = [
  "nioruntime_evh",
  "nioruntime_http",
  "nioruntime_log",
+ "nioruntime_tor",
  "nioruntime_util",
  "querystring",
  "rand 0.8.4",

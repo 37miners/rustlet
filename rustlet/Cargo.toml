@@ -17,6 +17,7 @@ edition = "2018"
 #nioruntime_log  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
 #nioruntime_err  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
 #nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
+#nioruntime_tor   = { git = "http://github.com/37miners/nioruntime", tag = "0.0.2" }
 
 # master
 nioruntime_util = { git = "http://github.com/37miners/nioruntime", branch = "master" }
@@ -24,6 +25,7 @@ nioruntime_http = { git = "http://github.com/37miners/nioruntime", branch = "mas
 nioruntime_log  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
 nioruntime_err  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
 nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
+nioruntime_tor  = { git = "http://github.com/37miners/nioruntime", branch = "master" }
 
 # local testing
 #nioruntime_util = { path = "../../nioruntime/util"         }
@@ -31,6 +33,7 @@ nioruntime_evh  = { git = "http://github.com/37miners/nioruntime", branch = "mas
 #nioruntime_log  = { path = "../../nioruntime/log"          }
 #nioruntime_err  = { path = "../../nioruntime/error"        }
 #nioruntime_evh  = { path = "../../nioruntime/eventhandler" }
+#nioruntime_tor  = { path = "../../nioruntime/tor"          }
 
 lazy_static = "1.4.0"
 querystring = "1.1.0"
