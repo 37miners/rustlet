@@ -18,6 +18,8 @@ use std::os::windows::io::AsRawSocket;
 #[cfg(unix)]
 use std::os::unix::io::AsRawFd;
 
+use crate::nioruntime_http::send_websocket_message;
+use crate::nioruntime_http::WebSocketMessageType;
 use clap::load_yaml;
 use clap::App;
 use librustlet::*;
@@ -31,7 +33,7 @@ use std::sync::{Arc, Mutex};
 const MAX_BUF: usize = 100_000;
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
-nioruntime_log::info!();
+info!();
 
 fn fun() -> Result<(), Error> {
 	rustlet!("error", {
@@ -560,6 +562,42 @@ fn real_main() -> Result<(), Error> {
 		rustlet_mapping!("/delete_abc", "delete_abc");
 		rustlet_mapping!("/content", "content");
 		rustlet_mapping!("/formupload", "formupload");
+
+		socklet!("mysocklet", {
+			let handle = handle!()?;
+			match event!()? {
+				Socklet::Open => {
+					info!("socklet open!");
+				}
+				Socklet::Close => {
+					info!("socklet close!");
+				}
+				Socklet::Text => {
+					info!("got text");
+					let text = text!()?;
+					text!(
+						handle,
+						"echo: '{}', handle.id={}",
+						text,
+						handle.get_connection_id()
+					);
+				}
+				Socklet::Binary => {
+					let bin = binary!()?;
+					info!("got binary: {:?}", bin);
+					binary!(handle, [0u8, 1u8, 2u8, 3u8]);
+					if bin[0] == 100 {
+						ping!(handle);
+					}
+				}
+				Socklet::Ping => {
+					pong!(handle);
+				}
+				Socklet::Pong => {}
+			}
+		});
+
+		socklet_mapping!("/mysocklet", "mysocklet");
 
 		std::thread::park();
 	}

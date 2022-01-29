@@ -12,12 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use crate::rustlet_impls::SockletContainer;
 use crate::RustletContainer;
 use crate::{RustletRequest, RustletResponse};
 use lazy_static::lazy_static;
+use nioruntime_http::ConnData;
+use nioruntime_http::WebSocketMessage;
 use std::cell::RefCell;
 use std::sync::{Arc, RwLock};
 use std::thread_local;
+
+pub enum Socklet {
+	Open,
+	Close,
+	Text,
+	Binary,
+	Ping,
+	Pong,
+}
 
 thread_local!(
 	pub static LOCALRUSTLET: RefCell<
@@ -27,9 +39,19 @@ thread_local!(
 	> = RefCell::new(None)
 );
 
+thread_local!(
+	pub static LOCALSOCKLET: RefCell<
+		Option<
+			(WebSocketMessage,ConnData)
+		>
+	> = RefCell::new(None)
+);
+
 lazy_static! {
 	pub static ref RUSTLET_CONTAINER: Arc<RwLock<RustletContainer>> =
 		Arc::new(RwLock::new(RustletContainer::new()));
+	pub static ref SOCKLET_CONTAINER: Arc<RwLock<SockletContainer>> =
+		Arc::new(RwLock::new(SockletContainer::new()));
 }
 
 /// Delete the entire session. See [`session`] for more info on sessions. If a parameter is specified,
@@ -728,7 +750,7 @@ macro_rules! rustlet {
 			librustlet::nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
-				let res = container.add_rustlet(
+				let res = (*container).add_rustlet(
 					$a,
 					Box::pin(
 						move |request: &mut RustletRequest, response: &mut RustletResponse| {
@@ -761,6 +783,234 @@ macro_rules! rustlet {
 					nioruntime_log::ERROR,
 					MAIN_LOG,
 					"Couldn't start rustlet: couldn't get lock: {}",
+					e.to_string()
+				);
+			}
+		}
+	};
+}
+
+#[macro_export]
+macro_rules! socklet_mapping {
+	($a:expr, $b:expr) => {{
+		let mut container =
+			librustlet::nioruntime_util::lockw!(librustlet::macros::SOCKLET_CONTAINER);
+		match container {
+			Ok(mut container) => match container.add_socklet_mapping($a, $b) {
+				Ok(_) => {}
+				Err(e) => {
+					const MAIN_LOG: &str = "mainlog";
+					nioruntime_log::log_multi!(
+						nioruntime_log::ERROR,
+						MAIN_LOG,
+						"Couldn't add socklet mapping: {}",
+						e.to_string()
+					);
+				}
+			},
+			Err(e) => {
+				const MAIN_LOG: &str = "mainlog";
+				nioruntime_log::log_multi!(
+					nioruntime_log::ERROR,
+					MAIN_LOG,
+					"Couldn't get lock for socklets: {}",
+					e.to_string()
+				);
+			}
+		}
+	}};
+}
+
+#[macro_export]
+macro_rules! ping {
+	($a:expr) => {
+		send_websocket_message(
+			&$a,
+			&WebSocketMessage {
+				mtype: WebSocketMessageType::Pong,
+				payload: vec![],
+				mask: false,
+				header_info: None,
+			},
+		)?;
+	};
+}
+
+#[macro_export]
+macro_rules! pong {
+	($a:expr) => {
+		send_websocket_message(
+			&$a,
+			&WebSocketMessage {
+				mtype: WebSocketMessageType::Ping,
+				payload: vec![],
+				mask: false,
+				header_info: None,
+			},
+		)?;
+	};
+}
+
+#[macro_export]
+macro_rules! binary {
+	() => {{
+		librustlet::macros::LOCALSOCKLET.with(|f| match &mut (*f.borrow_mut()) {
+			Some((message, _conn_data)) => {
+				let payload = message.payload.clone();
+				Ok(payload)
+			}
+			None => {
+				let error: Error = ErrorKind::ApplicationError(
+					"no thread local message variable. Are you not in a socklet?".to_string(),
+				)
+				.into();
+				Err(error)
+			}
+		})
+	}};
+	($a:expr,$b:expr) => {{
+		send_websocket_message(
+			&$a,
+			&WebSocketMessage {
+				mtype: WebSocketMessageType::Binary,
+				payload: $b.to_vec(),
+				mask: false,
+				header_info: None,
+			},
+		)?;
+	}};
+}
+
+#[macro_export]
+macro_rules! text {
+	() => {
+		{
+			librustlet::macros::LOCALSOCKLET.with(|f| {
+				match &mut (*f.borrow_mut()) {
+					Some((message,_conn_data)) => {
+						Ok(std::str::from_utf8(&message.payload[..])?.to_string())
+					},
+					None => {
+						let error: Error = ErrorKind::ApplicationError(
+                                        		"no thread local message variable. Are you not in a socklet?"
+                                        		.to_string()
+                                		).into();
+						Err(error)
+					},
+				}
+			})
+		}
+	};
+        ($a:expr,$b:expr)=>{
+                {
+			send_websocket_message(
+				& $a,
+				&WebSocketMessage {
+					mtype: WebSocketMessageType::Text,
+					payload: $b.as_bytes().to_vec(),
+					mask: false,
+					header_info: None,
+				}
+			)?;
+                }
+        };
+        ($a:expr,$b:expr,$($c:tt)*)=>{
+                {
+			send_websocket_message(
+				& $a,
+				&WebSocketMessage {
+					mtype: WebSocketMessageType::Text,
+					payload: format!($b, $($c)*).as_bytes().to_vec(),
+					mask: false,
+					header_info: None,
+				}
+			)?;
+		}
+	};
+}
+
+#[macro_export]
+macro_rules! event {
+	() => {{
+		librustlet::macros::LOCALSOCKLET.with(|f| match &mut (*f.borrow_mut()) {
+			Some((message, conn_data)) => Ok(match message.mtype {
+				WebSocketMessageType::Open => Socklet::Open,
+				WebSocketMessageType::Close => Socklet::Close,
+				WebSocketMessageType::Ping => Socklet::Ping,
+				WebSocketMessageType::Pong => Socklet::Pong,
+				WebSocketMessageType::Text => Socklet::Text,
+				WebSocketMessageType::Binary => Socklet::Binary,
+			}),
+			None => {
+				let error: Error = ErrorKind::ApplicationError(
+					"no thread local message variable. Are you not in a socklet?".to_string(),
+				)
+				.into();
+				return Err(error);
+			}
+		})
+	}};
+}
+
+#[macro_export]
+macro_rules! handle {
+	() => {{
+		librustlet::macros::LOCALSOCKLET.with(|f| match &mut (*f.borrow_mut()) {
+			Some((message, conn_data)) => Ok(conn_data.clone()),
+			None => {
+				let error: Error = ErrorKind::ApplicationError(
+					"no thread local conn_data variable. Are you not in a socklet?".to_string(),
+				)
+				.into();
+				return Err(error);
+			}
+		})
+	}};
+}
+
+#[macro_export]
+macro_rules! socklet {
+	() => {{
+		println!("no args");
+	}};
+	($a:expr,$b:expr) => {
+		let mut container =
+			librustlet::nioruntime_util::lockw!(librustlet::macros::SOCKLET_CONTAINER);
+		match container {
+			Ok(mut container) => {
+				let res = container.add_socklet(
+					$a,
+					Box::pin(
+						move |message: &WebSocketMessage, conn_data: &mut ConnData| {
+							librustlet::macros::LOCALSOCKLET.with(|f| {
+								*f.borrow_mut() = Some(((*message).clone(), (*conn_data).clone()));
+							});
+							{
+								$b
+							}
+							Ok(())
+						},
+					),
+				);
+				match res {
+					Ok(_) => {}
+					Err(e) => {
+						const MAIN_LOG: &str = "mainlog";
+						nioruntime_log::log_multi!(
+							nioruntime_log::ERROR,
+							MAIN_LOG,
+							"Error adding socklet to container: {}",
+							e.to_string()
+						);
+					}
+				}
+			}
+			Err(e) => {
+				const MAIN_LOG: &str = "mainlog";
+				nioruntime_log::log_multi!(
+					nioruntime_log::ERROR,
+					MAIN_LOG,
+					"Couldn't start socklet: couldn't get lock: {}",
 					e.to_string()
 				);
 			}

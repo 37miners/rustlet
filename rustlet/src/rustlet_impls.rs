@@ -16,7 +16,9 @@ use crate::{Readable, Writeable};
 use lazy_static::lazy_static;
 use nioruntime_err::{Error, ErrorKind};
 pub use nioruntime_http::{ConnData, HttpConfig, HttpServer};
-use nioruntime_http::{HttpMethod, HttpVersion, State, WriteHandle};
+use nioruntime_http::{
+	HttpMethod, HttpVersion, State, WebSocketMessage, WebSocketMessageType, WriteHandle,
+};
 use nioruntime_log::*;
 use nioruntime_util::ser::BinReader;
 use nioruntime_util::ser::BinWriter;
@@ -599,8 +601,43 @@ impl RustletResponse {
 	}
 }
 
+pub type Socklet =
+	Pin<Box<dyn Fn(&WebSocketMessage, &mut ConnData) -> Result<(), Error> + Send + Sync>>;
+
 pub type Rustlet =
 	Pin<Box<dyn Fn(&mut RustletRequest, &mut RustletResponse) -> Result<(), Error> + Send + Sync>>;
+
+pub struct SockletContainer {
+	socklets: HashMap<u128, Pin<Box<Socklet>>>,
+	mappings: HashMap<String, String>,
+	ids: HashMap<String, u128>,
+}
+
+impl SockletContainer {
+	pub fn new() -> Self {
+		SockletContainer {
+			socklets: HashMap::new(),
+			mappings: HashMap::new(),
+			ids: HashMap::new(),
+		}
+	}
+
+	pub fn add_socklet(&mut self, name: &str, socklet: Socklet) -> Result<(), Error> {
+		let id: u128 = rand::random();
+		let mut socklets = nioruntime_util::lockw!(SOCKLETS)?;
+		(*socklets).ids.insert(name.to_string(), id);
+		(*socklets).socklets.insert(id, Box::pin(socklet));
+		Ok(())
+	}
+
+	pub fn add_socklet_mapping(&mut self, path: &str, name: &str) -> Result<(), Error> {
+		let mut socklets = nioruntime_util::lockw!(SOCKLETS)?;
+		(*socklets)
+			.mappings
+			.insert(path.to_string(), name.to_string());
+		Ok(())
+	}
+}
 
 pub(crate) struct RustletContainerHolder {
 	rustlets: HashMap<String, Pin<Box<Rustlet>>>,
@@ -619,6 +656,8 @@ impl RustletContainerHolder {
 lazy_static! {
 	pub(crate) static ref RUSTLETS: Arc<RwLock<RustletContainerHolder>> =
 		Arc::new(RwLock::new(RustletContainerHolder::new()));
+	pub(crate) static ref SOCKLETS: Arc<RwLock<SockletContainer>> =
+		Arc::new(RwLock::new(SockletContainer::new()));
 	pub(crate) static ref SESSION_MAP: Arc<RwLock<HashMap<u128, SessionData>>> =
 		Arc::new(RwLock::new(HashMap::new()));
 	pub(crate) static ref RUSTLET_CONFIG: Arc<RwLock<Option<RustletConfig>>> =
@@ -690,6 +729,90 @@ fn on_panic() -> Result<(), Error> {
 		None => {}
 	}
 	Ok(())
+}
+
+fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<bool, Error> {
+	let socklets = nioruntime_util::lockr!(SOCKLETS)?;
+	let mut ret = true;
+	match conn_data.get_data() {
+		Some(id) => {
+			let socklet = socklets.socklets.get(&id);
+			match socklet {
+				Some(socklet) => {
+					(socklet)(&message, conn_data)?;
+				}
+				None => {
+					error!(
+						"invalid id mapping for conn_data {}. id was {}",
+						conn_data.get_connection_id(),
+						id,
+					);
+					ret = false;
+				}
+			}
+		}
+		None => {
+			// check if this is an open message. If so, set data of conn_data to the socklet's id.
+			match message.mtype {
+				WebSocketMessageType::Open => match message.header_info {
+					Some(ref header_info) => {
+						let name = socklets.mappings.get(&header_info.uri);
+						match name {
+							Some(name) => {
+								let id = socklets.ids.get(name);
+								match id {
+									Some(id) => {
+										conn_data.set_data(*id)?;
+										let socklet = socklets.socklets.get(id);
+										match socklet {
+											Some(socklet) => (socklet)(&message, conn_data)?,
+											None => {
+												ret = false;
+												error!(
+													"invalid map. id = {}, message = {:?}",
+													*id, message,
+												);
+											}
+										}
+									}
+									None => {
+										error!(
+											"invalid id mapping for conn_data {}. name was {}",
+											conn_data.get_connection_id(),
+											name,
+										);
+										ret = false;
+									}
+								}
+							}
+							None => {
+								ret = false;
+							}
+						}
+					}
+					None => {
+						error!("ws open with no header info: {:?}", message);
+						ret = false;
+					}
+				},
+				_ => {
+					// we don't know what to do here since we have no socklet id.
+					// this should not happen
+					error!(
+						"unexpected error. No conn_data.get_data() for a non-open message, {}, {:?}",
+						conn_data.get_connection_id(),
+						message,
+					);
+
+					ret = false;
+				}
+			}
+		}
+	}
+
+	debug!("recv[{}] = {:?}", conn_data.get_connection_id(), message);
+
+	Ok(ret)
 }
 
 fn api_callback(
@@ -1130,6 +1253,7 @@ impl RustletContainer {
 		match http {
 			Some(mut http) => {
 				http.config.callback = api_callback;
+				http.config.ws_handler = ws_handler;
 				http.config.on_panic = on_panic;
 				http.config.on_housekeeper = housekeeper;
 				http.start()?;
