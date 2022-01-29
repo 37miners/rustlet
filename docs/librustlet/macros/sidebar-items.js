@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["LOCALRUSTLET",""]],"struct":[["RUSTLET_CONTAINER",""]]});
+initSidebarItems({"constant":[["LOCALRUSTLET",""],["LOCALSOCKLET",""]],"enum":[["Socklet",""]],"struct":[["RUSTLET_CONTAINER",""],["SOCKLET_CONTAINER",""]]});
