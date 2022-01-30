@@ -575,7 +575,7 @@ fn real_main() -> Result<(), Error> {
 		rustlet_mapping!("/smurf", "smurf");
 
 		socklet!("perfsocklet", {
-			let handle = handle!()?;
+			let mut handle = handle!()?;
 			match event!()? {
 				Socklet::Binary => {
 					let bin = binary!()?;
@@ -588,7 +588,7 @@ fn real_main() -> Result<(), Error> {
 		socklet_mapping!("/perfsocklet", "perfsocklet");
 
 		socklet!("mysocklet", {
-			let handle = handle!()?;
+			let mut handle = handle!()?;
 			let id = handle.get_connection_id();
 			match event!()? {
 				Socklet::Open => {

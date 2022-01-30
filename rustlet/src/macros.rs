@@ -957,7 +957,7 @@ macro_rules! rustlet {
 ///     );
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Text => {
@@ -1039,7 +1039,7 @@ macro_rules! socklet_mapping {
 ///     );
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Text => {
@@ -1061,7 +1061,7 @@ macro_rules! socklet_mapping {
 macro_rules! ping {
 	($a:expr) => {
 		send_websocket_message(
-			&$a,
+			&mut $a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Ping,
 				payload: vec![],
@@ -1106,7 +1106,7 @@ macro_rules! ping {
 ///     );
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Text => {
@@ -1131,7 +1131,7 @@ macro_rules! ping {
 macro_rules! pong {
 	($a:expr) => {
 		send_websocket_message(
-			&$a,
+			&mut $a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Pong,
 				payload: vec![],
@@ -1180,7 +1180,7 @@ macro_rules! pong {
 ///     );
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Binary => {
@@ -1217,7 +1217,7 @@ macro_rules! binary {
 	}};
 	($a:expr,$b:expr) => {{
 		send_websocket_message(
-			&$a,
+			&mut $a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Binary,
 				payload: $b.to_vec(),
@@ -1267,7 +1267,7 @@ macro_rules! binary {
 ///     );
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Text => {
@@ -1307,7 +1307,7 @@ macro_rules! text {
         ($a:expr,$b:expr)=>{
                 {
 			send_websocket_message(
-				& $a,
+				&mut $a,
 				&WebSocketMessage {
 					mtype: WebSocketMessageType::Text,
 					payload: $b.as_bytes().to_vec(),
@@ -1320,7 +1320,7 @@ macro_rules! text {
         ($a:expr,$b:expr,$($c:tt)*)=>{
                 {
 			send_websocket_message(
-				& $a,
+				&mut $a,
 				&WebSocketMessage {
 					mtype: WebSocketMessageType::Text,
 					payload: format!($b, $($c)*).as_bytes().to_vec(),
@@ -1441,7 +1441,7 @@ macro_rules! event {
 ///     );
 ///     
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Text => {
@@ -1512,7 +1512,7 @@ macro_rules! handle {
 ///     );
 ///
 ///     socklet!("perfsocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         match event!()? {
 ///             Socklet::Binary => {
 ///                 let bin = binary!()?;
@@ -1525,7 +1525,7 @@ macro_rules! handle {
 ///     socklet_mapping!("/perfsocklet", "perfsocklet");
 ///
 ///     socklet!("mysocklet", {
-///         let handle = handle!()?;
+///         let mut handle = handle!()?;
 ///         let id = handle.get_connection_id();
 ///         match event!()? {
 ///             Socklet::Open => {
