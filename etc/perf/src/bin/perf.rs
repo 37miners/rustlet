@@ -19,17 +19,23 @@ use clap::App;
 use librustlet::nioruntime_log;
 use librustlet::*;
 use nioruntime_log::*;
+use std::convert::TryInto;
 use std::io::Read;
 use std::io::Write;
 use std::net::TcpStream;
+use std::sync::{Arc, RwLock};
 
 const CLIENT_WS_HANDSHAKE: &[u8] =
 	"GET /perfsocklet HTTP/1.1\r\nUpgrade: websocket\r\nSec-WebSocket-Key: x\r\n\r\n".as_bytes();
 const SIMPLE_WS_MESSAGE: &[u8] = &[130, 1, 1]; // binary data with a single byte of data, unmasked
+const SEPARATOR: &str =
+	"------------------------------------------------------------------------------------------";
+//123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+//         1         2         3         4         5         6         7         8         9
 
 debug!();
 
-fn client_thread(count: usize, id: usize, port: u16) -> Result<(), Error> {
+fn client_thread(count: usize, id: usize, port: u16) -> Result<u128, Error> {
 	let mut buf1 = [0u8; 150].to_vec();
 	let mut buf2 = [0u8; 150].to_vec();
 
@@ -62,7 +68,10 @@ fn client_thread(count: usize, id: usize, port: u16) -> Result<(), Error> {
 	}
 	// handshake complete
 
+	let mut total_nanos = 0;
+
 	for i in 0..count {
+		let start_time = std::time::SystemTime::now();
 		stream.write(SIMPLE_WS_MESSAGE)?;
 		let mut total_len = 0;
 		loop {
@@ -95,13 +104,17 @@ fn client_thread(count: usize, id: usize, port: u16) -> Result<(), Error> {
 				break;
 			}
 		} // we need to read 3 bytes back as the reply.
+		let elapsed = std::time::SystemTime::now().duration_since(start_time)?;
+		total_nanos += elapsed.as_nanos();
 	}
 
-	Ok(())
+	Ok(total_nanos)
 }
 
 fn main() -> Result<(), Error> {
+	let time_start = std::time::SystemTime::now();
 	info!("Starting Perf test!");
+	info_no_ts!("{}", SEPARATOR);
 
 	let yml = load_yaml!("perf.yml");
 	let args = App::from_yaml(yml).version("1").get_matches();
@@ -131,19 +144,25 @@ fn main() -> Result<(), Error> {
 		false => 8080,
 	};
 
+	let nano_sum: Arc<RwLock<u128>> = Arc::new(RwLock::new(0));
 	for x in 0..itt {
 		let mut jhs = vec![];
 		for i in 0..threads {
 			let id = i.clone();
+			let nano_sum = nano_sum.clone();
 			jhs.push(std::thread::spawn(move || {
 				let res = client_thread(count, id, port);
-				match res {
-					Ok(_) => {}
+				let total_nanos = match res {
+					Ok(total_nanos) => total_nanos,
 					Err(e) => {
 						error!("Error in client thread: {}", e.to_string());
 						assert!(false);
+						0
 					}
-				}
+				};
+
+				let mut nano_sum = nano_sum.write().unwrap();
+				*nano_sum += total_nanos;
 			}));
 		}
 
@@ -152,6 +171,23 @@ fn main() -> Result<(), Error> {
 		}
 		info!("Iteration {} complete. ", x + 1);
 	}
+
+	let nano_sum = nano_sum.read().unwrap();
+	let duration = std::time::SystemTime::now().duration_since(time_start)?;
+	let mut total_requests: u64 = (threads * count * itt).try_into().unwrap_or(0);
+	let avg_lat = (*nano_sum as f64 / 1_000_000 as f64) / total_requests as f64;
+	total_requests *= 2; // we multiple by 2 because it's two messages.
+
+	let messages_per_second = (total_requests * 1000) as f64 / duration.as_millis() as f64;
+
+	info_no_ts!("{}", SEPARATOR);
+	info!(
+		"Total elapsed time = {}ms. Total requests = {}.",
+		duration.as_millis(),
+		total_requests,
+	);
+	info!("Messages per second = {}.", messages_per_second);
+	info!("Average round trip latency = {}ms.", avg_lat);
 
 	Ok(())
 }
