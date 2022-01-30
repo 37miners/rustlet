@@ -13,6 +13,7 @@ edition = "2018"
 
 [workspace]
 members = ["rustlet"]
+exclude = ["etc/perf"]
 
 [dependencies]
 
