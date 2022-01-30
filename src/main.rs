@@ -543,6 +543,10 @@ fn real_main() -> Result<(), Error> {
 			response!("res={:?}", res);
 		});
 
+		rustlet!("smurf", {
+			smurf!();
+		});
+
 		let _ = fun();
 		let _ = fun2();
 
@@ -562,6 +566,7 @@ fn real_main() -> Result<(), Error> {
 		rustlet_mapping!("/delete_abc", "delete_abc");
 		rustlet_mapping!("/content", "content");
 		rustlet_mapping!("/formupload", "formupload");
+		rustlet_mapping!("/smurf", "smurf");
 
 		socklet!("perfsocklet", {
 			let handle = handle!()?;

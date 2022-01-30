@@ -109,6 +109,95 @@ lazy_static! {
 		Arc::new(RwLock::new(SockletContainer::new()));
 }
 
+/// Prints a smurf to the page.
+/// All credit for the ascii art goes to Normand Veilleux.
+///
+/// # Examples
+///
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///
+///     rustlet!("smurf", {
+///         smurf!();
+///     });
+///
+///     rustlet_mapping!("/smurf", "smurf");
+///
+///     Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! smurf {
+	() => {
+		response!("<pre>");
+		response!("                             _,dP\"''    `\"\"\"\"Ya,_\n");
+		response!("                          ,aP\"'                `\"Yb,_\n");
+		response!("                        ,8\"'                       `\"8a,\n");
+		response!("                      ,8\"                             `\"8,_\n");
+		response!("                    ,8\"                                  \"Yb,\n");
+		response!("                  ,8\"                                      `8,\n");
+		response!("                 dP'                                        8I\n");
+		response!("               ,8\"                           bg,_          ,P'\n");
+		response!("              ,8'                              \"Y8\"Ya,,,,ad\"\n");
+		response!("             ,d\"                            a,_ I8   `\"\"\"'\n");
+		response!("            ,8'                              \"\"888\n");
+		response!("            dP     __                           `Yb,\n");
+		response!("           dP'  _,d8P::::Y8b,                     `Ya\n");
+		response!("      ,adba8',d88P::;;::;;;:\"b:::Ya,_               Ya\n");
+		response!("     dP\":::\"Y88P:;P\"\"\"YP\"\"\"Yb;::::::\"Ya,             \"Y,\n");
+		response!("     8:::::::Yb;d\" _  \"_    dI:::::::::\"Yb,__,,gd88ba,db\n");
+		response!("     Yb:::::::\"8(,8P _d8   d8:::::::::::::Y88P\"::::::Y8I\n");
+		response!("     `Yb;:::::::\"\"::\"\":b,,dP::::::::::::::::::;aaa;:::8(\n");
+		response!("       `Y8a;:::::::::::::::::::::;;::::::::::8P\"\"Y8)::8I\n");
+		response!("         8b\"ba::::::::::::::::;adP:::::::::::\":::dP::;8'\n");
+		response!("         `8b;::::::::::::;aad888P::::::::::::::;dP::;8'\n");
+		response!("          `8b;::::::::\"\"\"\"88\"  d::::::::::b;:::::;;dP'\n");
+		response!("            \"Yb;::::::::::Y8bad::::::::::;\"8Paaa\"\"'\n");
+		response!("              `\"Y8a;;;:::::::::::::;;aadP\"\"\n");
+		response!("                  ``\"\"Y88bbbdddd88P\"\"8b,\n");
+		response!("                           _,d8\"::::::\"8b,\n");
+		response!("                         ,dP8\"::::::;;:::\"b,\n");
+		response!("                       ,dP\"8:::::::Yb;::::\"b,\n");
+		response!("                     ,8P:dP:::::::::Yb;::::\"b,\n");
+		response!("                  _,dP:;8\":::::::::::Yb;::::\"b\n");
+		response!("        ,aaaaaa,,d8P:::8\":::::::::::;dP:::::;8\n");
+		response!("     ,ad\":;;:::::\"::::8\"::::::::::;dP::::::;dI\n");
+		response!("    dP\";adP\":::::;:;dP;::::aaaad88\"::::::adP:8b,___\n");
+		response!("   d8:::8;;;aadP\"::8'Y8:d8P\"::::::::::;dP\";d\"'`Yb:\"b\n");
+		response!("   8I:::;\"\"\":::::;dP I8P\"::::::::::;a8\"a8P\"     \"b:P\n");
+		response!("   Yb::::\"8baa8\"\"\"'  8;:;d\"::::::::d8P\"'         8\"\n");
+		response!("    \"YbaaP::8;P      `8;d::;a::;;;;dP           ,8\n");
+		response!("       `\"Y8P\"'         Yb;;d::;aadP\"           ,d'\n");
+		response!("                        \"YP:::\"P'             ,d'\n");
+		response!("                          \"8bdP'    _        ,8'\n");
+		response!("         Normand         ,8\"`\"\"Yba,d\"      ,d\"\n");
+		response!("         Veilleux       ,P'     d\"8'     ,d\"\n");
+		response!("                       ,8'     d'8'     ,P'\n");
+		response!("                       (b      8 I      8,\n");
+		response!("                        Y,     Y,Y,     `b,\n");
+		response!("                  ____   \"8,__ `Y,Y,     `Y\"\"b,\n");
+		response!("              ,adP\"\"\"\"b8P\"\"\"\"\"\"\"\"Ybdb,        Y,\n");
+		response!("            ,dP\"    ,dP'            `\"\"       `8\n");
+		response!("           ,8\"     ,P'                        ,P\n");
+		response!("           8'      8)                        ,8'\n");
+		response!("           8,      Yb                      ,aP'\n");
+		response!("           `Ya      Yb                  ,ad\"'\n");
+		response!("             \"Ya,___ \"Ya             ,ad\"'\n");
+		response!("               ``\"\"\"\"\"\"`Yba,,,,,,,adP\"'\n");
+		response!("                          `\"\"\"\"\"\"\"'\n");
+		response!("</pre>");
+	};
+}
+
 /// Delete the entire session. See [`session`] for more info on sessions. If a parameter is specified,
 /// only that parameter is deleted from the session. With no parameter specified, the entire session
 /// is invalidated.
