@@ -271,7 +271,7 @@ fn main() -> Result<(), Error> {
 
 	let histo_max = match histo_max {
 		true => args.value_of("histo_max").unwrap().parse().unwrap(),
-		false => 4_000,
+		false => 2_000,
 	};
 
 	let bucket_count = match bucket_count {
@@ -333,7 +333,7 @@ fn main() -> Result<(), Error> {
 
 	info_no_ts!("{}", SEPARATOR);
 	info!(
-		"Total elapsed time = {} ms. Total requests = {}.",
+		"Total elapsed time = {} ms. Total messages = {}.",
 		duration.as_millis().to_formatted_string(&Locale::en),
 		total_requests.to_formatted_string(&Locale::en),
 	);
