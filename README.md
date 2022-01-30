@@ -190,6 +190,56 @@ $ ./target/release/rustlet -c -x 100 -t 100 -i 10 --tls
 
 The rustlet container is configured via the [rustlet_init](https://37miners.github.io/rustlet/librustlet/macro.rustlet_init.html) macro. All configuration structs implement the Default trait so the defaults can be used. Also, all of the fields are fully documented in the documentation linked to above.
 
+# Socklets
+
+As of [Release 0.0.2](https://github.com/37miners/rustlet/releases/tag/0.0.2), A Websocket API called [Socklets](https://37miners.github.io/rustlet/librustlet/macro.socklet.html) is supported in the Rustlet project. Socklets are the equivalent of Rustlets for Websockets as opposed to HTTP. A perf tool is also included in the release to benchmark the performance of the Websocket API. This tool can be built by going to the etc/perf directory and following the instructions in the README.md file. The output of one such run is posted below:
+
+```
+$ ./target/release/perf -i 10 -x 1000 -t 80 -m 1500 -o
+[2022-01-30 00:26:51]: (INFO) Starting Perf test!
+------------------------------------------------------------------------------------------
+[2022-01-30 00:26:51]: (INFO) Iteration 1 complete. 
+[2022-01-30 00:26:51]: (INFO) Iteration 2 complete. 
+[2022-01-30 00:26:52]: (INFO) Iteration 3 complete. 
+[2022-01-30 00:26:52]: (INFO) Iteration 4 complete. 
+[2022-01-30 00:26:53]: (INFO) Iteration 5 complete. 
+[2022-01-30 00:26:53]: (INFO) Iteration 6 complete. 
+[2022-01-30 00:26:53]: (INFO) Iteration 7 complete. 
+[2022-01-30 00:26:54]: (INFO) Iteration 8 complete. 
+[2022-01-30 00:26:54]: (INFO) Iteration 9 complete. 
+[2022-01-30 00:26:54]: (INFO) Iteration 10 complete. 
+------------------------------------------------------------------------------------------
+[2022-01-30 00:26:54]: (INFO) Total elapsed time = 3,905 ms. Total messages = 1,600,000.
+[2022-01-30 00:26:54]: (INFO) Messages per second = 409731.11.
+[2022-01-30 00:26:54]: (INFO) Average round trip latency = 0.35 ms.
+------------------------------------------------------------------------------------------
+-------------------------------------Latency Histogram------------------------------------
+------------------------------------------------------------------------------------------
+|===>                                               |  3.797% (0.00ms - 0.07ms) num=30,374
+|=============>                                     | 13.857% (0.07ms - 0.15ms) num=110,858
+|===================>                               | 19.367% (0.15ms - 0.23ms) num=154,933
+|=================>                                 | 17.799% (0.23ms - 0.30ms) num=142,391
+|=============>                                     | 13.499% (0.30ms - 0.38ms) num=107,994
+|=========>                                         |  9.604% (0.38ms - 0.45ms) num=76,833
+|======>                                            |  6.918% (0.45ms - 0.53ms) num=55,344
+|====>                                              |  4.765% (0.53ms - 0.60ms) num=38,120
+|===>                                               |  3.233% (0.60ms - 0.68ms) num=25,868
+|==>                                                |  2.177% (0.68ms - 0.75ms) num=17,417
+|=>                                                 |  1.411% (0.75ms - 0.82ms) num=11,292
+|>                                                  |  0.947% (0.82ms - 0.90ms) num=7,576
+|>                                                  |  0.617% (0.90ms - 0.97ms) num=4,939
+|>                                                  |  0.421% (0.97ms - 1.05ms) num=3,371
+|>                                                  |  0.281% (1.05ms - 1.12ms) num=2,245
+|>                                                  |  0.196% (1.12ms - 1.20ms) num=1,565
+|>                                                  |  0.149% (1.20ms - 1.27ms) num=1,195
+|>                                                  |  0.116% (1.27ms - 1.35ms) num=929
+|>                                                  |  0.087% (1.35ms - 1.43ms) num=695
+|>                                                  |  0.758% (1.43ms and up  ) num=6,061
+------------------------------------------------------------------------------------------
+```
+
+As seen by the numbers above, around 400,000 messages per second can be sent via the Socklet Websocket API. Also, the average latency and other information about latencies are shown in the histogram displayed by the perf tool. In comparison to other [benchmarks](https://blog.feathersjs.com/http-vs-websockets-a-performance-comparison-da2533f13a77), these numbers are quite good (over 100X faster on comparable hardware). In addition to the tests ran on this (a 6-core CPU), another test on a dual core Intel Nuc resulted in around 150,000 messages per second with similar latencies. Socklets are also easy to use as seen in the examples in the documentation.
+
 # Samples
 
 The Rustlet [macro library](https://37miners.github.io/rustlet/librustlet/index.html)  documentation provides numerous working examples. Also, the [rustlet-simple](https://github.com/37miners/rustlet-simple) project shows how to write and deploy a hello world rustlet in 3 easy steps. More examples to come...
