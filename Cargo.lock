@@ -946,7 +946,7 @@ dependencies = [
 
 [[package]]
 name = "librustlet"
-version = "0.0.2-beta1"
+version = "0.0.2"
 dependencies = [
  "backtrace",
  "lazy_static",
@@ -1066,8 +1066,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_err"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "backtrace",
  "base64 0.13.0",
@@ -1087,8 +1087,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_evh"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "backtrace",
  "errno",
@@ -1111,8 +1111,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_http"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "backtrace",
  "base64 0.13.0",
@@ -1137,8 +1137,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_log"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "chrono",
  "failure",
@@ -1153,8 +1153,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_tor"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "backtrace",
  "chrono",
@@ -1188,8 +1188,8 @@ dependencies = [
 
 [[package]]
 name = "nioruntime_util"
-version = "0.0.2-beta1"
-source = "git+http://github.com/37miners/nioruntime?branch=master#1afb0fa054d4270dd2b308720c49b71dd92807e7"
+version = "0.0.2"
+source = "git+http://github.com/37miners/nioruntime?tag=0.0.2#2660301e53a2036f4bb0afd76bc7a43dbb176240"
 dependencies = [
  "backtrace",
  "byteorder",
@@ -1725,7 +1725,7 @@ checksum = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
 
 [[package]]
 name = "rustlet"
-version = "0.0.2-beta1"
+version = "0.0.2"
 dependencies = [
  "built",
  "byte-tools",
@@ -1802,9 +1802,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework"
-version = "2.5.0"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d09d3c15d814eda1d6a836f2f2b56a6abc1446c8a34351cb3180d3db92ffe4ce"
+checksum = "3fed7948b6c68acbb6e20c334f55ad635dc0f75506963de4464289fbd3b051ac"
 dependencies = [
  "bitflags",
  "core-foundation",
@@ -1815,9 +1815,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework-sys"
-version = "2.5.0"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e90dd10c41c6bfc633da6e0c659bd25d31e0791e5974ac42970267d59eba87f7"
+checksum = "a57321bf8bc2362081b2599912d2961fe899c0efadf1b4b2f8d48b3e253bb96c"
 dependencies = [
  "core-foundation-sys",
  "libc",
