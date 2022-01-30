@@ -6,8 +6,8 @@
 It is important to note that it need not be used just for the websocket that
 is currently being processed, but the handle can be stored and used by any thread
 to respond to websocket events. The handle is a mutable reference to a
-<a href="../nioruntime_http/http/struct.ConnData.html" title="nioruntime_http::ConnData"><code>nioruntime_http::ConnData</code></a> struct. To get a hashable element from this
-struct, the <a href="../nioruntime_http/http/struct.ConnData.html#method.get_connection_id" title="nioruntime_http::ConnData::get_connection_id"><code>nioruntime_http::ConnData::get_connection_id</code></a> function may be
+<a href="struct.ConnData.html" title="nioruntime_http::ConnData"><code>nioruntime_http::ConnData</code></a> struct. To get a hashable element from this
+struct, the <a href="struct.ConnData.html#method.get_connection_id" title="nioruntime_http::ConnData::get_connection_id"><code>nioruntime_http::ConnData::get_connection_id</code></a> function may be
 called. That id, which is a u128 can be used to store any data about this
 connection, including the handle itself in a collection.</p>
 <h2 id="also-see" class="section-header"><a href="#also-see">Also see</a></h2>
