@@ -1404,7 +1404,7 @@ macro_rules! handle {
 	}};
 }
 
-/// Specifies a socklet. Socklets are closures that are the equivilent to [`rustlet`]'s, except
+/// Specifies a socklet. Socklets are closures that are the equivalent to [`rustlet`]'s, except
 /// they handle websockets instead of HTTP requests. Since, like rustlets, socklets are closures
 /// variables can be moved into them and shared with other socklets and rustlets or any other
 /// closure. Socklets are processed in the [nioruntime](https://github.com/37miners/nioruntime). So, the
