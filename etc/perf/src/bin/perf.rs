@@ -279,6 +279,16 @@ fn main() -> Result<(), Error> {
 		false => 20,
 	};
 
+	if histo_max % bucket_count != 0 {
+		error!("histo_max must be divisible by bucket_count.");
+		error!(
+			"Supplied values (hist_max={},bucket_count={}) are not.",
+			histo_max, bucket_count,
+		);
+		error!("Halting!");
+		return Ok(());
+	}
+
 	let histo = if histo {
 		Some(Histo::new(histo_max, bucket_count))
 	} else {
