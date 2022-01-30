@@ -394,11 +394,17 @@ fn real_main() -> Result<(), Error> {
 		info!("Average latency={}ms", avg_lat,);
 		info!("Max latency={}ms", (*lat_max) as f64 / (1_000_000 as f64));
 	} else {
+		let threads = args.is_present("threads");
+		let threads = match threads {
+			true => args.value_of("threads").unwrap().parse().unwrap(),
+			false => 6,
+		};
+
 		rustlet_init!(RustletConfig {
 			session_timeout: 60,
 			http_config: HttpConfig {
 				evh_config: EventHandlerConfig {
-					thread_count: 8,
+					thread_count: threads,
 					tls_config,
 				},
 				max_log_queue: 100_000,

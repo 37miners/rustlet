@@ -14,7 +14,7 @@ args:
         value_name: count
         takes_value: true
     - threads:
-        help: Number of client threads to run
+        help: Number of client threads to run / or for server, the thread_pool configuration parameter
         short: t
         long: threads
         value_name: threads
