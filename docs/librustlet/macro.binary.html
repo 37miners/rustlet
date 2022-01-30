@@ -5,7 +5,7 @@
 }</code></pre></div>
 </div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The binary macro is used to send and receive binary websocket messages.
 If no parameters are specified, this macro will return the payload
-of the message that is received from a [<code>Socklet::Binary</code>] <a href="macro.event.html" title="event"><code>event</code></a>.
+of the message that is received from a <a href="enum.Socklet.html#variant.Binary" title="Socklet::Binary"><code>Socklet::Binary</code></a> <a href="macro.event.html" title="event"><code>event</code></a>.
 The payload, which is a Vec<u8> is wrapped in a <a href="https://doc.rust-lang.org/1.58.1/core/result/enum.Result.html" title="std::result::Result"><code>std::result::Result</code></a> enum and an
 error may be returned in the event of a misconfiguration. If two
 parameters are specified, this macro will write data (second parameter)
