@@ -1,0 +1,22 @@
+[package]
+name = "socklet_perf"
+version = "0.0.1"
+edition = "2018"
+description = "Utility to test performance of socklets"
+license = "Apache-2.0"
+repository = "https://github.com/37miners/rustlet"
+keywords = [ "socklet", "nioruntime", "rustlet" ]
+readme = "README.md"
+
+[[bin]]
+name = "perf"
+path = "src/bin/perf.rs"
+
+[dependencies]
+librustlet = { path = "../../rustlet" }
+
+chrono = "0.4.11"
+failure = "0.1"
+rand = "0.6"
+clap = { version = "2.33", features = ["yaml"] }
+

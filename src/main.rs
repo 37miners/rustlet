@@ -563,30 +563,39 @@ fn real_main() -> Result<(), Error> {
 		rustlet_mapping!("/content", "content");
 		rustlet_mapping!("/formupload", "formupload");
 
-		socklet!("mysocklet", {
+		socklet!("perfsocklet", {
 			let handle = handle!()?;
 			match event!()? {
+				Socklet::Binary => {
+					let bin = binary!()?;
+					binary!(handle, bin);
+				}
+				_ => {}
+			}
+		});
+
+		socklet_mapping!("/perfsocklet", "perfsocklet");
+
+		socklet!("mysocklet", {
+			let handle = handle!()?;
+			let id = handle.get_connection_id();
+			match event!()? {
 				Socklet::Open => {
-					info!("socklet open!");
+					info!("socklet [cid={}] open!", id);
 				}
 				Socklet::Close => {
-					info!("socklet close!");
+					info!("socklet [cid={}] close!", id);
 				}
 				Socklet::Text => {
-					info!("got text");
 					let text = text!()?;
-					text!(
-						handle,
-						"echo: '{}', handle.id={}",
-						text,
-						handle.get_connection_id()
-					);
+					info!("got text [cid={}]: {}", id, text);
+					text!(handle, "echo [cid={}]: '{}'", id, text,);
 				}
 				Socklet::Binary => {
 					let bin = binary!()?;
-					info!("got binary: {:?}", bin);
+					info!("got binary [cid={}]: {:?}", id, bin);
 					binary!(handle, [0u8, 1u8, 2u8, 3u8]);
-					if bin[0] == 100 {
+					if bin.len() > 0 && bin[0] == 100 {
 						ping!(handle);
 					}
 				}

@@ -10,4 +10,6 @@ docs/*
 !docs/rustlet
 !docs/librustlet
 
+/etc/*/target
+
 *.swp

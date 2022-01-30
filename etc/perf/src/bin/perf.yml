@@ -1,0 +1,28 @@
+name: perf
+author: 37 Miners, LLC
+
+args:
+    - count:
+        help: Number of iterations to run per thread
+        short: x
+        long: count
+        value_name: count
+        takes_value: true
+    - threads:
+        help: Number of client threads to run
+        short: t
+        long: threads
+        value_name: threads
+        takes_value: true
+    - itt:
+        help: Number of times to repeat the test
+        short: i
+        long: itt
+        value_name: itt
+        takes_value: true
+    - port:
+        help: port to connect to
+        short: p
+        long: port
+        value_name: port
+        takes_value: true

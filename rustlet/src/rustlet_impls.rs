@@ -742,7 +742,9 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 					(socklet)(&message, conn_data)?;
 				}
 				None => {
-					error!(
+					log_multi!(
+						ERROR,
+						MAIN_LOG,
 						"invalid id mapping for conn_data {}. id was {}",
 						conn_data.get_connection_id(),
 						id,
@@ -768,15 +770,20 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 											Some(socklet) => (socklet)(&message, conn_data)?,
 											None => {
 												ret = false;
-												error!(
+												log_multi!(
+													ERROR,
+													MAIN_LOG,
 													"invalid map. id = {}, message = {:?}",
-													*id, message,
+													*id,
+													message,
 												);
 											}
 										}
 									}
 									None => {
-										error!(
+										log_multi!(
+											ERROR,
+											MAIN_LOG,
 											"invalid id mapping for conn_data {}. name was {}",
 											conn_data.get_connection_id(),
 											name,
@@ -791,14 +798,21 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 						}
 					}
 					None => {
-						error!("ws open with no header info: {:?}", message);
+						log_multi!(
+							ERROR,
+							MAIN_LOG,
+							"ws open with no header info: {:?}",
+							message
+						);
 						ret = false;
 					}
 				},
 				_ => {
 					// we don't know what to do here since we have no socklet id.
-					// this should not happen
-					error!(
+					// possibly a misbehaving client.
+					log_multi!(
+						WARN,
+						MAIN_LOG,
 						"unexpected error. No conn_data.get_data() for a non-open message, {}, {:?}",
 						conn_data.get_connection_id(),
 						message,
