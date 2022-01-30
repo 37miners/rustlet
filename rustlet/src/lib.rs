@@ -17,14 +17,12 @@ pub mod macros;
 #[doc(hidden)]
 pub mod rustlet_impls;
 
-#[doc(hidden)]
 pub use macros::Socklet;
 
 #[doc(hidden)]
-pub use rustlet_impls::{
-	ConnData, HttpConfig, RustletAsyncContext, RustletConfig, RustletContainer, RustletRequest,
-	RustletResponse,
-};
+pub use rustlet_impls::{RustletContainer, RustletRequest, RustletResponse};
+
+pub use rustlet_impls::{ConnData, HttpConfig, RustletAsyncContext, RustletConfig};
 
 #[doc(hidden)]
 pub use backtrace;

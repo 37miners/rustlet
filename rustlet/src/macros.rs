@@ -425,7 +425,7 @@ macro_rules! session {
 	};
 }
 
-/// Create a signature using dalek algorithm. This is useful with the pubkey!() and verify!() macros.
+/// Create a signature using dalek algorithm. This is useful with the [`pubkey`] and [`verify`] macros.
 ///
 /// # Examples
 /// ```
@@ -492,7 +492,7 @@ macro_rules! sign {
 	}};
 }
 
-/// Verifies a signature using dalek algorithm. This is useful with the pubkey!() and sign!() macros.
+/// Verifies a signature using dalek algorithm. This is useful with the [`pubkey`] and [`sign`] macros.
 ///
 /// # Examples
 /// ```
@@ -1333,7 +1333,7 @@ macro_rules! text {
 }
 
 /// This macro is called to determine which type of WebSocket event
-/// has occured within a ['socklet'] closure. The macro returns a [`Socklet`] enum.
+/// has occured within a [`socklet`] closure. The macro returns a [`Socklet`] enum.
 /// which can be used to determine what action should be taken by the socklet.
 ///
 /// # Also see
@@ -1606,7 +1606,7 @@ macro_rules! socklet {
 }
 
 /// Initialize the rustlet container based on the specified configuration. The default
-/// configuration may be used by calling `RustletConfig::default()`. See [`crate::RustletConfig`]
+/// configuration may be used by calling [`crate::RustletConfig::default()`]. See [`crate::RustletConfig`]
 /// for details on configuring the Rustlet and Http containers.
 ///
 /// # Examples
