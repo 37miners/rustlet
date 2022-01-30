@@ -16,14 +16,121 @@
 
 use clap::load_yaml;
 use clap::App;
+use colored::Colorize;
 use librustlet::nioruntime_log;
 use librustlet::*;
 use nioruntime_log::*;
+use num_format::{Locale, ToFormattedString};
 use std::convert::TryInto;
 use std::io::Read;
 use std::io::Write;
 use std::net::TcpStream;
 use std::sync::{Arc, RwLock};
+
+// structure to hold the histogram data
+#[derive(Clone)]
+struct Histo {
+	buckets: Vec<Arc<RwLock<u64>>>,
+	max: usize,
+	bucket_count: usize,
+}
+
+impl Histo {
+	fn new(max: usize, bucket_count: usize) -> Self {
+		let mut buckets = vec![];
+
+		// we make a bucket for each microsecond.
+		for _ in 0..max {
+			buckets.push(Arc::new(RwLock::new(0)));
+		}
+
+		Histo {
+			buckets,
+			max,
+			bucket_count,
+		}
+	}
+
+	// increment the count for this bucket
+	fn incr(&self, bucket_num: usize) -> Result<(), Error> {
+		let mut bucket = self.buckets[bucket_num].write().map_err(|e| {
+			let error: Error =
+				ErrorKind::ApplicationError(format!("error obtaining lock: {}", e)).into();
+			error
+		})?;
+		*bucket += 1;
+
+		Ok(())
+	}
+
+	// get the value at this bucket
+	fn get(&self, bucket_num: usize) -> Result<u64, Error> {
+		let bucket = self.buckets[bucket_num].read().map_err(|e| {
+			let error: Error =
+				ErrorKind::ApplicationError(format!("error obtaining lock: {}", e)).into();
+			error
+		})?;
+		Ok(*bucket)
+	}
+
+	// display the histogram in a readable fashion
+	fn display(&self) -> Result<(), Error> {
+		let bucket_divisor = self.max / self.bucket_count;
+		let mut display_buckets_vec = vec![];
+		for _ in 0..self.bucket_count {
+			display_buckets_vec.push(0u64);
+		}
+		let display_buckets = &mut display_buckets_vec[..];
+		let mut total = 0;
+		for i in 0..self.max {
+			let bucket_num = i / bucket_divisor;
+			let num = self.get(i)?;
+			display_buckets[bucket_num] += num;
+			total += num;
+		}
+		for i in 0..self.bucket_count {
+			let percentage = 100 as f64 * display_buckets[i] as f64 / total as f64;
+			let percentage_int = percentage as u64;
+			print!("|");
+			for _ in 0..percentage_int {
+				print!("{}", "=".green());
+			}
+
+			if display_buckets[i] > 0 {
+				print!("{}", ">".green());
+			} else {
+				print!(" ");
+			}
+			for _ in percentage_int..50 {
+				print!(" ");
+			}
+			print!("| ");
+			if percentage < 10.0 {
+				print!(" ");
+			}
+			let low_range = (bucket_divisor * i) as f64 / 1000 as f64;
+			let high_range = (bucket_divisor * (1 + i)) as f64 / 1000 as f64;
+
+			if i == self.bucket_count - 1 {
+				println!(
+					"{:.3}% ({:.2}ms and up  ) num={}",
+					percentage,
+					low_range,
+					display_buckets[i].to_formatted_string(&Locale::en)
+				);
+			} else {
+				println!(
+					"{:.3}% ({:.2}ms - {:.2}ms) num={}",
+					percentage,
+					low_range,
+					high_range,
+					display_buckets[i].to_formatted_string(&Locale::en)
+				);
+			}
+		}
+		Ok(())
+	}
+}
 
 const CLIENT_WS_HANDSHAKE: &[u8] =
 	"GET /perfsocklet HTTP/1.1\r\nUpgrade: websocket\r\nSec-WebSocket-Key: x\r\n\r\n".as_bytes();
@@ -35,7 +142,8 @@ const SEPARATOR: &str =
 
 debug!();
 
-fn client_thread(count: usize, id: usize, port: u16) -> Result<u128, Error> {
+// main function for a client thread. It processes count messages and then returns.
+fn client_thread(max: usize, count: usize, port: u16, histo: Option<Histo>) -> Result<u128, Error> {
 	let mut buf1 = [0u8; 150].to_vec();
 	let mut buf2 = [0u8; 150].to_vec();
 
@@ -70,10 +178,12 @@ fn client_thread(count: usize, id: usize, port: u16) -> Result<u128, Error> {
 
 	let mut total_nanos = 0;
 
-	for i in 0..count {
+	for _ in 0..count {
 		let start_time = std::time::SystemTime::now();
 		stream.write(SIMPLE_WS_MESSAGE)?;
 		let mut total_len = 0;
+
+		// we check that the message comes back as expected
 		loop {
 			let len = stream.read(&mut buf1)?;
 			if total_len + len > 3 {
@@ -105,7 +215,19 @@ fn client_thread(count: usize, id: usize, port: u16) -> Result<u128, Error> {
 			}
 		} // we need to read 3 bytes back as the reply.
 		let elapsed = std::time::SystemTime::now().duration_since(start_time)?;
+		let nanos = elapsed.as_nanos();
+		let mut micros = nanos as usize / 1000;
+		if micros >= max {
+			micros = max - 1;
+		}
 		total_nanos += elapsed.as_nanos();
+
+		match histo {
+			Some(ref histo) => {
+				histo.incr(micros.try_into().unwrap_or(max))?;
+			}
+			None => {}
+		}
 	}
 
 	Ok(total_nanos)
@@ -123,6 +245,9 @@ fn main() -> Result<(), Error> {
 	let count = args.is_present("count");
 	let itt = args.is_present("itt");
 	let port = args.is_present("port");
+	let histo = args.is_present("histo");
+	let histo_max = args.is_present("histo_max");
+	let bucket_count = args.is_present("bucket_count");
 
 	let threads = match threads {
 		true => args.value_of("threads").unwrap().parse().unwrap(),
@@ -144,14 +269,30 @@ fn main() -> Result<(), Error> {
 		false => 8080,
 	};
 
+	let histo_max = match histo_max {
+		true => args.value_of("histo_max").unwrap().parse().unwrap(),
+		false => 4_000,
+	};
+
+	let bucket_count = match bucket_count {
+		true => args.value_of("bucket_count").unwrap().parse().unwrap(),
+		false => 20,
+	};
+
+	let histo = if histo {
+		Some(Histo::new(histo_max, bucket_count))
+	} else {
+		None
+	};
+
 	let nano_sum: Arc<RwLock<u128>> = Arc::new(RwLock::new(0));
 	for x in 0..itt {
 		let mut jhs = vec![];
-		for i in 0..threads {
-			let id = i.clone();
+		for _ in 0..threads {
 			let nano_sum = nano_sum.clone();
+			let histo = histo.clone();
 			jhs.push(std::thread::spawn(move || {
-				let res = client_thread(count, id, port);
+				let res = client_thread(histo_max, count, port, histo);
 				let total_nanos = match res {
 					Ok(total_nanos) => total_nanos,
 					Err(e) => {
@@ -182,12 +323,21 @@ fn main() -> Result<(), Error> {
 
 	info_no_ts!("{}", SEPARATOR);
 	info!(
-		"Total elapsed time = {}ms. Total requests = {}.",
-		duration.as_millis(),
-		total_requests,
+		"Total elapsed time = {} ms. Total requests = {}.",
+		duration.as_millis().to_formatted_string(&Locale::en),
+		total_requests.to_formatted_string(&Locale::en),
 	);
-	info!("Messages per second = {}.", messages_per_second);
-	info!("Average round trip latency = {}ms.", avg_lat);
+	info!("Messages per second = {:.2}.", messages_per_second);
+	info!("Average round trip latency = {:.2} ms.", avg_lat);
+
+	match histo {
+		Some(histo) => {
+			info_no_ts!("{}", SEPARATOR);
+			histo.display()?;
+			info_no_ts!("{}", SEPARATOR);
+		}
+		None => {}
+	}
 
 	Ok(())
 }

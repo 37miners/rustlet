@@ -26,3 +26,20 @@ args:
         long: port
         value_name: port
         takes_value: true
+    - histo:
+        help: include histogram in output
+        short: o
+        long: histo
+        takes_value: false
+    - histo_max:
+        help: maximum time in microseconds to display in the histogram. The default is 4,000.
+        short: m
+        long: histo_max
+        value_name: histo_max
+        takes_value: true
+    - bucket_count:
+        help: number of buckets to display in the histogram. The default is 20.
+        short: b
+        long: bucket_count
+        value_name: bucket_count
+        takes_value: true
