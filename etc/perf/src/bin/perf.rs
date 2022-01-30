@@ -343,6 +343,12 @@ fn main() -> Result<(), Error> {
 	match histo {
 		Some(histo) => {
 			info_no_ts!("{}", SEPARATOR);
+			info_no_ts!(
+"-------------------------------------Latency Histogram------------------------------------");
+			//123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+			//         1         2         3         4         5         6         7         8         9
+
+			info_no_ts!("{}", SEPARATOR);
 			histo.display()?;
 			info_no_ts!("{}", SEPARATOR);
 		}
