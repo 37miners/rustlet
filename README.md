@@ -192,7 +192,7 @@ The rustlet container is configured via the [rustlet_init](https://37miners.gith
 
 # Socklets
 
-As of [Release 0.0.2](https://github.com/37miners/rustlet/releases/tag/0.0.2), A Websocket API called [Socklets](https://37miners.github.io/rustlet/librustlet/macro.socklet.html) is supported in the Rustlet project. Socklets are the equivalent of Rustlets for Websockets as opposed to HTTP. A perf tool is also included in the release to benchmark the performance of the Websocket API. This tool can be built by going to the etc/perf directory and following the instructions in the README.md file. The output of one such run is posted below:
+As of [Release 0.0.2](https://github.com/37miners/rustlet/releases/tag/0.0.2), A WebSocket API called [Socklets](https://37miners.github.io/rustlet/librustlet/macro.socklet.html) is supported in the Rustlet project. Socklets are the equivalent of Rustlets for WebSockets. A perf tool is also included in the release to benchmark the performance of the WebSocket API. This tool can be built by going to the etc/perf directory and following the instructions in the README.md file. The output of one such run is posted below:
 
 ```
 $ ./target/release/perf -i 10 -x 1000 -t 80 -m 1500 -o
