@@ -15,16 +15,26 @@
 pub mod macros;
 pub mod rustlet_impls;
 
+#[doc(hidden)]
 pub use macros::Socklet;
+
+#[doc(hidden)]
 pub use rustlet_impls::{
 	ConnData, HttpConfig, RustletAsyncContext, RustletConfig, RustletContainer, RustletRequest,
 	RustletResponse,
 };
 
+#[doc(hidden)]
 pub use backtrace;
+#[doc(hidden)]
 pub use nioruntime_err::{self, Error, ErrorKind};
+#[doc(hidden)]
 pub use nioruntime_evh::{self, EventHandlerConfig, TlsConfig};
-pub use nioruntime_http::{self, WebSocketMessage, WebSocketMessageType};
+#[doc(hidden)]
+pub use nioruntime_http::{self, send_websocket_message, WebSocketMessage, WebSocketMessageType};
+#[doc(hidden)]
 pub use nioruntime_log;
+#[doc(hidden)]
 pub use nioruntime_tor;
+#[doc(hidden)]
 pub use nioruntime_util::{self, ser::Readable, ser::Reader, ser::Writeable, ser::Writer};

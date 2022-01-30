@@ -22,12 +22,67 @@ use std::cell::RefCell;
 use std::sync::{Arc, RwLock};
 use std::thread_local;
 
+/// This is the enum that the [`event`] macro will return. It is
+/// used to determine what type of event has occured in a socklet.
+///
+/// # Also see
+///
+/// * [`event`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+/// fn testsocklet() -> Result<(), Error> {
+///
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///
+///     socklet!("mysocklet", {
+///         match event!()? {
+///             Socklet::Open => {
+///                 // process open events for the websocket
+///             },
+///             Socklet::Close => {
+///                 // process close events for the websocket
+///             },
+///             Socklet::Text => {
+///                 // process text messages
+///             },
+///             Socklet::Binary => {
+///                 // process binary messages
+///             },
+///             Socklet::Ping => {
+///                 // process pings
+///             },
+///             Socklet::Pong => {
+///                 // process pongs
+///             },
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
 pub enum Socklet {
+	/// This event occurs whenever a websocket is opened
+	/// and connects to the uri associated with the socketlet mapping.
 	Open,
+	/// This event occurs whenver the websocket connection closes.
+	/// Duplicates are filtered.
 	Close,
+	/// This event occurs whenever a text message is sent to the websocket.
 	Text,
+	/// This event occurs whenever a binary message is sent to the websocket.
 	Binary,
+	/// This event occurs whenever a ping is sent to the websocket.
 	Ping,
+	/// This event occurs whenever a pong is sent to the websocket.
 	Pong,
 }
 
@@ -679,10 +734,10 @@ macro_rules! async_context {
 
 /// Specifies a rustlet. Rustlets are closures that process HTTP requests and generate a response,
 /// so variables can be moved into them and shared among other rustlets or any other closure.
-/// Rustlets are processed in the [nioruntime](https://github.com/bitcoinmw/nioruntime). So, the
+/// Rustlets are processed in the [nioruntime](https://github.com/37miners/nioruntime). So, the
 /// exectuion is performant. See the other macros for detailed examples on how to use all of the
 /// functionality of rustlets. To try out a minimally simple rustlet as a project, see
-/// [rustlet-simple](https://github.com/bitcoinmw/rustlet-simple/).
+/// [rustlet-simple](https://github.com/37miners/rustlet-simple/).
 /// # Also see
 ///
 /// * [`add_header`]
@@ -790,6 +845,58 @@ macro_rules! rustlet {
 	};
 }
 
+/// Maps the specified uri to a socklet. This works similarly to how the
+/// [`rustlet_mapping`] macro works. All websocket requests to the container
+/// for this uri will be processed by the specified socklet.
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`handle`]
+/// * [`event`]
+/// * [`text`]
+/// * [`ping`]
+/// * [`pong`]
+/// * [`binary`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text [cid={}]: {}", id, text);
+///                 text!(handle, "echo [cid={}]: '{}'", id, text);
+///             }
+///             _ => {},
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! socklet_mapping {
 	($a:expr, $b:expr) => {{
@@ -821,23 +928,61 @@ macro_rules! socklet_mapping {
 	}};
 }
 
+/// Send a websocket ping message. See <https://datatracker.ietf.org/doc/html/rfc6455> for
+/// more details on the websocket protocol and the usage of pings. Note that most browsers
+/// do not support this message type.
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`socklet_mapping`]
+/// * [`handle`]
+/// * [`event`]
+/// * [`text`]
+/// * [`pong`]
+/// * [`binary`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text [cid={}]: {}", id, text);
+///                 text!(handle, "echo [cid={}]: '{}'", id, text);
+///                 ping!(handle);
+///             }
+///             _ => {},
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! ping {
-	($a:expr) => {
-		send_websocket_message(
-			&$a,
-			&WebSocketMessage {
-				mtype: WebSocketMessageType::Pong,
-				payload: vec![],
-				mask: false,
-				header_info: None,
-			},
-		)?;
-	};
-}
-
-#[macro_export]
-macro_rules! pong {
 	($a:expr) => {
 		send_websocket_message(
 			&$a,
@@ -851,6 +996,134 @@ macro_rules! pong {
 	};
 }
 
+/// Send a websocket pong message. See <https://datatracker.ietf.org/doc/html/rfc6455> for
+/// more details on the websocket protocol and the usage of pongs. Note that most browsers
+/// do not support this message type.
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`socklet_mapping`]
+/// * [`handle`]
+/// * [`event`]
+/// * [`text`]
+/// * [`ping`]
+/// * [`binary`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text [cid={}]: {}", id, text);
+///                 text!(handle, "echo [cid={}]: '{}'", id, text);
+///                 ping!(handle);
+///             },
+///             Socklet::Ping => {
+///                 pong!(handle);
+///             },
+///             _ => {},
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! pong {
+	($a:expr) => {
+		send_websocket_message(
+			&$a,
+			&WebSocketMessage {
+				mtype: WebSocketMessageType::Pong,
+				payload: vec![],
+				mask: false,
+				header_info: None,
+			},
+		)?;
+	};
+}
+
+/// The binary macro is used to send and receive binary websocket messages.
+/// If no parameters are specified, this macro will return the payload
+/// of the message that is received from a [`Socklet::Binary`] [`event`].
+/// The payload, which is a Vec<u8> is wrapped in a [`std::result::Result`] enum and an
+/// error may be returned in the event of a misconfiguration. If two
+/// parameters are specified, this macro will write data (second parameter)
+/// to the handle (first parameter). The data is of type [`std::slice`].
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`socklet_mapping`]
+/// * [`handle`]
+/// * [`event`]
+/// * [`text`]
+/// * [`ping`]
+/// * [`pong`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Binary => {
+///                 let binary = binary!()?;
+///                 info!("got binary on [cid={}]: {:?}", id, binary);
+///                 let bin_resp = &[1,2,3,4,5];
+///                 binary!(handle, bin_resp);
+///             }
+///             _ => {},
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! binary {
 	() => {{
@@ -881,6 +1154,63 @@ macro_rules! binary {
 	}};
 }
 
+/// The text macro is used to send and receive text websocket messages.
+/// If no parameters are specified, this macro will return the payload
+/// of the message that is received from a [`Socklet::Text`] [`event`].
+/// The payload, which is a [`std::string::String`] is wrapped in
+/// a [`std::result::Result`] enum and an error may be returned in the event
+/// of a misconfiguration. If two parameters are specified, this macro will
+/// write data (second parameter) to the handle (first parameter).
+/// The data is of type [`std::str`].
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`socklet_mapping`]
+/// * [`handle`]
+/// * [`event`]
+/// * [`binary`]
+/// * [`ping`]
+/// * [`pong`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text on [cid={}]: {:?}", id, text);
+///                 let text_resp = format!("echo: {}", text);
+///                 text!(handle, text_resp);
+///             }
+///             _ => {},
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
 #[macro_export]
 macro_rules! text {
 	() => {
@@ -929,6 +1259,54 @@ macro_rules! text {
 	};
 }
 
+/// This macro is called to determine which type of WebSocket event
+/// has occured within a ['socklet'] closure. The macro returns a [`Socklet`] enum.
+/// which can be used to determine what action should be taken by the socklet.
+///
+/// # Also see
+///
+/// * [`Socklet`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+/// fn testsocklet() -> Result<(), Error> {
+///
+///     // init the rustlet container, in this case with default values
+///     rustlet_init!(RustletConfig::default());
+///
+///     socklet!("mysocklet", {
+///         match event!()? {
+///             Socklet::Open => {
+///                 // process open events for the websocket
+///             },
+///             Socklet::Close => {
+///                 // process close events for the websocket
+///             },
+///             Socklet::Text => {
+///                 // process text messages
+///             },
+///             Socklet::Binary => {
+///                 // process binary messages
+///             },
+///             Socklet::Ping => {
+///                 // process pings
+///             },
+///             Socklet::Pong => {
+///                 // process pongs
+///             },
+///         }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! event {
 	() => {{
@@ -952,6 +1330,64 @@ macro_rules! event {
 	}};
 }
 
+/// The handle macro reutrns a handle that can be used to reply to any websocket.
+/// It is important to note that it need not be used just for the websocket that
+/// is currently being processed, but the handle can be stored and used by any thread
+/// to respond to websocket events. The handle is a mutable reference to a
+/// [`nioruntime_http::ConnData`] struct. To get a hashable element from this
+/// struct, the [`nioruntime_http::ConnData::get_connection_id`] function may be
+/// called. That id, which is a u128 can be used to store any data about this
+/// connection, including the handle itself in a collection.
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`socklet`]
+/// * [`socklet_mapping`]
+/// * [`event`]
+/// * [`text`]
+/// * [`binary`]
+/// * [`ping`]
+/// * [`pong`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///     
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text on [cid={}]: {:?}", id, text);
+///                 let text_resp = format!("echo: {}", text);
+///                 text!(handle, text_resp);
+///             }
+///             _ => {},
+///         }
+///     });
+///     
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///     
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! handle {
 	() => {{
@@ -968,11 +1404,92 @@ macro_rules! handle {
 	}};
 }
 
+/// Specifies a socklet. Socklets are closures that are the equivilent to [`rustlet`]'s, except
+/// they handle websockets instead of HTTP requests. Since, like rustlets, socklets are closures
+/// variables can be moved into them and shared with other socklets and rustlets or any other
+/// closure. Socklets are processed in the [nioruntime](https://github.com/37miners/nioruntime). So, the
+/// exectuion is performant. See the other macros for detailed examples on how to use all of the
+/// functionality of socklets.
+///
+/// # Also see
+///
+/// * [`rustlet_init`]
+/// * [`handle`]
+/// * [`socklet_mapping`]
+/// * [`event`]
+/// * [`text`]
+/// * [`binary`]
+/// * [`ping`]
+/// * [`pong`]
+///
+/// # Examples
+/// ```
+/// use nioruntime_err::Error;
+/// use librustlet::*;
+/// use nioruntime_log::*;
+///
+/// debug!();
+///
+/// fn test() -> Result<(), Error> {
+///     rustlet_init!(
+///         RustletConfig {
+///             http_config: HttpConfig {
+///                 port: 80,
+///                 ..HttpConfig::default()
+///             },
+///             ..RustletConfig::default()
+///         }
+///     );
+///
+///     socklet!("perfsocklet", {
+///         let handle = handle!()?;
+///         match event!()? {
+///             Socklet::Binary => {
+///                 let bin = binary!()?;
+///                 binary!(handle, bin);
+///             }
+///             _ => {}
+///         }
+///     });
+///
+///     socklet_mapping!("/perfsocklet", "perfsocklet");
+///
+///     socklet!("mysocklet", {
+///         let handle = handle!()?;
+///         let id = handle.get_connection_id();
+///         match event!()? {
+///             Socklet::Open => {
+///                 info!("socklet [cid={}] open!", id);
+///             }
+///             Socklet::Close => {
+///                 info!("socklet [cid={}] close!", id);
+///             }
+///             Socklet::Text => {
+///                 let text = text!()?;
+///                 info!("got text [cid={}]: {}", id, text);
+///                 text!(handle, "echo [cid={}]: '{}'", id, text,);
+///             }
+///             Socklet::Binary => {
+///                 let bin = binary!()?;
+///                 info!("got binary [cid={}]: {:?}", id, bin);
+///                 binary!(handle, [0u8, 1u8, 2u8, 3u8]);
+///                 if bin.len() > 0 && bin[0] == 100 {
+///                     ping!(handle);
+///                 }
+///             }
+///             Socklet::Ping => {
+///                 pong!(handle);
+///             }
+///             Socklet::Pong => {}
+///             }
+///     });
+///
+///     socklet_mapping!("/mysocklet", "mysocklet");
+///     Ok(())
+/// }
+/// ```
 #[macro_export]
 macro_rules! socklet {
-	() => {{
-		println!("no args");
-	}};
 	($a:expr,$b:expr) => {
 		let mut container =
 			librustlet::nioruntime_util::lockw!(librustlet::macros::SOCKLET_CONTAINER);
