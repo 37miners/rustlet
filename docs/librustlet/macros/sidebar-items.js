@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["LOCALRUSTLET",""],["LOCALSOCKLET",""]],"enum":[["Socklet",""]],"struct":[["RUSTLET_CONTAINER",""],["SOCKLET_CONTAINER",""]]});
+initSidebarItems({"constant":[["LOCALRUSTLET",""],["LOCALSOCKLET",""]],"enum":[["Socklet","This is the enum that the [`event`] macro will return. It is used to determine what type of event has occured in a socklet."]],"struct":[["RUSTLET_CONTAINER",""],["SOCKLET_CONTAINER",""]]});

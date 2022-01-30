@@ -1,7 +1,61 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `binary` macro in crate `librustlet`."><meta name="keywords" content="rust, rustlang, rust-lang, binary"><title>binary in librustlet - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
-    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../librustlet/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="index.html">librustlet</a></h2><div id="sidebar-vars" data-name="binary" data-ty="macro" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Macro <a href="index.html">librustlet</a>::<wbr><a class="macro" href="#">binary</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/librustlet/macros.rs.html#855-882" title="goto source code">[src]</a></span></h1><div class="docblock item-decl"><div class="example-wrap"><pre class="rust macro"><code><span class="macro">macro_rules!</span> <span class="ident">binary</span> {
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The binary macro is used to send and receive binary websocket messages. If no parameters are specified, this macro will return the payload of the message that is received from a [`Socklet::Binary`] [`event`]. The payload, which is a Vec is wrapped in a [`std::result::Result`] enum and an error may be returned in the event of a misconfiguration. If two parameters are specified, this macro will write data (second parameter) to the handle (first parameter). The data is of type [`std::slice`]."><meta name="keywords" content="rust, rustlang, rust-lang, binary"><title>binary in librustlet - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../librustlet/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="index.html">librustlet</a></h2><div id="sidebar-vars" data-name="binary" data-ty="macro" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Macro <a href="index.html">librustlet</a>::<wbr><a class="macro" href="#">binary</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/librustlet/macros.rs.html#1128-1155" title="goto source code">[src]</a></span></h1><div class="docblock item-decl"><div class="example-wrap"><pre class="rust macro"><code><span class="macro">macro_rules!</span> <span class="ident">binary</span> {
     () =&gt; { ... };
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span> : <span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> : <span class="ident">expr</span>) =&gt; { ... };
 }</code></pre></div>
-</div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="librustlet" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+</div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The binary macro is used to send and receive binary websocket messages.
+If no parameters are specified, this macro will return the payload
+of the message that is received from a <a href="macros/enum.Socklet.html#variant.Binary" title="Socklet::Binary"><code>Socklet::Binary</code></a> <a href="macro.event.html" title="event"><code>event</code></a>.
+The payload, which is a Vec<u8> is wrapped in a <a href="https://doc.rust-lang.org/1.58.1/core/result/enum.Result.html" title="std::result::Result"><code>std::result::Result</code></a> enum and an
+error may be returned in the event of a misconfiguration. If two
+parameters are specified, this macro will write data (second parameter)
+to the handle (first parameter). The data is of type <a href="https://doc.rust-lang.org/1.58.1/alloc/slice/index.html" title="std::slice"><code>std::slice</code></a>.</p>
+<h2 id="also-see" class="section-header"><a href="#also-see">Also see</a></h2>
+<ul>
+<li><a href="macro.rustlet_init.html" title="rustlet_init"><code>rustlet_init</code></a></li>
+<li><a href="macro.socklet.html" title="socklet"><code>socklet</code></a></li>
+<li><a href="macro.socklet_mapping.html" title="socklet_mapping"><code>socklet_mapping</code></a></li>
+<li><a href="macro.handle.html" title="handle"><code>handle</code></a></li>
+<li><a href="macro.event.html" title="event"><code>event</code></a></li>
+<li><a href="macro.text.html" title="text"><code>text</code></a></li>
+<li><a href="macro.ping.html" title="ping"><code>ping</code></a></li>
+<li><a href="macro.pong.html" title="pong"><code>pong</code></a></li>
+</ul>
+<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">nioruntime_err::Error</span>;
+<span class="kw">use</span> <span class="ident">librustlet</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">nioruntime_log</span>::<span class="kw-2">*</span>;
+
+<span class="macro">debug!</span>();
+
+<span class="kw">fn</span> <span class="ident">test</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="macro">rustlet_init!</span>(
+        <span class="ident">RustletConfig</span> {
+            <span class="ident">http_config</span>: <span class="ident">HttpConfig</span> {
+                <span class="ident">port</span>: <span class="number">80</span>,
+                ..<span class="ident">HttpConfig::default</span>()
+            },
+            ..<span class="ident">RustletConfig::default</span>()
+        }
+    );
+
+    <span class="macro">socklet!</span>(<span class="string">&quot;mysocklet&quot;</span>, {
+        <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="macro">handle!</span>()<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">handle</span>.<span class="ident">get_connection_id</span>();
+        <span class="kw">match</span> <span class="macro">event!</span>()<span class="question-mark">?</span> {
+            <span class="ident">Socklet::Binary</span> =&gt; {
+                <span class="kw">let</span> <span class="ident">binary</span> <span class="op">=</span> <span class="macro">binary!</span>()<span class="question-mark">?</span>;
+                <span class="macro">info!</span>(<span class="string">&quot;got binary on [cid={}]: {:?}&quot;</span>, <span class="ident">id</span>, <span class="ident">binary</span>);
+                <span class="kw">let</span> <span class="ident">bin_resp</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];
+                <span class="macro">binary!</span>(<span class="ident">handle</span>, <span class="ident">bin_resp</span>);
+            }
+            <span class="kw">_</span> =&gt; {},
+        }
+    });
+
+    <span class="macro">socklet_mapping!</span>(<span class="string">&quot;/mysocklet&quot;</span>, <span class="string">&quot;mysocklet&quot;</span>);
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></details></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="librustlet" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
 </body></html>
