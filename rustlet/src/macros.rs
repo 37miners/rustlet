@@ -1390,6 +1390,7 @@ macro_rules! event {
 				WebSocketMessageType::Pong => Socklet::Pong,
 				WebSocketMessageType::Text => Socklet::Text,
 				WebSocketMessageType::Binary => Socklet::Binary,
+				_ => Socklet::Close, // Accept shouldn't be propogated, just return close as an error
 			}),
 			None => {
 				let error: Error = ErrorKind::ApplicationError(

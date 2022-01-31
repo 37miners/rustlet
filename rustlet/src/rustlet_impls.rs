@@ -754,9 +754,9 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 			}
 		}
 		None => {
-			// check if this is an open message. If so, set data of conn_data to the socklet's id.
+			// check if this is an accept message. If so, set data of conn_data to the socklet's id.
 			match message.mtype {
-				WebSocketMessageType::Open => match message.header_info {
+				WebSocketMessageType::Accept => match message.header_info {
 					Some(ref header_info) => {
 						let name = socklets.mappings.get(&header_info.uri);
 						match name {
@@ -765,20 +765,6 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 								match id {
 									Some(id) => {
 										conn_data.set_data(*id)?;
-										let socklet = socklets.socklets.get(id);
-										match socklet {
-											Some(socklet) => (socklet)(&message, conn_data)?,
-											None => {
-												ret = false;
-												log_multi!(
-													ERROR,
-													MAIN_LOG,
-													"invalid map. id = {}, message = {:?}",
-													*id,
-													message,
-												);
-											}
-										}
 									}
 									None => {
 										log_multi!(
