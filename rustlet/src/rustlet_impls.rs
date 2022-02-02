@@ -602,7 +602,7 @@ impl RustletResponse {
 }
 
 pub type Socklet =
-	Pin<Box<dyn Fn(&WebSocketMessage, &mut ConnData) -> Result<(), Error> + Send + Sync>>;
+	Pin<Box<dyn Fn(&WebSocketMessage, &ConnData) -> Result<(), Error> + Send + Sync>>;
 
 pub type Rustlet =
 	Pin<Box<dyn Fn(&mut RustletRequest, &mut RustletResponse) -> Result<(), Error> + Send + Sync>>;
@@ -739,7 +739,7 @@ fn ws_handler(conn_data: &mut ConnData, message: WebSocketMessage) -> Result<boo
 			let socklet = socklets.socklets.get(&id);
 			match socklet {
 				Some(socklet) => {
-					(socklet)(&message, conn_data)?;
+					(socklet)(&message, &*conn_data)?;
 				}
 				None => {
 					log_multi!(

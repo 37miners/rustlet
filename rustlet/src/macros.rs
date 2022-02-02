@@ -1061,7 +1061,7 @@ macro_rules! socklet_mapping {
 macro_rules! ping {
 	($a:expr) => {
 		send_websocket_message(
-			&mut $a,
+			&$a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Ping,
 				payload: vec![],
@@ -1131,7 +1131,7 @@ macro_rules! ping {
 macro_rules! pong {
 	($a:expr) => {
 		send_websocket_message(
-			&mut $a,
+			&$a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Pong,
 				payload: vec![],
@@ -1217,7 +1217,7 @@ macro_rules! binary {
 	}};
 	($a:expr,$b:expr) => {{
 		send_websocket_message(
-			&mut $a,
+			&$a,
 			&WebSocketMessage {
 				mtype: WebSocketMessageType::Binary,
 				payload: $b.to_vec(),
@@ -1307,7 +1307,7 @@ macro_rules! text {
         ($a:expr,$b:expr)=>{
                 {
 			send_websocket_message(
-				&mut $a,
+				& $a,
 				&WebSocketMessage {
 					mtype: WebSocketMessageType::Text,
 					payload: $b.as_bytes().to_vec(),
@@ -1320,7 +1320,7 @@ macro_rules! text {
         ($a:expr,$b:expr,$($c:tt)*)=>{
                 {
 			send_websocket_message(
-				&mut $a,
+				& $a,
 				&WebSocketMessage {
 					mtype: WebSocketMessageType::Text,
 					payload: format!($b, $($c)*).as_bytes().to_vec(),
@@ -1568,17 +1568,15 @@ macro_rules! socklet {
 			Ok(mut container) => {
 				let res = container.add_socklet(
 					$a,
-					Box::pin(
-						move |message: &WebSocketMessage, conn_data: &mut ConnData| {
-							librustlet::macros::LOCALSOCKLET.with(|f| {
-								*f.borrow_mut() = Some(((*message).clone(), (*conn_data).clone()));
-							});
-							{
-								$b
-							}
-							Ok(())
-						},
-					),
+					Box::pin(move |message: &WebSocketMessage, conn_data: &ConnData| {
+						librustlet::macros::LOCALSOCKLET.with(|f| {
+							*f.borrow_mut() = Some(((*message).clone(), (*conn_data).clone()));
+						});
+						{
+							$b
+						}
+						Ok(())
+					}),
 				);
 				match res {
 					Ok(_) => {}
