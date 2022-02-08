@@ -619,6 +619,10 @@ fn real_main() -> Result<(), Error> {
 
 		socklet_mapping!("/mysocklet", "mysocklet");
 
+		rustlet!("secret", {
+			let _secret = secret!();
+		});
+
 		std::thread::park();
 	}
 	Ok(())

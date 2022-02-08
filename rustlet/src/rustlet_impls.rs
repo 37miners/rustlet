@@ -1271,6 +1271,13 @@ impl RustletContainer {
 		Ok(())
 	}
 
+	pub fn secret_bytes(&self) -> Result<[u8; 64], Error> {
+		match &self.http {
+			None => Err(ErrorKind::ApplicationError("http not available".to_string()).into()),
+			Some(http) => http.secret_bytes(),
+		}
+	}
+
 	pub fn tor_sign(&self, message: &[u8]) -> Result<[u8; 64], Error> {
 		match &self.http {
 			None => Err(ErrorKind::ApplicationError("http not available".to_string()).into()),

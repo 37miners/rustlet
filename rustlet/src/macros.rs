@@ -433,7 +433,7 @@ macro_rules! secret {
 			librustlet::nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
 		match container {
 			Ok(mut container) => {
-				let res = container.secret_bytes();
+				let res = (*container).secret_bytes();
 				match res {
 					Ok(res) => Some(res),
 					Err(e) => {
@@ -441,8 +441,8 @@ macro_rules! secret {
 						None
 					}
 				}
-			},
-			Err(e) {
+			}
+			Err(e) => {
 				mainlogerror!("error getting rustlet container: {}", e);
 				None
 			}
