@@ -67,6 +67,7 @@ configuration may be used by calling <a href="struct.RustletConfig.html#method.d
 for details on configuring the Rustlet and Http containers.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.rustlet_mapping.html" title="librustlet::rustlet_mapping macro">rustlet_mapping</a></div><div class="item-right docblock-short"><p>Maps the specified uri to a rustlet. All requests to the container for this uri
 will be processed by the specified rustlet.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.secret.html" title="librustlet::secret macro">secret</a></div><div class="item-right docblock-short"><p>Get the secret bytes used by TOR from nioruntime. Be careful about using this macro.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.session.html" title="librustlet::session macro">session</a></div><div class="item-right docblock-short"><p>Sets or gets a value in the session. The session is an in-memory key/value store that can be used
 by rustlets to store data that can be accessed by other rustlets. A session cookie is set called
 rustletsessionid that lets the rustlet container know which user is which. The session is automatically
