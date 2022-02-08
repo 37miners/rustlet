@@ -425,6 +425,31 @@ macro_rules! session {
 	};
 }
 
+/// Get the secret bytes used by TOR from nioruntime. Be careful about using this macro.
+#[macro_export]
+macro_rules! secret {
+	() => {{
+		let mut container =
+			librustlet::nioruntime_util::lockw!(librustlet::macros::RUSTLET_CONTAINER);
+		match container {
+			Ok(mut container) => {
+				let res = container.secret_bytes();
+				match res {
+					Ok(res) => Some(res),
+					Err(e) => {
+						mainlogerror!("error getting secret bytes: {}", e);
+						None
+					}
+				}
+			},
+			Err(e) {
+				mainlogerror!("error getting rustlet container: {}", e);
+				None
+			}
+		}
+	}};
+}
+
 /// Create a signature using dalek algorithm. This is useful with the [`pubkey`] and [`verify`] macros.
 ///
 /// # Examples
